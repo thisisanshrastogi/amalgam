@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supported Banks | Amalgamic</title>
+<meta name="description" content="Amalgamic connects through Plaid and Spinwheel, covering more than 12,000 US financial institutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/supported-banks/styles.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<nav class="nav">
+<div class="nav-in">
+<a class="logo" href="/"><div class="logo-mark"></div>Amalgamic</a>
+<button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+<span></span><span></span><span></span></button>
+<div class="nav-links" id="navLinks"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/about/">About</a><a class="nav-link" href="/contact/">Contact</a><a class="btn btn-primary nav-cta" href="https://cards.amalgamic.io/dashboard" target="_blank">Get Started</a></div>
+</div></nav>
+<header class="wrap phead"><span class="badge badge-accent"><span class="dot"></span>Product / Coverage</span><h1>Supported Banks</h1><p class="lead">We connect through Plaid and Spinwheel rather than integrating bank by bank, which means coverage runs to more than 12,000 US institutions — national banks, regionals, credit unions and brokerages.</p><div class="meta"><div class="meta-cell"><span class="mono">Providers</span><span class="meta-val">Plaid &middot; Spinwheel</span></div><div class="meta-cell"><span class="mono">Institutions</span><span class="meta-val">12,000+</span></div><div class="meta-cell"><span class="mono">Connection</span><span class="meta-val">Read-only, revocable</span></div></div></header><div class="wrap doc"><nav class="rail" aria-label="Sections"><div class="rail-scroll"><div class="rail-group"><span class="mono">Coverage</span><a href="#how" data-sec="how"><span class="rail-n">01</span><span>How coverage works</span></a><a href="#find" data-sec="find"><span class="rail-n">02</span><span>Find your institution</span></a><a href="#missing" data-sec="missing"><span class="rail-n">03</span><span>If yours isn't listed</span></a></div><div class="rail-group"><span class="mono">Control</span><a href="#revoke" data-sec="revoke"><span class="rail-n">04</span><span>Disconnecting an account</span></a></div></div><div class="rail-prog"><span class="mono" id="railPct">Read 0%</span><div class="rail-track"><div class="rail-fill" id="railFill"></div></div></div></nav><div><section class="sec" id="how"><span class="sec-n">&sect;01</span><h2>How coverage works</h2><div class="prose">
+<p>Amalgamic does not integrate with banks one at a time. We connect through two regulated data
+providers, and our coverage is whatever theirs is — which in practice means the overwhelming
+majority of US institutions, down to small credit unions.</p>
+<div class="grid">
+  <div class="card"><span class="mono">Primary</span><h4>Plaid</h4>
+    <p>Connects more than 12,000 financial institutions across the US — national banks, regional
+    banks, credit unions and brokerages.</p></div>
+  <div class="card"><span class="mono">Specialist</span><h4>Spinwheel</h4>
+    <p>Liability and debt accounts — loans, lines of credit and balances that transaction feeds
+    alone tend to miss.</p></div>
+</div>
+<p>When you link an account you authenticate with your bank through the provider, not through us.
+Larger institutions use OAuth, meaning you log in on your bank's own page and approve access there.</p>
+</div></section><section class="sec" id="find"><span class="sec-n">&sect;02</span><h2>Find your institution</h2><div class="prose">
+<p>A sample of commonly connected institutions. This is not the full list — searching in the
+dashboard queries live coverage.</p>
+<div class="panel">
+  <div class="panel-bar"><span class="mono">Institution directory</span>
+    <span class="mono" id="count">40 of 40</span></div>
+  <div class="filters">
+    <input class="search" id="q" type="search" placeholder="Search institutions" aria-label="Search institutions">
+    <div class="ftypes" id="ftypes"><button class="ftype" data-t="All" aria-pressed="true">All</button><button class="ftype" data-t="Brokerage" aria-pressed="false">Brokerage</button><button class="ftype" data-t="Card issuer" aria-pressed="false">Card issuer</button><button class="ftype" data-t="Credit union" aria-pressed="false">Credit union</button><button class="ftype" data-t="National bank" aria-pressed="false">National bank</button><button class="ftype" data-t="Online bank" aria-pressed="false">Online bank</button><button class="ftype" data-t="Regional bank" aria-pressed="false">Regional bank</button></div>
+  </div>
+  <div class="panel-scroll"><table>
+    <thead><tr><th scope="col">Institution</th><th scope="col">Type</th><th scope="col">Connection</th></tr></thead>
+    <tbody id="tbody"><tr data-name="chase" data-type="National bank"><td><span class="cat">Chase</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="bank of america" data-type="National bank"><td><span class="cat">Bank of America</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="wells fargo" data-type="National bank"><td><span class="cat">Wells Fargo</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="capital one" data-type="National bank"><td><span class="cat">Capital One</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="citi" data-type="National bank"><td><span class="cat">Citi</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="u.s. bank" data-type="National bank"><td><span class="cat">U.S. Bank</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="pnc" data-type="National bank"><td><span class="cat">PNC</span></td><td><span class="badge">National bank</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="american express" data-type="Card issuer"><td><span class="cat">American Express</span></td><td><span class="badge">Card issuer</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="navy federal credit union" data-type="Credit union"><td><span class="cat">Navy Federal Credit Union</span></td><td><span class="badge">Credit union</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="merrill" data-type="Brokerage"><td><span class="cat">Merrill</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge badge-accent"><span class="dot"></span>OAuth</span></td></tr><tr data-name="truist" data-type="National bank"><td><span class="cat">Truist</span></td><td><span class="badge">National bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="td bank" data-type="National bank"><td><span class="cat">TD Bank</span></td><td><span class="badge">National bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="usaa" data-type="National bank"><td><span class="cat">USAA</span></td><td><span class="badge">National bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="discover" data-type="Card issuer"><td><span class="cat">Discover</span></td><td><span class="badge">Card issuer</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="barclays us" data-type="Card issuer"><td><span class="cat">Barclays US</span></td><td><span class="badge">Card issuer</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="synchrony bank" data-type="Card issuer"><td><span class="cat">Synchrony Bank</span></td><td><span class="badge">Card issuer</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="fifth third bank" data-type="Regional bank"><td><span class="cat">Fifth Third Bank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="citizens bank" data-type="Regional bank"><td><span class="cat">Citizens Bank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="keybank" data-type="Regional bank"><td><span class="cat">KeyBank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="regions bank" data-type="Regional bank"><td><span class="cat">Regions Bank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="m&amp;t bank" data-type="Regional bank"><td><span class="cat">M&amp;T Bank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="huntington bank" data-type="Regional bank"><td><span class="cat">Huntington Bank</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="bmo harris" data-type="Regional bank"><td><span class="cat">BMO Harris</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="comerica" data-type="Regional bank"><td><span class="cat">Comerica</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="santander us" data-type="Regional bank"><td><span class="cat">Santander US</span></td><td><span class="badge">Regional bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="ally bank" data-type="Online bank"><td><span class="cat">Ally Bank</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="marcus by goldman sachs" data-type="Online bank"><td><span class="cat">Marcus by Goldman Sachs</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="sofi" data-type="Online bank"><td><span class="cat">SoFi</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="chime" data-type="Online bank"><td><span class="cat">Chime</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="varo" data-type="Online bank"><td><span class="cat">Varo</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="current" data-type="Online bank"><td><span class="cat">Current</span></td><td><span class="badge">Online bank</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="penfed credit union" data-type="Credit union"><td><span class="cat">PenFed Credit Union</span></td><td><span class="badge">Credit union</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="alliant credit union" data-type="Credit union"><td><span class="cat">Alliant Credit Union</span></td><td><span class="badge">Credit union</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="becu" data-type="Credit union"><td><span class="cat">BECU</span></td><td><span class="badge">Credit union</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="state employees credit union" data-type="Credit union"><td><span class="cat">State Employees Credit Union</span></td><td><span class="badge">Credit union</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="charles schwab" data-type="Brokerage"><td><span class="cat">Charles Schwab</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="fidelity" data-type="Brokerage"><td><span class="cat">Fidelity</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="vanguard" data-type="Brokerage"><td><span class="cat">Vanguard</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="e*trade" data-type="Brokerage"><td><span class="cat">E*TRADE</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge">Supported</span></td></tr><tr data-name="robinhood" data-type="Brokerage"><td><span class="cat">Robinhood</span></td><td><span class="badge">Brokerage</span></td><td><span class="badge">Supported</span></td></tr></tbody></table></div>
+  <div class="empty" id="empty" hidden><span class="mono">No match</span>
+    <p>Nothing here matches that. Coverage runs to more than 12,000 institutions, far beyond this
+    list — search in the dashboard, or email
+    <a href="mailto:support@amalgamic.io" style="color:var(--ink)">support@amalgamic.io</a> and we will check.</p></div>
+</div>
+<p>Institutions marked OAuth use your bank's own login page, so your credentials are never typed
+into an Amalgamic screen.</p>
+</div></section><section class="sec" id="missing"><span class="sec-n">&sect;03</span><h2>If yours isn't listed</h2><div class="prose">
+<p>Try connecting anyway. Coverage is far wider than this page shows and it changes constantly.
+If the connection fails, email <a href="mailto:support@amalgamic.io">support@amalgamic.io</a> with
+the institution name and we will tell you whether it is coming.</p>
+</div></section><section class="sec" id="revoke"><span class="sec-n">&sect;04</span><h2>Disconnecting an account</h2><div class="prose">
+<div class="note"><span class="mono">Control</span>
+<p class="note-h">Revocable from either end, at any time.</p>
+<p>Disconnect an institution from your Amalgamic dashboard, or revoke access directly with Plaid or
+Spinwheel without involving us. Either stops the data flow. What we already hold is governed by the
+retention rules in the <a href="/privacy/">privacy policy</a>.</p></div>
+</div></section></div></div>
+<footer><div class="wrap foot">
+<div>
+<a class="logo" href="/"><div class="logo-mark"></div>Amalgamic</a>
+<p class="mono" style="margin-top:14px">&copy; 2026 &middot; United States</p>
+</div>
+<div class="foot-cols">
+<div class="foot-col"><span class="mono mono-ink">Product</span>
+<a href="/supported-banks/">Supported Banks</a>
+<a href="https://cards.amalgamic.io/dashboard">Dashboard</a></div>
+<div class="foot-col"><span class="mono mono-ink">Company</span>
+<a href="/about/">About</a><a href="/contact/">Contact</a></div>
+<div class="foot-col"><span class="mono mono-ink">Legal</span>
+<a href="/privacy/">Privacy Policy</a></div>
+</div></div></footer>
+<script src="/supported-banks/main.js"></script>
+</body>
+</html>

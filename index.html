@@ -1,0 +1,337 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amalgamic | Your AI Financial Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/index.css">
+    <script src="https://cdn.amplitude.com/script/b33bf9010068e187048e910b3144df49.js"
+        crossorigin="anonymous" onerror="window.__amplitudeBlocked = true;"></script>
+</head>
+
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <nav class="nav">
+        <div class="nav-in">
+            <a class="logo" href="/" style="text-decoration:none">
+                <div class="logo-mark"></div>
+                Amalgamic
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a class="nav-link" href="/" aria-current="page">Home</a>
+                <a class="nav-link" href="/about/">About</a>
+                <a class="nav-link" href="/contact/">Contact</a>
+                <a class="btn btn-primary nav-cta" href="https://cards.amalgamic.io/dashboard" target="_blank">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge badge-active">
+                    <span class="dot dot-green"></span>
+                    Amalgamic Engine V.2
+                </div>
+                <h1 class="display-1">Your time is worth more than chasing $12.</h1>
+                <p class="body-lg">For high earners who build wealth, not track pennies. We execute the tedious
+                    financial admin in the shadows, so you don't have to.</p>
+
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                    <a href="https://cards.amalgamic.io/dashboard" target="_blank" class="btn btn-primary">Start Saving
+                        in 60 Seconds</a>
+                    <span class="mono-label">Avg Setup: 1m 14s</span>
+                </div>
+
+                <div class="hero-data-stream">
+                    <div class="data-point">
+                        <span class="mono-label">Avg. Monthly Recovery</span>
+                        <span class="text-white" style="font-size: 1.5rem; font-weight: 700;">$240<span
+                                class="text-accent" style="font-size: 1rem;">+</span></span>
+                    </div>
+                    <div class="data-point">
+                        <span class="mono-label">Tasks Handled/Mo</span>
+                        <span class="text-white" style="font-size: 1.5rem; font-weight: 700;">14.2</span>
+                    </div>
+                    <div class="data-point">
+                        <span class="mono-label">System Uptime</span>
+                        <span class="text-white"
+                            style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-mono)">99.9%</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="hero-widget">
+                <div class="scan-line"></div>
+                <div class="widget-header">
+                    <span class="mono-label text-white">Live Activity Feed</span>
+                    <span class="mono-label" style="color: var(--accent);">[Monitoring...]</span>
+                </div>
+
+                <div class="process-list">
+
+                    <div class="process-item">
+                        <div class="process-info">
+                            <div class="process-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                                </svg>
+                            </div>
+                            <div class="process-meta">
+                                <span class="mono-data text-white">NYT Digital Sub</span>
+                                <span class="mono-label">Unused: 48 Days</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="process-amount text-accent">+$17.00</div>
+                            <span class="badge"
+                                style="margin-top: 4px; border-color: transparent; background: var(--surface-2);">Cancelled</span>
+                        </div>
+                    </div>
+
+
+                    <div class="process-item"
+                        style="border-color: rgba(5, 150, 105, 0.2); background: rgba(5, 150, 105, 0.04);">
+                        <div class="process-info">
+                            <div class="process-icon" style="border-color: var(--accent); background: #FFF;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2v20"></path>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <div class="process-meta">
+                                <span class="mono-data text-white">Comcast Late Fee</span>
+                                <span class="mono-label">Auto-disputing...</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="process-amount text-white">$45.00</div>
+                            <span class="mono-label text-accent" style="display: block; margin-top: 4px;">Negotiating</span>
+                        </div>
+                    </div>
+
+
+                    <div class="process-item">
+                        <div class="process-info">
+                            <div class="process-icon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="process-meta">
+                                <span class="mono-data text-white">Amex Platinum Perk</span>
+                                <span class="mono-label">Uber Cash Applied</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="process-amount text-accent">+$15.00</div>
+                            <span class="mono-label" style="display: block; margin-top: 4px;">Claimed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-block mt-4">
+                    &gt; SYS.INIT sequence complete.<br>
+                    &gt; <span class="highlight">Pattern recognition active.</span><br>
+                    &gt; Scanning 4 connected accounts...
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section-padding">
+            <div class="section-header">
+                <span class="mono-label text-accent">Core Capabilities</span>
+                <h2 class="display-2 mt-2">The financial ninja works in the shadows.</h2>
+            </div>
+
+            <div class="bento-grid">
+
+
+                <div class="bento-card card-ghost">
+                    <div class="bento-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div class="bento-content">
+                        <h3>Kill Ghost Subscriptions</h3>
+                        <p>We scan millions of transactional data points to find the subscriptions you forgot.
+                            One click to eliminate them permanently.</p>
+                    </div>
+
+                    <div class="ghost-ui-mock">
+                        <div class="ghost-row eliminated">
+                            <span class="mono-data">ADOBE *CREATIVE CLOUD</span>
+                            <span class="mono-data">$54.99</span>
+                        </div>
+                        <div class="ghost-row eliminated">
+                            <span class="mono-data">GYM_MEMBERSHIP_LA</span>
+                            <span class="mono-data">$120.00</span>
+                        </div>
+                        <div class="ghost-row">
+                            <span class="mono-data text-white">AWS_HOSTING_PROD</span>
+                            <span class="mono-data text-white">$45.00</span>
+                        </div>
+                        <div class="ghost-row"
+                            style="border-top: 1px dashed var(--border-light); margin-top: 0.5rem; padding-top: 1rem; border-bottom: none;">
+                            <span class="mono-label text-accent">Total Monthly Capital Recovered</span>
+                            <span class="mono-data text-accent" style="font-weight: 700; font-size: 1rem;">$174.99</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bento-card card-task">
+                    <div class="bento-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22v-5"></path>
+                            <path d="M9 7V2"></path>
+                            <path d="M15 7V2"></path>
+                            <path d="M5.05 13.05 2.22 10.22"></path>
+                            <path d="M18.95 13.05 21.78 10.22"></path>
+                            <path d="M5.05 10.95 2.22 13.78"></path>
+                            <path d="M18.95 10.95 21.78 13.78"></path>
+                            <rect x="6" y="7" width="12" height="10" rx="2"></rect>
+                        </svg>
+                    </div>
+                    <div class="bento-content">
+                        <h3>Delegate &amp; Done in 24h</h3>
+                        <p>Dispute charges, claim refunds, negotiate renewals. Text the objective. Consider it
+                            executed.</p>
+                    </div>
+
+                    <div class="chat-ui-mock">
+                        <div class="chat-bubble chat-user">
+                            <span class="mono-label" style="display:block; margin-bottom: 4px; color: var(--text-3);">You - 09:41 AM</span>
+                            Dispute the $200 Delta baggage fee on my Amex. Flight was delayed 6 hours.
+                        </div>
+                        <div class="chat-bubble chat-ai">
+                            <span class="mono-label" style="display:block; margin-bottom: 4px; color: var(--accent);">Amalgamic AI - 11:22 AM</span>
+                            Dispute filed with Amex (Ref: #AMX-992). Drafted DOT regulation claim to Delta. <br><br>Status: $200 Provisional Credit Applied.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bento-card card-perks">
+                    <div>
+                        <div class="bento-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </div>
+                        <div class="bento-content">
+                            <h3>Unlock Hidden ROI</h3>
+                            <p>You carry premium cards but forget the perks. We auto-enroll you in merchant
+                                offers, maximize your cashback, and route large purchases for maximum points.</p>
+                            <a href="https://cards.amalgamic.io/dashboard" target="_blank"
+                                class="btn btn-secondary mt-4">Let AI Handle It</a>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; height: 200px;">
+
+                        <div style="position: absolute; right: 20px; top: 0; width: 260px; height: 160px; background: #0A192F; border: 1px solid #1E293B; border-radius: 12px; transform: rotate(5deg); z-index: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; box-shadow: 0 10px 30px rgba(10,25,47,0.2);">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="width: 30px; height: 20px; background: #1E293B; border-radius: 4px;"></div>
+                                <span class="mono-label" style="color: #64748B">Platinum</span>
+                            </div>
+                            <span class="mono-data" style="font-size: 1.2rem; letter-spacing: 2px; color: #FFF">•••• •••• •••• 1092</span>
+                        </div>
+                        <div style="position: absolute; right: 60px; top: 20px; width: 260px; height: 160px; background: #FFF; border: 1px solid var(--accent); border-radius: 12px; transform: rotate(-3deg); z-index: 2; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div class="badge badge-active">Offer Auto-Activated</div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="mono-label text-white" style="display: block; margin-bottom: 4px;">Saks Fifth Avenue</span>
+                                <span class="mono-data text-accent">$50 Statement Credit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="section-padding" style="text-align: center; border-top: 1px solid var(--border);">
+            <div class="badge badge-active" style="margin-bottom: 2rem;">
+                <span class="dot dot-green"></span>
+                Accepting New Clients
+            </div>
+            <h2 class="display-2"
+                style="margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">Stop
+                managing your money.<br>Start directing it.</h2>
+            <p class="body-lg" style="margin-bottom: 3rem;">Get your money back — automatically.</p>
+            <a href="https://cards.amalgamic.io/dashboard" target="_blank" class="btn btn-primary"
+                style="padding: 1.25rem 3rem; font-size: 1.1rem;">Deploy
+                Amalgamic</a>
+            <div class="mt-4">
+                <span class="mono-label text-3">[Secure 256-bit encryption. Bank-level auth.]</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <div class="logo-mark"></div>
+                Amalgamic
+                <span class="mono-label" style="margin-left: 1rem; color: var(--text-3); font-weight: normal;">&copy; 2026</span>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <span class="mono-label text-white" style="margin-bottom: 0.5rem;">Product</span>
+                    <a href="/supported-banks/">Supported Banks</a>
+                    <a href="https://cards.amalgamic.io/dashboard">Dashboard</a>
+                </div>
+                <div class="footer-col">
+                    <span class="mono-label text-white" style="margin-bottom: 0.5rem;">Company</span>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <span class="mono-label text-white" style="margin-bottom: 0.5rem;">Legal</span>
+                    <a href="/privacy/">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>
