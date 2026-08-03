@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify Pushkar's fork
+      - name: Notify fork
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.FORK_PAT }}
