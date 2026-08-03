@@ -7,10 +7,11 @@ on:
 
 jobs:
   notify:
+    if: github.repository_owner == 'batapay-io'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify fork
+      - name: Notify Pushkar's fork
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.FORK_PAT }}
