@@ -1,0 +1,19 @@
+name: Notify Fork
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    if: github.repository_owner == 'batapay-io'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Pushkar's fork
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.FORK_PAT }}
+          repository: pushkar-amalgamic/amalgamic-web-2026
+          event-type: sync-upstream
