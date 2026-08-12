@@ -3,7 +3,7 @@ import { AlertTriangle } from 'lucide-react';
 
 export default function CardCredits() {
   return (
-    <section className="py-32 px-8 overflow-hidden">
+    <section className="py-32 px-8 overflow-hidden bg-surface">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
         
         <div className="relative min-h-[400px] flex items-center justify-center md:order-1 order-2 w-full mt-10 md:mt-0">
@@ -40,10 +40,7 @@ export default function CardCredits() {
             You already paid for these.
           </h2>
           <p className="text-muted text-lg leading-relaxed mb-6">
-            An annual-fee card is a bundle of credits, offers and protections that only pays for itself if you use them. Amalgamic tracks what's available on each card, activates offers automatically, and tells you when a credit is about to expire while there's still time to spend it.
-          </p>
-          <p className="text-[15px] font-bold text-brand italic">
-            Ranked by what expires soonest, not by what's largest.
+            Track available offers and get notified before valuable credits expire.
           </p>
         </div>
         

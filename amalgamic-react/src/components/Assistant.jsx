@@ -1,54 +1,112 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { createScope } from 'animejs';
+import { fadeUpOnScroll, timelineOnScroll } from '../utils/animations';
 
 export default function Assistant() {
+  const root = useRef(null);
+  const scope = useRef(null);
+
+  useEffect(() => {
+    scope.current = createScope({ root: root.current }).add(() => {
+      // Left column: text stagger
+      fadeUpOnScroll('.asst-text', root.current, { staggerMs: 110, translateY: 24 });
+      fadeUpOnScroll('.asst-list-item', root.current, { staggerMs: 100, delay: 350, translateY: 16 });
+      fadeUpOnScroll('.asst-note', root.current, { delay: 650, translateY: 12 });
+
+      // Right panel: sequential chat timeline
+      timelineOnScroll(root.current, (tl) => {
+        tl
+          .add('.asst-phone', {
+            opacity: [0, 1], translateY: [30, 0], scale: [0.96, 1], duration: 400, ease: 'outExpo',
+          }, '+=50')
+          // User 1
+          .add('.asst-msg-1', {
+            opacity: [0, 1], translateY: [15, 0], duration: 250, ease: 'outExpo',
+          }, '-=100')
+          // AI 1 Thinking
+          .add('.asst-thinking-1', {
+            opacity: [0, 1], duration: 150, ease: 'outExpo',
+          }, '+=100')
+          // AI 1 Thinking Out
+          .add('.asst-thinking-1', {
+            opacity: [1, 0], duration: 150, ease: 'inExpo',
+          }, '+=500')
+          // AI 1 Responds
+          .add('.asst-msg-2', {
+            opacity: [0, 1], translateY: [10, 0], duration: 250, ease: 'outExpo',
+          }, '-=100')
+          
+          // User 2
+          .add('.asst-msg-3', {
+            opacity: [0, 1], translateY: [15, 0], duration: 250, ease: 'outExpo',
+          }, '+=300')
+          // AI 2 Thinking
+          .add('.asst-thinking-2', {
+            opacity: [0, 1], duration: 150, ease: 'outExpo',
+          }, '+=100')
+          // AI 2 Thinking Out
+          .add('.asst-thinking-2', {
+            opacity: [1, 0], duration: 150, ease: 'inExpo',
+          }, '+=600')
+          // AI 2 Responds
+          .add('.asst-msg-4', {
+            opacity: [0, 1], translateY: [10, 0], duration: 250, ease: 'outExpo',
+          }, '-=100');
+      });
+    });
+    return () => scope.current.revert();
+  }, []);
+
   return (
-    <section id="assistant" className="py-32 px-8">
+    <section ref={root} id="assistant" className="py-32 px-8 bg-surface">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
         <div>
-          <span className="text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Ask anything about your money</span>
-          <h2 className="font-serif text-5xl leading-tight mb-8 text-brand">
+          <span className="asst-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Ask anything about your money</span>
+          <h2 className="asst-text opacity-0 font-serif text-5xl leading-tight mb-8 text-brand">
             An assistant that has actually read your statements.
           </h2>
-          <p className="text-muted text-lg leading-relaxed mb-10">
-            Most AI assistants can explain what an APR is. This one tells you what <span className="text-brand font-medium italic">yours</span> is costing you, because it's working from your accounts rather than from the internet. Ask in plain language, get an answer with your numbers attached.
+          <p className="asst-text opacity-0 text-muted text-lg leading-relaxed mb-10">
+            Ask questions in plain English and get answers powered by your actual transaction data. No guessing, just facts.
           </p>
           <ul className="space-y-6 mb-10 text-[15px] text-muted leading-relaxed">
-            <li className="flex gap-4">
+            <li className="asst-list-item opacity-0 flex gap-4">
               <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-1">
                 <div className="w-2 h-2 rounded-full bg-accent"></div>
               </div>
               <div>
-                <strong className="text-brand">It reads your statements.</strong> Attach a PDF and it parses the contents directly, even for accounts you haven't connected.
+                <strong className="text-brand">It reads statements.</strong> Parses PDFs automatically.
               </div>
             </li>
-            <li className="flex gap-4">
+            <li className="asst-list-item opacity-0 flex gap-4">
               <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-1">
                 <div className="w-2 h-2 rounded-full bg-accent"></div>
               </div>
               <div>
-                <strong className="text-brand">It audits on request.</strong> Deep scans across every connected institution for hidden fees, duplicates or spikes.
+                <strong className="text-brand">It audits on request.</strong> Deep scans for hidden fees.
               </div>
             </li>
-            <li className="flex gap-4">
+            <li className="asst-list-item opacity-0 flex gap-4">
               <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-1">
                 <div className="w-2 h-2 rounded-full bg-accent"></div>
               </div>
               <div>
-                <strong className="text-brand">It does the arithmetic.</strong> Payoff timelines, minimum payment impact, and what an extra $200 actually changes.
+                <strong className="text-brand">It does the arithmetic.</strong> Payoff timelines and minimum payments.
               </div>
             </li>
           </ul>
-          <div className="bg-accent/5 rounded-3xl border border-accent/10 p-6 text-sm">
+          <div className="asst-note opacity-0 bg-accent/5 rounded-3xl border border-accent/10 p-6 text-sm">
             <span className="font-bold text-brand block mb-2">Two Boundaries</span>
-            <p className="text-muted leading-relaxed">It only works on your money. Ask it anything else and it will politely decline. And it never guesses: when it doesn't have the data, it says so rather than filling the gap.</p>
+            <p className="text-muted leading-relaxed">It only works on your money, and it never guesses when missing data.</p>
           </div>
         </div>
         <div className="relative">
           <div className="absolute -inset-10 bg-accent/10 blur-[60px] -z-10 rounded-full"></div>
-          <div className="bg-brand rounded-[40px] p-8 shadow-2xl h-[600px] flex flex-col w-full max-w-md mx-auto relative overflow-hidden">
+          <div className="asst-phone opacity-0 bg-brand rounded-[40px] p-8 shadow-2xl h-[600px] flex flex-col w-full max-w-md mx-auto relative overflow-hidden">
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 9h8"></path><path d="M8 13h6"></path></svg>
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-sm"></div>
+                </div>
               </div>
               <div>
                 <h4 className="text-white font-bold text-sm">Amalgamic Assistant</h4>
@@ -58,19 +116,36 @@ export default function Assistant() {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto pr-2 space-y-4 text-[15px] mb-20 scrollbar-hide">
-              <div className="bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto">
-                Why is this month's statement higher than last month's?
+              <div className="asst-msg-1 opacity-0 bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto rounded-3xl rounded-tr-sm">
+                Why is this month's statement higher?
               </div>
-              <div className="bg-accent text-bg chat-bubble-ai p-4 self-start max-w-[85%] shadow-lg">
-                Your total spending increased by $420. The main drivers are a $200 airline baggage fee (which I can dispute for you), and a $180 spike in dining compared to your 3-month average.
+              
+              <div className="relative max-w-[85%]">
+                <div className="asst-thinking-1 opacity-0 absolute top-0 left-0 bg-white/5 text-white/50 p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
+                </div>
+                <div className="asst-msg-2 opacity-0 bg-accent text-bg chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
+                  Your spending increased by $420, driven by a $200 airline fee (I can dispute this) and a $180 spike in dining.
+                </div>
               </div>
-              <div className="bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto mt-4">
-                If I only pay the minimum on this card, how long until it's clear and what does it cost me?
+
+              <div className="asst-msg-3 opacity-0 bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto mt-4 rounded-3xl rounded-tr-sm">
+                If I only pay the minimum, how long until it's clear?
               </div>
-              <div className="bg-accent text-bg chat-bubble-ai p-4 self-start max-w-[85%] shadow-lg">
-                At your current APR, paying only the minimum will take 11 years to clear and cost you <strong className="text-surface font-bold underline">$4,120 in interest</strong>. If you add $150/mo, you're clear in 14 months.
+              
+              <div className="relative max-w-[85%]">
+                <div className="asst-thinking-2 opacity-0 absolute top-0 left-0 bg-white/5 text-white/50 p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
+                </div>
+                <div className="asst-msg-4 opacity-0 bg-accent text-bg chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
+                  It will take 11 years and cost you <strong className="text-surface font-bold underline">$4,120 in interest</strong>.
+                </div>
               </div>
             </div>
 

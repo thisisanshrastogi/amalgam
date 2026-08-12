@@ -1,39 +1,36 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import FeaturesGrid from './components/FeaturesGrid';
-import CollectiveImpact from './components/CollectiveImpact';
-import HowItWorks from './components/HowItWorks';
-import Insights from './components/Insights';
-import Assistant from './components/Assistant';
-import CardsAndBillPay from './components/CardsAndBillPay';
-import Subscriptions from './components/Subscriptions';
-import CardCredits from './components/CardCredits';
-import DelegatedTasks from './components/DelegatedTasks';
-import Proof from './components/Proof';
-import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Home from './pages/Home';
+import About from './pages/About';
+import Privacy from './pages/Privacy';
+import Contact from './pages/Contact';
+import SupportedBanks from './pages/SupportedBanks';
+import FAQ from './pages/FAQ';
+import FAQPage from './pages/test';
 
 function App() {
   return (
-    <div className="min-h-screen bg-bg text-brand font-sans antialiased overflow-x-hidden selection:bg-highlight selection:text-accent">
-      <Navbar />
-      <main>
-        <Hero />
-        <FeaturesGrid />
-        <CollectiveImpact />
-        <HowItWorks />
-        <Insights />
-        <Assistant />
-        <CardsAndBillPay />
-        <Subscriptions />
-        <CardCredits />
-        <DelegatedTasks />
-        <Proof />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-bg text-brand font-sans antialiased selection:bg-highlight selection:text-accent flex flex-col">
+        <Navbar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/supported-banks" element={<SupportedBanks />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/test" element={<FAQPage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
