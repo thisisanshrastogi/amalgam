@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { 
+    @apply bg-bg text-brand;
+    scroll-behavior: smooth; 
+  }
+}
+
+@layer utilities {
+  .premium-shadow { 
+    box-shadow: 0 20px 40px -15px rgba(23, 22, 19, 0.08); 
+  }
+  
+  .glass-card { 
+    background: rgba(255, 255, 255, 0.6); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid rgba(226, 223, 213, 0.5); 
+  }
+  
+  .chat-bubble-user { 
+    border-radius: 20px 20px 4px 20px; 
+  }
+  
+  .chat-bubble-ai { 
+    border-radius: 20px 20px 20px 4px; 
+  }
+  
+  .animate-subtle-float { 
+    animation: subtle-float 5s ease-in-out infinite; 
+  }
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Hide scrollbar for clean premium aesthetic */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Logo specific CSS from OG */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.1rem;
+  color: #171613; /* brand */
+}
+.logo-mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  background: #2C4035; /* accent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.logo-mark::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #8DC4AC; /* highlight */
+  border-radius: 50%;
+  position: absolute;
+}
+.logo--invert { color: #F5F2EA; }
+.logo--invert .logo-mark { background: #F5F2EA; }
+.logo--invert .logo-mark::after { background: #171613; }
+.logo--mark-only { gap: 0; }
