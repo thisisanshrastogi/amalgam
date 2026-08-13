@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { createScope } from 'animejs';
 import { fadeUpOnScroll, scaleInOnScroll, countUpOnScroll } from '../utils/animations';
+import { AbstractArtBackground } from './AbstractArtBackground';
 
 export default function Subscriptions() {
   const root = useRef(null);
@@ -40,8 +41,11 @@ export default function Subscriptions() {
   }, []);
 
   return (
-    <section ref={root} className="py-32 px-8 bg-bg">
-      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-20 items-center">
+    <section ref={root} className="relative py-32 px-8 bg-gradient-to-b from-bg to-black overflow-hidden">
+      <AbstractArtBackground />
+      <div className="absolute inset-0 veil-overlay pointer-events-none" />
+
+      <div className="max-w-[1200px] mx-auto relative z-10 grid lg:grid-cols-2 gap-20 items-center">
         <div>
           <span className="sub-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Subscriptions</span>
           <h2 className="sub-text opacity-0 font-serif text-5xl leading-tight mb-8 text-brand">
@@ -50,15 +54,15 @@ export default function Subscriptions() {
           <p className="sub-text opacity-0 text-muted text-lg leading-relaxed mb-10">
             We detect every recurring charge and let you cancel with a single tap. We even handle the retention flow.
           </p>
-          <div className="sub-card opacity-0 bg-surface border border-border rounded-xl p-4 flex items-center justify-between shadow-sm mb-6 hover:shadow-md transition-shadow cursor-pointer max-w-sm">
+          <div className="sub-card opacity-0 glass-card bg-surface/80 rounded-xl p-4 flex items-center justify-between hover:-translate-y-1 transition-transform cursor-pointer max-w-sm group">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-brand text-bg rounded-lg flex items-center justify-center font-bold text-lg">N</div>
+              <div className="w-10 h-10 bg-brand text-bg rounded-lg flex items-center justify-center font-bold text-lg shadow-sm">N</div>
               <div>
                 <p className="font-bold text-brand text-[15px]">Netflix Premium</p>
                 <p className="text-sm text-muted">$22.99 / mo</p>
               </div>
             </div>
-            <button className="text-red-600 border border-red-200 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg hover:bg-red-50 hover:scale-[1.02] active:scale-95 transition-all">Cancel</button>
+            <button className="text-[#E27A7A] bg-[#E27A7A]/10 border border-[#E27A7A]/30 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg group-hover:bg-[#E27A7A]/20 hover:scale-[1.02] active:scale-95 transition-all">Cancel</button>
           </div>
         </div>
         <div className="relative w-full">

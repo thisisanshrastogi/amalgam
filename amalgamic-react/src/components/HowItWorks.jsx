@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { animate, createScope, stagger, onScroll } from 'animejs';
 import { timelineOnScroll } from '../utils/animations';
 
+
 export default function HowItWorks() {
   const root = useRef(null);
   const scope = useRef(null);
@@ -25,7 +26,6 @@ export default function HowItWorks() {
 
       // Step-number count-up: animate each number separately
       const steps = root.current?.querySelectorAll('.how-step-num');
-      const targets = ['01', '02', '03', '04'];
       let played = false;
 
       onScroll({
@@ -53,8 +53,9 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={root} id="how-it-works" className="py-32 px-8 bg-surface">
-      <div className="max-w-[1200px] mx-auto">
+    <section ref={root} id="how-it-works" className="py-32 bg-gradient-to-b from-bg to-black">
+      
+      <div className="max-w-[1200px] mx-auto relative z-10">
         <div className="how-heading opacity-0 text-center mb-24">
           <span className="text-accent text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
           <h2 className="font-serif text-5xl leading-tight text-brand">
@@ -63,28 +64,28 @@ export default function HowItWorks() {
         </div>
         <div className="grid md:grid-cols-4 gap-12">
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">01</div>
+            <div className="how-step-num text-5xl font-serif text-accent/20 mb-6">01</div>
             <h3 className="font-serif text-2xl text-brand mb-4">Connect cards</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               Link credit cards securely. We find accounts you may have forgotten, checking balances and limits.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">02</div>
+            <div className="how-step-num text-5xl font-serif text-accent/20 mb-6">02</div>
             <h3 className="font-serif text-2xl text-brand mb-4">Read statements</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               We continuously read statements, surfacing only what matters instead of useless dashboards.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">03</div>
+            <div className="how-step-num text-5xl font-serif text-accent/20 mb-6">03</div>
             <h3 className="font-serif text-2xl text-brand mb-4">Ask anything</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               Chat directly with your accounts. Ask why a bill is higher and get exact answers.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">04</div>
+            <div className="how-step-num text-5xl font-serif text-accent/20 mb-6">04</div>
             <h3 className="font-serif text-2xl text-brand mb-4">Hand it over</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               Cancel, dispute, or claim with a tap. We handle the tedious parts while you get paid.

@@ -51,17 +51,17 @@ export default function FinalCTA() {
   }, []);
 
   return (
-    <section ref={root} className="py-40 bg-accent text-center relative overflow-hidden text-bg">
+    <section ref={root} className="py-40 bg-gradient-to-b from-bg to-black text-center relative overflow-hidden text-brand">
       <div className="max-w-[800px] mx-auto px-8 relative z-10">
-        <h2 className="cta-heading opacity-0 font-serif text-6xl leading-tight mb-10 text-bg">Stop managing the small stuff. Start ignoring it properly.</h2>
-        <p className="cta-sub opacity-0 text-bg/80 text-xl mb-12 leading-relaxed max-w-2xl mx-auto">
+        <h2 className="cta-heading opacity-0 font-serif text-6xl leading-tight mb-10 text-brand">Stop managing the small stuff. Start ignoring it properly.</h2>
+        <p className="cta-sub opacity-0 text-muted text-xl mb-12 leading-relaxed max-w-2xl mx-auto">
           Connect your cards once. We handle the admin.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-          <button ref={primaryBtnRef} className="cta-primary opacity-0 bg-surface text-accent px-10 py-5 rounded-full text-lg font-bold shadow-2xl hover:scale-[1.05] transition-transform">
+          <button ref={primaryBtnRef} className="cta-primary opacity-0 bg-brand text-bg px-10 py-5 rounded-full text-lg font-bold shadow-2xl hover:scale-[1.05] transition-transform">
             Connect your accounts
           </button>
-          <button className="cta-secondary opacity-0 text-surface font-bold border border-surface/20 px-8 py-5 rounded-full hover:bg-white/5 transition-all">
+          <button className="cta-secondary opacity-0 text-brand font-bold border border-white/20 px-8 py-5 rounded-full hover:bg-white/5 transition-all">
             See how it compares
           </button>
         </div>

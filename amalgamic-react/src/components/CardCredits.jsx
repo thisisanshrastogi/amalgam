@@ -52,7 +52,7 @@ export default function CardCredits() {
   }, []);
 
   return (
-    <section ref={rootRef} className="py-32 px-8 overflow-hidden bg-surface">
+    <section ref={rootRef} className="py-32 px-8 overflow-hidden bg-gradient-to-b from-black to-bg">
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
 
         <div className="relative ml-10 min-h-[550px] flex items-center justify-center md:order-1 order-2 w-full mt-5 md:mt-0">

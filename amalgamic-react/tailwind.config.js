@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#F5F2EA",
-        surface: "#FFFFFF",
-        brand: "#171613",
-        accent: "#2C4035",
-        highlight: "#8DC4AC",
-        muted: "#6B6658",
-        border: "#E2DFD5",
+        bg: "#0F1D17",
+        surface: "#16211C",
+        brand: "#F0EAD6",
+        accent: "#7E9E88",
+        highlight: "#B4D4BD",
+        muted: "#62756A",
+        border: "#1E3025",
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],

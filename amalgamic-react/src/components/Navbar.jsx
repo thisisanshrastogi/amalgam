@@ -117,12 +117,12 @@ export default function Navbar() {
   return (
     <div ref={root}>
       <div className="nav-wrapper opacity-0 fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[1300px] z-50" style={{ top: '-80px' }}>
-        <nav className="bg-white/80 backdrop-blur-md px-5 py-3 md:px-8 md:py-4 rounded-full shadow-lg border border-white/20 flex items-center justify-between transition-shadow">
+        <nav className="glass-card px-5 py-3 md:px-8 md:py-4 rounded-full shadow-lg flex items-center justify-between transition-shadow">
           <Link to="/" className="nav-logo opacity-0 hover:opacity-80 transition-opacity">
             <Logo />
           </Link>
 
-          <div className="hidden md:flex items-center gap-10 text-[15px] font-bold text-muted tracking-wide">
+          <div className="hidden md:flex items-center gap-10 text-[15px] font-bold text-brand/80 tracking-wide">
 
             {/* Features Dropdown */}
             <div
@@ -139,7 +139,7 @@ export default function Navbar() {
                 ref={dropdownRef}
                 // Use left-1/2 and -ml-[104px] (half of w-52 which is 208px) instead of -translate-x-1/2 
                 // to avoid AnimeJS overwriting the transform property during animation.
-                className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 bg-white rounded-2xl shadow-xl border border-border/60 opacity-0 flex-col py-2 px-1"
+                className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 glass-card bg-surface/95 rounded-2xl shadow-xl opacity-0 flex-col py-2 px-1"
                 style={{ visibility: 'hidden', display: 'none', transformOrigin: 'top center' }}
               >
                 <a
