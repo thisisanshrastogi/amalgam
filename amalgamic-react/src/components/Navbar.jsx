@@ -49,8 +49,8 @@ export default function Navbar() {
           scrolled = shouldShrink;
           if (navEl) {
             animate(navEl, {
-              paddingTop: shouldShrink ? 10 : 16,
-              paddingBottom: shouldShrink ? 10 : 16,
+              paddingTop: shouldShrink ? 10 : (window.innerWidth < 768 ? 12 : 16),
+              paddingBottom: shouldShrink ? 10 : (window.innerWidth < 768 ? 12 : 16),
               duration: 300,
               ease: 'outQuad',
             });
@@ -117,7 +117,7 @@ export default function Navbar() {
   return (
     <div ref={root}>
       <div className="nav-wrapper opacity-0 fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[1300px] z-50" style={{ top: '-80px' }}>
-      <nav className="bg-white/80 backdrop-blur-md px-8 py-4 rounded-full shadow-lg border border-white/20 flex items-center justify-between transition-shadow">
+      <nav className="bg-white/80 backdrop-blur-md px-5 py-3 md:px-8 md:py-4 rounded-full shadow-lg border border-white/20 flex items-center justify-between transition-shadow">
       <Link to="/" className="nav-logo opacity-0 hover:opacity-80 transition-opacity">
         <Logo />
       </Link>
@@ -185,9 +185,9 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="nav-cta opacity-0 flex items-center gap-6">
+      <div className="nav-cta opacity-0 flex items-center gap-4 md:gap-6">
         <Link to="/contact" className="text-[13px] font-bold text-brand hover:text-accent transition-colors hidden sm:block">Contact</Link>
-        <button className="bg-brand text-bg px-6 py-2.5 rounded-full text-[13px] font-bold hover:bg-accent hover:text-bg transition-colors shadow-sm">
+        <button className="bg-brand text-bg px-5 py-2 md:px-6 md:py-2.5 rounded-full text-[13px] font-bold hover:bg-accent hover:text-bg transition-colors shadow-sm">
           Connect
         </button>
       </div>

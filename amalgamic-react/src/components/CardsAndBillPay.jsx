@@ -107,7 +107,8 @@ export default function CardsAndBillPay() {
                       <p className="text-xs text-white/50">Due Oct 9th</p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-bold text-highlight border border-highlight/30 px-3 py-1 rounded-full uppercase tracking-widest">Pay Balance</span>
+                  <span className=" hidden md:block text-[10px] font-bold text-highlight border border-highlight/30 px-3 py-1 rounded-full uppercase tracking-widest">Pay Balance</span>
+                  <span className=" md:hidden text-[10px] font-bold text-highlight border border-highlight/30 px-3 py-1 rounded-full uppercase tracking-widest">Pay</span>
                 </div>
                 <div className="pay-list-item opacity-0 bg-surface/10 rounded-2xl p-4 flex items-center justify-between opacity-40">
                   <div className="flex items-center gap-3">

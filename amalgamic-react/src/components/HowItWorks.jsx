@@ -58,7 +58,7 @@ export default function HowItWorks() {
         <div className="how-heading opacity-0 text-center mb-24">
           <span className="text-accent text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
           <h2 className="font-serif text-5xl leading-tight text-brand">
-            Connect once. Decide when it matters.<br/>That's the whole job.
+            Connect once. Decide when it matters.<br />That's the whole job.
           </h2>
         </div>
         <div className="grid md:grid-cols-4 gap-12">

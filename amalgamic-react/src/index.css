@@ -10,6 +10,10 @@
     scroll-behavior: smooth; 
     overflow-x: clip;
   }
+
+  ::selection {
+    @apply bg-highlight text-brand;
+  }
 }
 
 @layer utilities {

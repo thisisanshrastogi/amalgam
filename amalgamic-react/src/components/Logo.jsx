@@ -6,7 +6,7 @@ export default function Logo() {
       <div className="w-6 h-6 bg-black rounded-md flex items-center justify-center">
         <div className="w-2 h-2 bg-white rounded-sm"></div>
       </div>
-      <span className="font-bold text-xl tracking-tight text-brand hidden sm:block">Amalgamic</span>
+      <span className="font-bold text-xl tracking-tight text-brand">Amalgamic</span>
     </div>
   );
 }

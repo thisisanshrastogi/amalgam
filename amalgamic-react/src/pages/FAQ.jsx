@@ -110,19 +110,19 @@ function FaqItem({ q, a, defaultOpen = false }) {
 
   return (
     <div className={`border-b border-border ${open ? 'is-open' : ''}`}>
-      <button 
+      <button
         className="w-full flex justify-between items-center gap-8 py-6 bg-transparent border-none cursor-pointer text-left transition-colors text-brand hover:text-accent group"
-        onClick={() => setOpen(o => !o)} 
+        onClick={() => setOpen(o => !o)}
         aria-expanded={open}
       >
         <span className="font-serif text-[17px] font-medium">{q}</span>
-        <ChevronDown 
-          className={`flex-shrink-0 text-accent transition-transform duration-300 ${open ? 'rotate-180' : ''}`} 
-          size={20} 
-          strokeWidth={2.2} 
+        <ChevronDown
+          className={`flex-shrink-0 text-accent transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+          size={20}
+          strokeWidth={2.2}
         />
       </button>
-      <div 
+      <div
         className="overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out opacity-0"
         style={{ opacity: open ? 1 : 0 }}
         ref={bodyRef}
@@ -175,10 +175,10 @@ export default function FAQ() {
       }}
     >
       {CATEGORIES.map((cat, idx) => (
-        <DocSection 
-          key={cat.id} 
-          id={cat.id} 
-          num={`§${String(idx + 1).padStart(2, '0')}`} 
+        <DocSection
+          key={cat.id}
+          id={cat.id}
+          num={`§${String(idx + 1).padStart(2, '0')}`}
           title={cat.label}
         >
           {cat.items.map((item, qi) => (

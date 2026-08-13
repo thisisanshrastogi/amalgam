@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
 
         {/* Right Column: Phone Mockup */}
-        <div className="order-1 md:order-2 relative h-[180px] md:h-[600px] flex flex-col items-center justify-center w-full max-w-[400px] mx-auto mt-8 md:mt-0 gap-4 md:gap-0">
+        <div className="hidden md:flex order-1 md:order-2 relative h-[180px] md:h-[600px] flex-col items-center justify-center w-full max-w-[400px] mx-auto mt-8 md:mt-0 gap-4 md:gap-0">
 
           {/* Phone Body */}
           <div className="hidden md:flex relative w-[280px] md:w-[300px] h-[550px] md:h-[600px] bg-[#1a1a1a] rounded-[48px] shadow-2xl border-[8px] border-[#2a2a2a] overflow-hidden flex-col p-6 z-10">

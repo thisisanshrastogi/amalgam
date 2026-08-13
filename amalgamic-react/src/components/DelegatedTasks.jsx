@@ -74,7 +74,7 @@ export default function DelegatedTasks() {
 
             {/* AI bubble */}
             <div className="chat-bubble-ai-container opacity-0 flex flex-col gap-2">
-              <span className="text-[11px] font-bold text-muted uppercase tracking-widest ml-4">Amalgamic • 11:22 AM</span>
+              <span className="text-[11px] font-bold text-muted uppercase tracking-widest ml-4">Amalgamic • 9:50 AM</span>
               <div className="bg-surface border border-accent/20 chat-bubble-ai p-5 self-start max-w-[90%] shadow-xl">
                 <p className="text-[15px] leading-relaxed text-brand">
                   <strong className="block mb-2">Dispute filed with Amex.</strong>
