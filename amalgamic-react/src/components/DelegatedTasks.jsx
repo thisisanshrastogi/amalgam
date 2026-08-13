@@ -57,7 +57,7 @@ export default function DelegatedTasks() {
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
         <div className="order-2 md:order-1 relative">
           <div className="max-w-md mx-auto space-y-8">
-            {/* User bubble */}
+            {/* User bubble sdfsd*/}
             <div className="chat-bubble-user-container opacity-0 flex flex-col gap-2">
               <span className="text-[11px] font-bold text-muted uppercase tracking-widest self-end mr-4">You • 9:41 AM</span>
               <div className="glass-card text-brand chat-bubble-user p-5 self-end max-w-[85%] shadow-md border border-white/5">
