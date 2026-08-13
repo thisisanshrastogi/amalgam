@@ -73,7 +73,7 @@ export default function Hero() {
         {/* Left Column */}
         <div className="order-2 md:order-1 pt-12 md:pt-0">
           <span className="hero-badge opacity-0 bg-accent/5 text-accent text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-8 inline-block">
-            For Premium Cardholders
+            For Cardholders
           </span>
           <h1 className="hero-h1 opacity-0 font-serif text-5xl md:text-[80px] leading-[1.05] tracking-tight mb-8 text-brand">
             The money you<br />never got around to<br />claiming.

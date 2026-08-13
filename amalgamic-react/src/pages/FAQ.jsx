@@ -10,41 +10,20 @@ const CATEGORIES = [
     items: [
       {
         q: 'Can Amalgamic move money out of my accounts?',
-        a: 'Only to your own card issuer, and only when you tell it to. Access is otherwise read-only. We can cancel subscriptions, file disputes and claim credits on your behalf, and pay a card bill from an account you nominate. We cannot send funds anywhere else, including to us.',
+        a: 'Only to your own card issuer, and only when you tell it to. Access is otherwise read-only. We can cancel subscriptions, file disputes, and claim credits on your behalf. We cannot send funds anywhere else, including to us.',
       },
       {
         q: 'Do you see my bank password?',
-        a: 'No. Connections go through Plaid and Spinwheel. At most banks you sign in on your bank\'s own page and we receive a read token, not a credential.',
+        a: "No. Connections go through Plaid and Spinwheel. At most banks you sign in on your bank's own page..",
       },
       {
-        q: 'What happens to my data if I leave?',
-        a: 'Deleting your account revokes connections at Plaid and Spinwheel and purges your records. A real backend process, not a toggle that hides data while keeping it. Details in the privacy policy.',
+        q: 'What happens t  o my data if I leave?',
+        a: "Deleting your account revokes connections at Plaid and Spinwheel and purges your records. A real backend process, not a toggle that hides data while keeping it. Details in the privacy policy.",
       },
-      {
-        q: 'Do you sell my data or train AI on it?',
-        a: 'No, and no.',
-      },
+
       {
         q: 'Does connecting affect my credit score?',
         a: 'No. Reading your credit profile through Spinwheel is a soft inquiry.',
-      },
-    ],
-  },
-  {
-    id: 'billing',
-    label: 'Billing & Pricing',
-    items: [
-      {
-        q: 'Is there a free trial?',
-        a: '14 days. At the end of the trial, your chosen subscription plan begins unless cancelled. A card is required to start your free trial.',
-      },
-      {
-        q: 'Do you take a percentage of what you recover?',
-        a: 'No. Flat subscription. Everything recovered is yours.',
-      },
-      {
-        q: 'What if it doesn\'t find anything?',
-        a: 'Then it cost you two minutes and you know your accounts are clean. We\'d rather say that than manufacture a result.',
       },
     ],
   },
@@ -76,20 +55,11 @@ const CATEGORIES = [
     items: [
       {
         q: 'What can the assistant see?',
-        a: 'Your connected accounts, transactions, statements, and anything you\'ve told it. It answers from that, cites external sources when it looks something up, and says so when it doesn\'t have the data rather than guessing. Scoped to your account only.',
+        a: "Your connected accounts, transactions, statements, and anything you've told it.It answers from that, cites external sources when it looks something up, and says so when it doesn't have the data rather than guessing.",
       },
     ],
   },
-  {
-    id: 'fit',
-    label: 'Is this for me?',
-    items: [
-      {
-        q: 'Who is this not for?',
-        a: 'People who already track their own credits and file their own disputes, and people who don\'t hold annual-fee cards. More on the why Amalgamic page.',
-      },
-    ],
-  },
+
 ];
 
 /* ─── Accordion item ─────────────────────────────────────────────────────── */
@@ -141,9 +111,7 @@ export default function FAQ() {
 
   const GROUPS = [
     { title: 'Privacy', cats: ['security'] },
-    { title: 'Pricing', cats: ['billing'] },
     { title: 'Product', cats: ['features', 'assistant'] },
-    { title: 'Fit', cats: ['fit'] },
   ];
 
   // Map to DocLayout format
@@ -196,15 +164,15 @@ export default function FAQ() {
       <div className="bg-surface border border-border rounded-3xl p-10 md:p-14 my-16 grid md:grid-cols-[1fr_auto] gap-8 items-center shadow-sm">
         <div>
           <h2 className="font-serif text-3xl mb-2 text-brand">Still have a question?</h2>
-          <p className="text-muted text-base">The fastest way to find out if it works for you is to let it scan your last twelve months.</p>
+          <p className="text-muted text-base">The fastest way to find out if it works for you is to let it scan.</p>
         </div>
-        <div className="flex flex-col gap-4 items-start md:items-end">
+        <div className="flex flex-col gap-4  items-start md:items-center">
           <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-accent text-bg hover:bg-brand hover:-translate-y-0.5 transition-all whitespace-nowrap">
-            See what you're owed <ArrowRight size={16} />
+            Start saving in 60 Seconds <ArrowRight size={16} />
           </a>
-          <div className="flex gap-5">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Read-only access</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Revoke any time</span>
+          <div className="flex  gap-5">
+            {/* <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Read-only access</span> */}
+            {/* <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Revoke any time</span> */}
           </div>
         </div>
       </div>

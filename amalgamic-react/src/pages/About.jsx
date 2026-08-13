@@ -36,13 +36,13 @@ export default function About() {
       }}
     >
       <DocSection id="what" num="§01" title="What we do">
-        <p>Premium cardholders leave money behind constantly. A subscription nobody cancelled. A late fee that should have been waived. A statement credit that expired unclaimed. Each one is too small to be worth an afternoon on the phone, and collectively they are worth a great deal.</p>
+        <p>Cardholders leave money behind constantly. A subscription nobody cancelled. A late fee that should have been waived. A statement credit that expired unclaimed. Each one is too small to be worth an afternoon on the phone, and collectively they are worth a great deal.</p>
         <p>Amalgamic connects to your accounts, finds those amounts, and recovers them — cancelling, disputing and claiming on your behalf. You approve the objective; we handle the admin.</p>
       </DocSection>
 
       <DocSection id="who" num="§02" title="Who it's for">
         <p>People whose time is worth more than the amounts being chased. If an hour of your attention is worth more than the $45 late fee, the rational move is to ignore it — which is exactly why these amounts go unclaimed, and exactly the gap Amalgamic exists to close.</p>
-        
+
         <div className="grid md:grid-cols-2 gap-4 my-6">
           <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
             <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3">Fit</span>
@@ -89,7 +89,7 @@ export default function About() {
 
       <DocSection id="stack" num="§04" title="How we connect">
         <p>We do not integrate with banks one at a time. Two regulated data providers do that work, which is why coverage reaches more than 12,000 US institutions rather than a handful of national names.</p>
-        
+
         <div className="my-6 space-y-3">
           <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm items-baseline">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted sm:w-24 flex-none">Plaid</span>

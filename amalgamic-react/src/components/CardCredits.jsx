@@ -14,21 +14,21 @@ export default function CardCredits() {
 
     scopeRef.current = createScope({ root: rootRef.current }).add(() => {
       cardsAnim = animate('.anime-card', {
-        translateY: [150, 0],
+        translateY: [100, 0],
         opacity: [0, 1],
         rotate: [-10, 0],
-        delay: stagger(200),
-        duration: 1200,
-        ease: 'outExpo',
+        delay: stagger(100),
+        duration: 800,
+        ease: 'outQuart',
         autoplay: false
       });
 
       textAnim = animate('.anime-text', {
-        translateY: [50, 0],
+        translateY: [40, 0],
         opacity: [0, 1],
-        delay: stagger(150, { start: 400 }),
-        duration: 1000,
-        ease: 'outExpo',
+        delay: stagger(100, { start: 200 }),
+        duration: 800,
+        ease: 'outQuart',
         autoplay: false
       });
     });
