@@ -41,11 +41,11 @@ export default function DocLayout({ groups = [], children, headerProps }) {
   }, []);
 
   return (
-    <main className="pt-32 pb-32 bg-bg min-h-screen">
+    <main className="pt-32 pb-32 bg-page-bg min-h-screen">
       <div className="max-w-[1240px] mx-auto px-5 md:px-14">
-        
+
         {/* Document Header */}
-        <header className="mb-12 border-b border-border pb-12">
+        <header className="mb-12 border-b border-glass-border pb-12">
           <span className="text-accent text-[11px] font-bold uppercase tracking-widest mb-6 inline-block bg-accent/5 px-3 py-1.5 rounded-full">
             {headerProps.category}
           </span>
@@ -56,7 +56,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
           {headerProps.meta && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-10">
               {headerProps.meta.map((m, i) => (
-                <div key={i} className="bg-surface border border-border p-4 rounded-xl shadow-sm">
+                <div key={i} className="bg-glass-subtle border border-glass-border p-4 rounded-xl shadow-sm">
                   <span className="uppercase tracking-widest text-muted block mb-1 text-[10px] font-bold">{m.label}</span>
                   <span className="text-[15px] font-bold text-brand">{m.value}</span>
                 </div>
@@ -67,7 +67,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
 
         {/* Layout */}
         <div className="grid md:grid-cols-[236px_1fr] gap-14 items-start relative">
-          
+
           {/* Rail (Sidebar) */}
           <nav className="sticky top-[104px] max-h-[calc(100vh-136px)] flex flex-col py-2 hidden md:flex" aria-label="Sections">
             <div className="flex-1 overflow-y-auto pr-1 scrollbar-hide">
@@ -79,7 +79,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
                       key={link.id}
                       href={`#${link.id}`}
                       className={`flex gap-2.5 px-3 py-1.5 rounded-md text-[13.5px] font-medium leading-snug transition-all ${
-                        activeId === link.id ? 'bg-black/5 text-brand font-bold' : 'text-muted hover:bg-black/5 hover:text-brand'
+                        activeId === link.id ? 'bg-glass text-brand font-bold' : 'text-muted hover:bg-glass hover:text-brand'
                       }`}
                     >
                       <span className={`text-[10.5px] pt-[2px] flex-none font-bold ${activeId === link.id ? 'text-accent' : 'text-muted/60'}`}>
@@ -91,14 +91,14 @@ export default function DocLayout({ groups = [], children, headerProps }) {
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-border">
+            <div className="mt-4 pt-4 border-t border-glass-border">
               <span className="text-[11px] uppercase tracking-widest text-muted block font-bold">Read {readPct}%</span>
-              <div className="h-[3px] bg-black/5 rounded-full mt-2 overflow-hidden">
+              <div className="h-[3px] bg-glass rounded-full mt-2 overflow-hidden">
                 <div className="h-full bg-accent transition-all duration-150 ease-linear" style={{ width: `${readPct}%` }}></div>
               </div>
             </div>
           </nav>
-          
+
           {/* Main Content */}
           <div className="pb-16">{children}</div>
         </div>

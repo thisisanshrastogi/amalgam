@@ -17,7 +17,7 @@ const CATEGORIES = [
         a: "No. Connections go through Plaid and Spinwheel. At most banks you sign in on your bank's own page..",
       },
       {
-        q: 'What happens t  o my data if I leave?',
+        q: 'What happens to my data if I leave?',
         a: "Deleting your account revokes connections at Plaid and Spinwheel and purges your records. A real backend process, not a toggle that hides data while keeping it. Details in the privacy policy.",
       },
 
@@ -79,7 +79,7 @@ function FaqItem({ q, a, defaultOpen = false }) {
   }, [open]);
 
   return (
-    <div className={`border-b border-border ${open ? 'is-open' : ''}`}>
+    <div className={`border-b border-glass-border ${open ? 'is-open' : ''}`}>
       <button
         className="w-full flex justify-between items-center gap-8 py-6 bg-transparent border-none cursor-pointer text-left transition-colors text-brand hover:text-accent group"
         onClick={() => setOpen(o => !o)}
@@ -161,13 +161,13 @@ export default function FAQ() {
       ))}
 
       {/* CTA block */}
-      <div className="bg-surface border border-border rounded-3xl p-10 md:p-14 my-16 grid md:grid-cols-[1fr_auto] gap-8 items-center shadow-sm">
+      <div className="bg-glass-subtle border border-glass-border rounded-3xl p-10 md:p-14 my-16 grid md:grid-cols-[1fr_auto] gap-8 items-center shadow-sm">
         <div>
           <h2 className="font-serif text-3xl mb-2 text-brand">Still have a question?</h2>
           <p className="text-muted text-base">The fastest way to find out if it works for you is to let it scan.</p>
         </div>
         <div className="flex flex-col gap-4  items-start md:items-center">
-          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-accent text-bg hover:bg-brand hover:-translate-y-0.5 transition-all whitespace-nowrap">
+          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-brand text-bg hover:bg-accent hover:-translate-y-0.5 transition-all whitespace-nowrap">
             Start saving in 60 Seconds <ArrowRight size={16} />
           </a>
           <div className="flex  gap-5">

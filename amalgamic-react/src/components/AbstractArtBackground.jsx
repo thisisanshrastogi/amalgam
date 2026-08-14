@@ -39,7 +39,7 @@ export function AbstractArtBackground({ className = '', style = {}, variant = 'w
             const lx = W * 0.85;
             const ly = H * 0.15;
             const S = Math.min(W, H) || 1;
-            
+
             return {
                 cell: 6,
                 dot: '#4A5C52',
@@ -49,13 +49,13 @@ export function AbstractArtBackground({ className = '', style = {}, variant = 'w
                 value: function (x, y) {
                     const nx = x / S;
                     const ny = y / S;
-                    
+
                     let flow = 0;
                     if (variant === 'vortex') {
                         const dx = nx - 0.5;
                         const dy = ny - 0.5;
                         const angle = Math.atan2(dy, dx);
-                        const radius = Math.sqrt(dx*dx + dy*dy);
+                        const radius = Math.sqrt(dx * dx + dy * dy);
                         flow = Math.sin(radius * 25.0 - angle * 4.0);
                     } else {
                         const w1 = Math.sin(nx * 4.0 + ny * 2.5);
@@ -63,25 +63,25 @@ export function AbstractArtBackground({ className = '', style = {}, variant = 'w
                         const w3 = Math.sin(nx * 5.0 + ny * 4.0 - w2 * 1.1);
                         flow = (w1 + w2 + w3) / 3.0;
                     }
-                    
+
                     // Topographic contour lines
                     const contours = Math.exp(-Math.pow(Math.sin(flow * Math.PI * 6), 2) * 6);
-                    
+
                     // Soft lighting gradient from top right
                     const gx = (x - lx) / (W * 0.9);
                     const gy = (y - ly) / (H * 0.9);
                     const dist = Math.sqrt(gx * gx + gy * gy);
                     const glow = Math.exp(-dist * 2.0);
-                    
+
                     const grain = (hash(Math.round(x / 5), Math.round(y / 5)) - 0.5) * 0.08;
-                    
+
                     // Combine base lighting, terrain elevation, and contour highlights
                     const elevation = (flow + 1) * 0.5;
-                    
+
                     const baseLight = 0.03 + 0.25 * glow;
                     const contourHighlight = 0.15 * contours * glow;
                     const elevationLight = 0.05 * elevation * glow;
-                    
+
                     return clamp(baseLight + contourHighlight + elevationLight + grain);
                 }
             };

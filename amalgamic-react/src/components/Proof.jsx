@@ -67,7 +67,7 @@ export default function Proof() {
 
   return (
     <section ref={root} className="py-32 px-8 bg-gradient-to-b from-black to-bg">
-      
+
       <div className="max-w-[1000px] mx-auto relative z-10">
         <div className="text-center mb-16">
           <span className="proof-heading opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">What we've found so far</span>
@@ -76,7 +76,7 @@ export default function Proof() {
           </h2>
           <p className="proof-heading opacity-0 text-muted text-lg">Real recoveries updated weekly.</p>
         </div>
-        
+
         <div className="border border-border rounded-[32px] overflow-hidden premium-shadow mb-16 glass-card">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">

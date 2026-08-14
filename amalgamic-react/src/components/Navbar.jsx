@@ -139,7 +139,7 @@ export default function Navbar() {
                 ref={dropdownRef}
                 // Use left-1/2 and -ml-[104px] (half of w-52 which is 208px) instead of -translate-x-1/2 
                 // to avoid AnimeJS overwriting the transform property during animation.
-                className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 glass-card bg-surface/95 rounded-2xl shadow-xl opacity-0 flex-col py-2 px-1"
+                className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 bg-bg border border-border rounded-2xl shadow-2xl opacity-0 flex-col py-2 px-1"
                 style={{ visibility: 'hidden', display: 'none', transformOrigin: 'top center' }}
               >
                 <a

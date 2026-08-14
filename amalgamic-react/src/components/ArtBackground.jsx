@@ -124,6 +124,8 @@ export function ArtBackground({ className = '', style = {} }) {
             };
         }
 
+        let delays = [];
+
         function buildPlate() {
             const sc = getVanitasScene(width, height);
             const CELL = sc.cell || 5.2;
@@ -138,7 +140,9 @@ export function ArtBackground({ className = '', style = {} }) {
             const maxR = CELL * 0.72;
 
             const ds = [];
-            dotsX = []; dotsY = []; dotsR = []; dotsV = [];
+            dotsX = []; dotsY = []; dotsR = []; dotsV = []; delays = [];
+
+            let maxDist = 0;
 
             for (let j = -n; j <= n; j++) {
                 for (let i = -n; i <= n; i++) {
@@ -155,32 +159,29 @@ export function ArtBackground({ className = '', style = {} }) {
                     dotsY.push(Y);
                     dotsR.push(r);
                     dotsV.push(v);
-                    ds.push(Math.sqrt((X - sc.light.x) ** 2 + (Y - sc.light.y) ** 2));
+
+                    const dist = Math.sqrt((X - sc.light.x) ** 2 + (Y - sc.light.y) ** 2);
+                    ds.push(dist);
+                    if (dist > maxDist) maxDist = dist;
                 }
             }
 
-            drawOrder = new Array(dotsX.length);
-            for (let k = 0; k < dotsX.length; k++) drawOrder[k] = k;
-
-            // Sort dots by distance from light source for the drawing animation effect
-            drawOrder.sort((a, b) => ds[a] - ds[b]);
-            drawnCount = 0;
+            for (let i = 0; i < dotsX.length; i++) {
+                // Delay based on distance from light source (0 to 1200ms) + random jitter
+                delays.push((ds[i] / maxDist) * 1200 + hash(i, ds[i]) * 200);
+            }
         }
 
-        function paintDots(count) {
-            const end = Math.min(drawnCount + count, drawOrder.length);
+        function paintFull() {
+            // Draw all dots immediately (used for resize / reduced motion)
             ctx.fillStyle = sceneDotColor;
             ctx.beginPath();
-            for (let k = drawnCount; k < end; k++) {
-                const i = drawOrder[k];
+            for (let i = 0; i < dotsX.length; i++) {
                 ctx.moveTo(dotsX[i] + dotsR[i], dotsY[i]);
                 ctx.arc(dotsX[i], dotsY[i], dotsR[i], 0, TAU);
             }
             ctx.fill();
-            drawnCount = end;
-        }
 
-        function paintHighlights() {
             ctx.fillStyle = sceneHiColor;
             ctx.beginPath();
             for (let i = 0; i < dotsX.length; i++) {
@@ -209,21 +210,66 @@ export function ArtBackground({ className = '', style = {} }) {
             if (rafId) cancelAnimationFrame(rafId);
 
             if (!animate) {
-                paintDots(drawOrder.length);
-                paintHighlights();
+                paintFull();
                 return;
             }
 
-            function step() {
-                // Draw in chunks to create the sweeping reveal animation
-                paintDots(Math.ceil(drawOrder.length / 24));
-                if (drawnCount < drawOrder.length) {
+            let startTime = 0;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+
+                ctx.clearRect(0, 0, width, height);
+
+                let animating = false;
+
+                // 1. Draw base dots
+                ctx.fillStyle = sceneDotColor;
+                ctx.beginPath();
+                for (let i = 0; i < dotsX.length; i++) {
+                    const t = Math.max(0, Math.min(1, (elapsed - delays[i]) / 1000)); // 1s duration per dot
+                    if (t > 0) {
+                        if (t < 1) animating = true;
+                        // easeOutCubic
+                        const ease = 1 - Math.pow(1 - t, 3);
+                        const currentR = dotsR[i] * ease;
+                        if (currentR > 0.2) {
+                            ctx.moveTo(dotsX[i] + currentR, dotsY[i]);
+                            ctx.arc(dotsX[i], dotsY[i], currentR, 0, TAU);
+                        }
+                    } else {
+                        animating = true;
+                    }
+                }
+                ctx.fill();
+
+                // 2. Draw highlights
+                ctx.fillStyle = sceneHiColor;
+                ctx.beginPath();
+                for (let i = 0; i < dotsX.length; i++) {
+                    if (dotsV[i] < sceneHiThreshold) continue;
+                    // Highlights appear slightly after the base dot
+                    const t = Math.max(0, Math.min(1, (elapsed - delays[i] - 300) / 800));
+                    if (t > 0) {
+                        if (t < 1) animating = true;
+                        const ease = 1 - Math.pow(1 - t, 3);
+                        const currentR = dotsR[i] * 0.92 * ease;
+                        if (currentR > 0.2) {
+                            ctx.moveTo(dotsX[i] + currentR, dotsY[i]);
+                            ctx.arc(dotsX[i], dotsY[i], currentR, 0, TAU);
+                        }
+                    } else {
+                        animating = true;
+                    }
+                }
+                ctx.fill();
+
+                if (animating) {
                     rafId = requestAnimationFrame(step);
-                } else {
-                    paintHighlights();
                 }
             }
-            step();
+            rafId = requestAnimationFrame(step);
         }
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -274,7 +320,7 @@ export function ArtBackground({ className = '', style = {} }) {
 
             {/* Money Recovered Statistics */}
             <div className="absolute inset-y-0 md:right-4 lg:right-8 hidden md:flex flex-col justify-center items-end text-brand pointer-events-none z-10 pt-32">
-                <div className="glass-card p-8 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-md text-right">
+                <div className="glass-card p-8 rounded-2xl border border-glass-border shadow-2xl backdrop-blur-md text-right">
                     <div className="mb-8">
                         <div className="text-4xl md:text-5xl font-serif mb-2 drop-shadow-md">$40.00</div>
                         <div className="text-[10px] md:text-xs uppercase tracking-widest opacity-80 font-semibold">Late fee waived</div>

@@ -64,7 +64,7 @@ export default function Privacy() {
     >
       <DocSection id="summary" num="§01" title="The short version">
         <p>Privacy policies are not fun to read. Our goal at Amalgamic is to make managing money less complicated, and doing that means collecting certain information about you. We aim to collect only what we need in order to serve you.</p>
-        <div className="bg-surface border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
+        <div className="bg-glass-subtle border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2">Commitment</span>
           <p className="text-xl font-bold text-brand mb-2">We will never sell your financial data.</p>
           <p className="text-sm">You will see the words "selling" and "sharing" below. Certain privacy laws define those terms very broadly, and we use them only as they relate to advertising cookies on our website. No money changes hands, and your financial data is never part of it.</p>
@@ -80,16 +80,16 @@ export default function Privacy() {
 
       <DocSection id="categories" num="§03" title="Data we collect">
         <p>Every category of personal data we have collected in the past 12 months, what it is for, and which categories of third party receive it.</p>
-        
-        <div className="bg-surface border border-border rounded-2xl overflow-hidden my-6 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-black/5">
+
+        <div className="bg-glass-subtle border border-glass-border rounded-2xl overflow-hidden my-6 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-glass-border bg-glass">
             <span className="text-xs uppercase tracking-widest font-bold text-muted">Data ledger • past 12 months</span>
             <span className="text-xs font-bold text-muted">10 records</span>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[700px]">
               <thead>
-                <tr className="bg-white/50 text-[10px] uppercase tracking-widest text-muted border-b border-border">
+                <tr className="bg-white/50 text-[10px] uppercase tracking-widest text-muted border-b border-glass-border">
                   <th className="px-5 py-3 font-bold">Rec</th>
                   <th className="px-5 py-3 font-bold">Category</th>
                   <th className="px-5 py-3 font-bold">Purpose</th>
@@ -97,65 +97,65 @@ export default function Privacy() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border text-sm">
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-01</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Profile and contact data</span><span className="text-xs text-muted">First and last name, email address, login information.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span><span className="bg-black/5 px-2 py-0.5 rounded">Improve service</span><span className="bg-black/5 px-2 py-0.5 rounded">Marketing</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span><span className="bg-glass px-2 py-0.5 rounded">Improve service</span><span className="bg-glass px-2 py-0.5 rounded">Marketing</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-02</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Payment data</span><span className="text-xs text-muted">Card type, last 4 digits, expiration date, billing address, phone number, email.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Plaid</span><span className="bg-black/5 px-2 py-0.5 rounded">Spinwheel</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Plaid</span><span className="bg-glass px-2 py-0.5 rounded">Spinwheel</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-03</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Commercial and debt-related data</span><span className="text-xs text-muted">Financial transactions, account balances, credit reports, credit score, outstanding debt.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span><span className="bg-black/5 px-2 py-0.5 rounded">Improve service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Plaid</span><span className="bg-black/5 px-2 py-0.5 rounded">Spinwheel</span><span className="bg-black/5 px-2 py-0.5 rounded">Parties you authorize</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span><span className="bg-glass px-2 py-0.5 rounded">Improve service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Plaid</span><span className="bg-glass px-2 py-0.5 rounded">Spinwheel</span><span className="bg-glass px-2 py-0.5 rounded">Parties you authorize</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-04</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Device and IP data</span><span className="text-xs text-muted">IP address, device ID, domain server, device, operating system, browser.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-05</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Web analytics</span><span className="text-xs text-muted">Page interactions, referring page or source, non-identifiable request IDs, browser interaction statistics.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span><span className="bg-black/5 px-2 py-0.5 rounded">Advertising partners</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span><span className="bg-glass px-2 py-0.5 rounded">Advertising partners</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-06</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Consumer demographic data</span><span className="text-xs text-muted">Age or date of birth, and ZIP code.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-07</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Sensory data</span><span className="text-xs text-muted">Photos, videos or recordings — a profile photo or a recorded interview. Collected with your consent.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-08</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Data treated as sensitive under the CCPA</span><span className="text-xs text-muted">Health data to the extent it relates to an outstanding debt. Personal identification numbers including Social Security, driver's licence, passport or state ID numbers.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-09</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Inferences drawn from other data</span><span className="text-xs text-muted">Inferences relating specifically to your use of our services.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
-                <tr className="hover:bg-black/[0.02] transition-colors">
+                <tr className="hover:bg-glass-subtle transition-colors">
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">REC-10</td>
                   <td className="px-5 py-4"><span className="block font-bold text-brand mb-1">Anything else you choose to send us</span><span className="text-xs text-muted">Emails, letters, texts or other communications you send to us.</span></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Provide service</span><span className="bg-black/5 px-2 py-0.5 rounded">Correspond</span></div></td>
-                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-black/5 px-2 py-0.5 rounded">Service providers</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Provide service</span><span className="bg-glass px-2 py-0.5 rounded">Correspond</span></div></td>
+                  <td className="px-5 py-4 text-xs"><div className="flex flex-wrap gap-1"><span className="bg-glass px-2 py-0.5 rounded">Service providers</span></div></td>
                 </tr>
               </tbody>
             </table>
@@ -167,22 +167,22 @@ export default function Privacy() {
 
       <DocSection id="sources" num="§04" title="Where it comes from">
         <div className="grid sm:grid-cols-2 gap-4 my-6">
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Source</span>
             <h4 className="font-bold text-brand mb-1">From you</h4>
             <p className="text-sm">When you create an account, use our tools, fill in a free-text field, answer a survey, or email us.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Source</span>
             <h4 className="font-bold text-brand mb-1">Automatically</h4>
             <p className="text-sm">Through cookies, and — if you use our app or a location-enabled browser — device and location information.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Source</span>
             <h4 className="font-bold text-brand mb-1">Your connected accounts</h4>
             <p className="text-sm">Transaction and balance data through Plaid and Spinwheel. We never receive your bank login credentials.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Source</span>
             <h4 className="font-bold text-brand mb-1">Third parties</h4>
             <p className="text-sm">Analytics and support vendors, advertising partners, and any third-party account you choose to link.</p>
@@ -235,7 +235,7 @@ export default function Privacy() {
 
       <DocSection id="ai" num="§07" title="How we use AI">
         <p>Parts of Amalgamic use artificial intelligence to read merchant cancellation flows, draft correspondence and interpret instructions you give in plain language.</p>
-        <div className="bg-surface border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
+        <div className="bg-glass-subtle border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2">Commitment</span>
           <p className="text-xl font-bold text-brand mb-2">We do not train AI on your data.</p>
           <p className="text-sm">Your personal or financial data is never used to train artificial intelligence models, ours or anyone else's. AI is used to carry out the task you asked for, and for nothing beyond it.</p>
@@ -246,22 +246,22 @@ export default function Privacy() {
       <DocSection id="cookies" num="§08" title="Cookies">
         <p>We use cookies and similar technologies — pixel tags, web beacons, clear GIFs and JavaScript — so our servers recognise your browser and so we can see how and when you use the service. Because of how we use cookies, the service does not currently support browser Do Not Track requests.</p>
         <div className="grid sm:grid-cols-2 gap-4 my-6">
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Cookie type</span>
             <h4 className="font-bold text-brand mb-1">Essential</h4>
             <p className="text-sm">Required for features you asked for — logging into secure areas, for example. Disabling these makes parts of the service unavailable.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Cookie type</span>
             <h4 className="font-bold text-brand mb-1">Functional</h4>
             <p className="text-sm">Records your choices and settings, keeps your preferences over time, and recognises you when you come back.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Cookie type</span>
             <h4 className="font-bold text-brand mb-1">Performance</h4>
             <p className="text-sm">Tells us how many people visit, which pages they view and how long they stay, and measures how our advertising performs.</p>
           </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
+          <div className="bg-glass-subtle p-5 rounded-xl border border-glass-border shadow-sm">
             <span className="text-[10px] uppercase tracking-widest text-brand font-bold block mb-2">Cookie type</span>
             <h4 className="font-bold text-brand mb-1">Advertising</h4>
             <p className="text-sm">Collects data about your online activity to advertise Amalgamic on third-party sites. We do not show you third-party ads on ours.</p>
@@ -287,15 +287,15 @@ export default function Privacy() {
       <DocSection id="california" num="§12" title="California resident rights">
         <p>If you are a California resident you have the rights below. They are subject to conditions and exceptions under applicable law, which may permit or require us to deny a request. Where this section conflicts with anything else in this policy, the more protective provision wins.</p>
         <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Access</span>
             <p className="sm:w-3/4 text-sm">Ask what we collected about you over the past 12 months — the categories, the sources, the purposes, who we shared it with, and the specific pieces. You can ask beyond 12 months, back to 1 January 2022.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Deletion</span>
             <p className="sm:w-3/4 text-sm">Ask us to delete the personal data we hold. Some exceptions apply — we may need to keep data to deliver a service or complete a transaction you asked for.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Correction</span>
             <p className="sm:w-3/4 text-sm">Ask us to fix inaccurate personal data. We may decline if, considering everything we hold, we determine the data is already correct.</p>
           </div>
@@ -327,11 +327,11 @@ export default function Privacy() {
       <DocSection id="exercise" num="§16" title="How to exercise your rights">
         <p>Send us a request that gives us enough information to verify you are the person we collected data about, and describes what you want in enough detail for us to evaluate it. A request meeting both criteria is a valid request. We may not respond to requests that do not.</p>
         <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Delete account</span>
             <p className="sm:w-3/4 text-sm">Delete your account yourself from account settings.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Any right</span>
             <p className="sm:w-3/4 text-sm">Email <a href="mailto:support@amalgamic.io">support@amalgamic.io</a> with your request and the email address on your account.</p>
           </div>
@@ -353,11 +353,11 @@ export default function Privacy() {
       <DocSection id="contact" num="§19" title="Contact us">
         <p>Questions about this policy, about how we collect and use your personal data, or about your rights over it — we would rather hear from you than not.</p>
         <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">General</span>
             <p className="sm:w-3/4 text-sm"><a href="mailto:support@amalgamic.io">support@amalgamic.io</a></p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
+          <div className="flex flex-col sm:flex-row gap-4 bg-glass-subtle border border-glass-border p-5 rounded-xl shadow-sm">
             <span className="font-bold text-brand uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Privacy</span>
             <p className="sm:w-3/4 text-sm"><a href="mailto:lizann@amalgamic.io">lizann@amalgamic.io</a></p>
           </div>

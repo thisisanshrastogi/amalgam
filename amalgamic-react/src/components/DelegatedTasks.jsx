@@ -60,7 +60,7 @@ export default function DelegatedTasks() {
             {/* User bubble sdfsd*/}
             <div className="chat-bubble-user-container opacity-0 flex flex-col gap-2">
               <span className="text-[11px] font-bold text-muted uppercase tracking-widest self-end mr-4">You • 9:41 AM</span>
-              <div className="glass-card text-brand chat-bubble-user p-5 self-end max-w-[85%] shadow-md border border-white/5">
+              <div className="glass-card text-brand chat-bubble-user p-5 self-end max-w-[85%] shadow-md border border-glass">
                 <p className="text-[15px] leading-relaxed">Dispute the $200 baggage fee on my Amex. The flight was delayed six hours.</p>
               </div>
             </div>

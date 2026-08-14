@@ -36,7 +36,7 @@ export default function Assistant() {
           .add('.asst-msg-2', {
             opacity: [0, 1], translateY: [10, 0], duration: 250, ease: 'outExpo',
           }, '-=100')
-          
+
           // User 2
           .add('.asst-msg-3', {
             opacity: [0, 1], translateY: [15, 0], duration: 250, ease: 'outExpo',
@@ -102,8 +102,8 @@ export default function Assistant() {
         </div>
         <div className="relative">
           <div className="absolute -inset-10 bg-accent/10 blur-[60px] -z-10 rounded-full"></div>
-          <div className="asst-phone opacity-0 bg-surface/80 backdrop-blur-xl border border-white/10 rounded-[40px] p-8 shadow-2xl h-[600px] flex flex-col w-full max-w-md mx-auto relative overflow-hidden">
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
+          <div className="asst-phone opacity-0 bg-surface border border-border rounded-[40px] shadow-2xl h-[600px] flex flex-col w-full max-w-md mx-auto relative overflow-hidden">
+            <div className="flex items-center gap-3 px-6 py-5 bg-bg border-b border-border z-10 shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
                   <div className="w-2 h-2 bg-bg rounded-sm"></div>
@@ -118,42 +118,42 @@ export default function Assistant() {
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto pr-2 space-y-4 text-[15px] mb-20 scrollbar-hide">
-              <div className="asst-msg-1 opacity-0 bg-white/5 border border-white/10 text-brand chat-bubble-user p-4 self-end max-w-[80%] ml-auto rounded-3xl rounded-tr-sm">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 text-[15px] scrollbar-hide">
+              <div className="asst-msg-1 opacity-0 bg-brand text-bg font-medium chat-bubble-user p-4 self-end max-w-[80%] ml-auto rounded-3xl rounded-tr-sm shadow-sm">
                 Why is this month's statement higher?
               </div>
-              
+
               <div className="relative max-w-[85%]">
-                <div className="asst-thinking-1 opacity-0 absolute top-0 left-0 bg-white/5 text-muted p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
+                <div className="asst-thinking-1 opacity-0 absolute top-0 left-0 bg-bg border border-border text-muted p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '300ms' }}></span>
                 </div>
-                <div className="asst-msg-2 opacity-0 bg-accent text-bg chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
+                <div className="asst-msg-2 opacity-0 bg-bg border border-border text-brand chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
                   Your spending increased by $420, driven by a $200 airline fee (I can dispute this) and a $180 spike in dining.
                 </div>
               </div>
 
-              <div className="asst-msg-3 opacity-0 bg-white/5 border border-white/10 text-brand chat-bubble-user p-4 self-end max-w-[80%] ml-auto mt-4 rounded-3xl rounded-tr-sm">
+              <div className="asst-msg-3 opacity-0 bg-brand text-bg font-medium chat-bubble-user p-4 self-end max-w-[80%] ml-auto mt-4 rounded-3xl rounded-tr-sm shadow-sm">
                 If I only pay the minimum, how long until it's clear?
               </div>
-              
+
               <div className="relative max-w-[85%]">
-                <div className="asst-thinking-2 opacity-0 absolute top-0 left-0 bg-white/5 text-muted p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
+                <div className="asst-thinking-2 opacity-0 absolute top-0 left-0 bg-bg border border-border text-muted p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{ animationDelay: '300ms' }}></span>
                 </div>
-                <div className="asst-msg-4 opacity-0 bg-accent text-bg chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
-                  It will take 11 years and cost you <strong className="text-bg font-bold underline">$4,120 in interest</strong>.
+                <div className="asst-msg-4 opacity-0 bg-bg border border-border text-brand chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
+                  It will take 11 years and cost you <strong className="text-highlight font-bold underline">$4,120 in interest</strong>.
                 </div>
               </div>
             </div>
 
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-bg/50 backdrop-blur-md border border-white/10 rounded-full px-5 py-3.5 flex items-center justify-between">
+            <div className="p-6 bg-bg border-t border-border z-10 shrink-0">
+              <div className="bg-surface border border-border rounded-full px-5 py-3.5 flex items-center justify-between shadow-sm">
                 <span className="text-muted text-sm italic">Ask anything about your money...</span>
-                <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-bg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </div>
               </div>

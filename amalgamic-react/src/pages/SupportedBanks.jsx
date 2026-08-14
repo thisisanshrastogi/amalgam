@@ -89,14 +89,14 @@ export default function SupportedBanks() {
     >
       <DocSection id="how" num="§01" title="How coverage works">
         <p>Amalgamic does not integrate with banks one at a time. We connect through two regulated data providers, and our coverage is whatever theirs is — which in practice means the overwhelming majority of US institutions, down to small credit unions.</p>
-        
+
         <div className="grid md:grid-cols-2 gap-4 my-6">
-          <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
+          <div className="bg-glass-subtle border border-glass-border p-6 rounded-xl shadow-sm">
             <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3 font-mono">Primary</span>
             <h4 className="font-bold text-brand mb-2">Plaid</h4>
             <p className="text-sm">Connects more than 12,000 financial institutions across the US — national banks, regional banks, credit unions and brokerages.</p>
           </div>
-          <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
+          <div className="bg-glass-subtle border border-glass-border p-6 rounded-xl shadow-sm">
             <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3 font-mono">Specialist</span>
             <h4 className="font-bold text-brand mb-2">Spinwheel</h4>
             <p className="text-sm">Liability and debt accounts — loans, lines of credit and balances that transaction feeds alone tend to miss.</p>
@@ -107,26 +107,26 @@ export default function SupportedBanks() {
 
       <DocSection id="find" num="§02" title="Find your institution">
         <p>A sample of commonly connected institutions. This is not the full list — searching in the dashboard queries live coverage.</p>
-        
-        <div className="bg-surface border border-border rounded-2xl overflow-hidden my-6 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-black/5">
+
+        <div className="bg-glass-subtle border border-glass-border rounded-2xl overflow-hidden my-6 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-glass-border bg-glass">
             <span className="text-xs uppercase tracking-widest font-bold text-muted font-mono">Institution directory</span>
             <span className="text-xs font-bold text-muted font-mono">{filteredBanks.length} of {banks.length}</span>
           </div>
-          
-          <div className="p-4 border-b border-border flex flex-wrap items-center gap-3 bg-white">
-            <input 
-              type="search" 
-              placeholder="Search institutions" 
-              className="flex-1 min-w-[200px] bg-black/5 border border-border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/20"
+
+          <div className="p-4 border-b border-glass-border flex flex-wrap items-center gap-3 bg-white">
+            <input
+              type="search"
+              placeholder="Search institutions"
+              className="flex-1 min-w-[200px] bg-glass border border-glass-border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/20"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <div className="flex flex-wrap gap-2">
               {types.map(t => (
-                <button 
+                <button
                   key={t}
-                  className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${activeFilter === t ? 'bg-ink text-white' : 'bg-black/5 text-muted hover:bg-black/10'}`}
+                  className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${activeFilter === t ? 'bg-brand text-bg' : 'bg-glass text-muted hover:bg-white/10'}`}
                   style={activeFilter === t ? { backgroundColor: 'var(--brand)', color: 'white' } : {}}
                   onClick={() => setActiveFilter(t)}
                 >
@@ -135,12 +135,12 @@ export default function SupportedBanks() {
               ))}
             </div>
           </div>
-          
+
           <div className="overflow-x-auto max-h-[400px] overflow-y-auto">
             {filteredBanks.length > 0 ? (
               <table className="w-full text-left min-w-[600px]">
-                <thead className="sticky top-0 bg-surface shadow-sm z-10">
-                  <tr className="bg-white/90 backdrop-blur text-[10px] uppercase tracking-widest text-muted border-b border-border">
+                <thead className="sticky top-0 bg-glass-subtle shadow-sm z-10">
+                  <tr className="bg-white/90 backdrop-blur text-[10px] uppercase tracking-widest text-muted border-b border-glass-border">
                     <th className="px-5 py-3 font-bold">Institution</th>
                     <th className="px-5 py-3 font-bold">Type</th>
                     <th className="px-5 py-3 font-bold">Connection</th>
@@ -148,16 +148,16 @@ export default function SupportedBanks() {
                 </thead>
                 <tbody className="divide-y divide-border text-sm">
                   {filteredBanks.map((b, i) => (
-                    <tr key={i} className="hover:bg-black/[0.02] transition-colors">
+                    <tr key={i} className="hover:bg-glass-subtle transition-colors">
                       <td className="px-5 py-3.5"><span className="font-bold text-brand">{b.name}</span></td>
-                      <td className="px-5 py-3.5"><span className="bg-black/5 border border-border px-2 py-0.5 rounded text-[11px] font-bold text-muted">{b.type}</span></td>
+                      <td className="px-5 py-3.5"><span className="bg-glass border border-glass-border px-2 py-0.5 rounded text-[11px] font-bold text-muted">{b.type}</span></td>
                       <td className="px-5 py-3.5">
                         {b.conn === 'OAuth' ? (
                           <span className="text-xs font-bold text-accent flex items-center gap-1.5 bg-accent/5 w-fit px-2 py-0.5 rounded border border-accent/20">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> OAuth
                           </span>
                         ) : (
-                          <span className="text-xs font-bold text-muted flex items-center gap-1.5 bg-black/5 w-fit px-2 py-0.5 rounded border border-border">
+                          <span className="text-xs font-bold text-muted flex items-center gap-1.5 bg-glass w-fit px-2 py-0.5 rounded border border-glass-border">
                             Supported
                           </span>
                         )}
@@ -182,7 +182,7 @@ export default function SupportedBanks() {
       </DocSection>
 
       <DocSection id="revoke" num="§04" title="Disconnecting an account">
-        <div className="bg-surface border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
+        <div className="bg-glass-subtle border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2 font-mono">Control</span>
           <p className="text-xl font-bold text-brand mb-2">Revocable from either end, at any time.</p>
           <p className="text-sm">Disconnect an institution from your Amalgamic dashboard, or revoke access directly with Plaid or Spinwheel without involving us. Either stops the data flow. What we already hold is governed by the retention rules in the <a href="/privacy-policy">privacy policy</a>.</p>

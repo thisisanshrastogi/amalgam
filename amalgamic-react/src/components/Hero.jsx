@@ -48,7 +48,7 @@ export default function Hero() {
   return (
     <section ref={root} className="relative pt-40 pb-24 px-8 min-h-screen flex items-center overflow-x-hidden text-[#F2EEE3]">
       <ArtBackground />
-      
+
       <div className="max-w-[1200px] mx-auto w-full relative z-10">
         {/* Left Column Content */}
         <div className="max-w-xl pt-12 md:pt-0">

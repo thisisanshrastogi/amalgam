@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { animate, createScope, onScroll } from 'animejs';
 import { timelineOnScroll, shimmerLoop } from '../utils/animations';
-
+import { AbstractArtBackground } from './AbstractArtBackground';
 
 export default function CardsAndBillPay() {
   const root = useRef(null);
@@ -64,9 +64,15 @@ export default function CardsAndBillPay() {
 
   return (
     <section ref={root} className="py-32 bg-gradient-to-b from-black to-bg text-brand overflow-hidden relative">
+      <div className="absolute inset-0 pointer-events-none z-0" style={{ maskImage: 'radial-gradient(ellipse at bottom right, black 0%, transparent 60%)', WebkitMaskImage: 'radial-gradient(ellipse at bottom right, black 0%, transparent 60%)' }}>
+        <AbstractArtBackground className="scale-y-[-1]" />
+      </div>
+      {/* Soften the bottom edge to remove crease */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg to-transparent pointer-events-none z-0" />
+      
       <div className="max-w-[1200px] mx-auto px-8 relative z-10 grid md:grid-cols-2 gap-20 items-center">
         <div className="order-2 md:order-1 relative">
-          <div className="glass-card bg-surface/40 backdrop-blur-xl p-1 rounded-[40px] border border-white/5 max-w-md mx-auto shadow-2xl">
+          <div className="glass-card bg-surface/40 backdrop-blur-xl p-1 rounded-[40px] border border-white/10 max-w-md mx-auto shadow-2xl">
             <div className="p-8">
               <h3 className="font-bold text-brand mb-6 flex items-center">Payment Calendar <span className="text-xs font-normal opacity-60 ml-2">October 2024</span></h3>
               <div className="grid grid-cols-7 gap-1 text-center mb-6">
@@ -100,7 +106,7 @@ export default function CardsAndBillPay() {
               </div>
 
               <div className="space-y-3">
-                <div className="pay-list-item opacity-0 bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center justify-between">
+                <div className="pay-list-item opacity-0 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-5 rounded" style={{ background: '#2773aaff' }}></div>
                     <div>
@@ -111,7 +117,7 @@ export default function CardsAndBillPay() {
                   <span className=" hidden md:block text-[10px] font-bold text-highlight border border-highlight/30 px-3 py-1 rounded-full uppercase tracking-widest">Pay Balance</span>
                   <span className=" md:hidden text-[10px] font-bold text-highlight border border-highlight/30 px-3 py-1 rounded-full uppercase tracking-widest">Pay</span>
                 </div>
-                <div className="pay-list-item opacity-0 bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center justify-between opacity-60">
+                <div className="pay-list-item opacity-0 bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between opacity-60">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-5 border border-white/30 rounded"></div>
                     <div>

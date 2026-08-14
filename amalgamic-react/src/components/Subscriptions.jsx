@@ -44,6 +44,9 @@ export default function Subscriptions() {
     <section ref={root} className="relative py-32 px-8 bg-gradient-to-b from-bg to-black overflow-hidden">
       <AbstractArtBackground />
       <div className="absolute inset-0 veil-overlay pointer-events-none" />
+      {/* Soften edges to remove creases */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-bg to-transparent pointer-events-none z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
 
       <div className="max-w-[1200px] mx-auto relative z-10 grid lg:grid-cols-2 gap-20 items-center">
         <div>
@@ -70,14 +73,14 @@ export default function Subscriptions() {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted block mb-3">Monthly Burn</span>
             <div ref={counterRef} className="font-serif text-6xl leading-none text-brand mb-3">$0.00</div>
             <p className="text-sm text-muted mb-8">Detected across 5 connected cards</p>
-            
+
             {/* Progress bar — scaleX animated from 0→1, origin set via CSS class */}
             <div className="h-3 w-full flex rounded-full overflow-hidden mb-8 shadow-inner">
               <div className="sub-progress h-full bg-accent w-[45%] origin-left scale-x-0"></div>
               <div className="sub-progress h-full bg-highlight w-[30%] origin-left scale-x-0"></div>
               <div className="sub-progress h-full bg-brand w-[25%] origin-left scale-x-0"></div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-y-5 gap-x-4">
               <div className="sub-legend-item opacity-0 flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-accent shadow-sm"></div>
