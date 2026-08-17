@@ -58,36 +58,29 @@ export default function HowItWorks() {
         <div className="how-heading opacity-0 text-center mb-24">
           <span className="text-accent text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
           <h2 className="font-serif text-5xl leading-tight text-brand">
-            Connect once. Decide when it matters.<br />That's the whole job.
+            Setup once, we'll handle the rest.
           </h2>
         </div>
-        <div className="grid md:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-3 gap-12">
           <div className="how-step opacity-0 relative">
             <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">01</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">Connect cards</h3>
+            <h3 className="font-serif text-2xl text-brand mb-4">Connect your cards</h3>
             <p className="text-muted leading-relaxed text-[15px]">
-              Link credit cards securely. We find accounts you may have forgotten, checking balances and limits.
+              Secure, read-only access through our integration partners. Works with 12,000+ US institutions.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
             <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">02</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">Read statements</h3>
+            <h3 className="font-serif text-2xl text-brand mb-4">We monitor everything</h3>
             <p className="text-muted leading-relaxed text-[15px]">
-              We continuously read statements, surfacing only what matters instead of useless dashboards.
+              We're checking for recurring charges, fees, credits. Anything that shouldn't be there.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
             <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">03</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">Ask anything</h3>
+            <h3 className="font-serif text-2xl text-brand mb-4">You act when it matters</h3>
             <p className="text-muted leading-relaxed text-[15px]">
-              Chat directly with your accounts. Ask why a bill is higher and get exact answers.
-            </p>
-          </div>
-          <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">04</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">Hand it over</h3>
-            <p className="text-muted leading-relaxed text-[15px]">
-              Cancel, dispute, or claim with a tap. We handle the tedious parts while you get paid.
+              We surface only what's worth your time – with one-tap options to cancel, dispute, or pay.
             </p>
           </div>
         </div>

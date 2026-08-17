@@ -45,10 +45,10 @@ export default function Subscriptions() {
         <div>
           <span className="sub-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Subscriptions</span>
           <h2 className="sub-text opacity-0 font-serif text-5xl leading-tight mb-8 text-brand">
-            The ones you forgot are the expensive ones.
+            The ones you forgot keep adding up.
           </h2>
           <p className="sub-text opacity-0 text-muted text-lg leading-relaxed mb-10">
-            We detect every recurring charge and let you cancel with a single tap. We even handle the retention flow.
+            We detect every recurring charge and let you cancel within a few clicks. We even handle the retention flow.
           </p>
           <div className="sub-card opacity-0 bg-surface border border-border rounded-xl p-4 flex items-center justify-between shadow-sm mb-6 hover:shadow-md transition-shadow cursor-pointer max-w-sm">
             <div className="flex items-center gap-4">
@@ -74,18 +74,18 @@ export default function Subscriptions() {
               <div className="sub-progress h-full bg-brand w-[25%] origin-left scale-x-0"></div>
             </div>
             
-            <div className="grid grid-cols-2 gap-y-5 gap-x-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
               <div className="sub-legend-item opacity-0 flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-accent shadow-sm"></div>
-                <span className="text-[15px] text-brand font-medium">Entertainment</span>
+                <div className="w-3 h-3 shrink-0 rounded-full bg-accent shadow-sm"></div>
+                <span className="text-[14px] sm:text-[15px] text-brand font-medium shrink-0 whitespace-nowrap">Entertainment</span>
               </div>
               <div className="sub-legend-item opacity-0 flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-highlight shadow-sm"></div>
-                <span className="text-[15px] text-brand font-medium">SaaS / Tools</span>
+                <div className="w-3 h-3 shrink-0 rounded-full bg-highlight shadow-sm"></div>
+                <span className="text-[14px] sm:text-[15px] text-brand font-medium shrink-0 whitespace-nowrap">SaaS / Tools</span>
               </div>
               <div className="sub-legend-item opacity-0 flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-brand shadow-sm"></div>
-                <span className="text-[15px] text-brand font-medium">Health &amp; Wellness</span>
+                <div className="w-3 h-3 shrink-0 rounded-full bg-brand shadow-sm"></div>
+                <span className="text-[14px] sm:text-[15px] text-brand font-medium shrink-0 whitespace-nowrap">Health &amp; Wellness</span>
               </div>
             </div>
           </div>

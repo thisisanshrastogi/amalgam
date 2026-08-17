@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import SupportedBanks from './pages/SupportedBanks';
 import FAQ from './pages/FAQ';
 import FAQPage from './pages/test';
+import HomeNew from './pages/HomeNew';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/new" element={<HomeNew />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy-policy" element={<Privacy />} />
             <Route path="/contact" element={<Contact />} />

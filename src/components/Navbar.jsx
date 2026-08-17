@@ -65,8 +65,8 @@ export default function Navbar() {
 
   // Smooth scroll handler using Anime.js
   const handleNavClick = (e, targetId) => {
+    e.preventDefault();
     if (location.pathname === '/') {
-      e.preventDefault();
       const el = document.getElementById(targetId);
       if (el) {
         animate(document.scrollingElement || document.documentElement, {
@@ -75,6 +75,8 @@ export default function Navbar() {
           ease: 'outExpo'
         });
       }
+    } else {
+      navigate(`/#${targetId}`);
     }
   };
 
@@ -142,30 +144,30 @@ export default function Navbar() {
                 className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 bg-white rounded-2xl shadow-xl border border-border/60 opacity-0 flex-col py-2 px-1"
                 style={{ visibility: 'hidden', display: 'none', transformOrigin: 'top center' }}
               >
-                <a
-                  href="/#how-it-works"
+                <Link
+                  to="/#how-it-works"
                   onClick={(e) => handleNavClick(e, 'how-it-works')}
-                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-surface transition-colors"
+                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-bg transition-colors"
                 >
                   <span className="text-[13px] font-bold text-brand">How it works</span>
                   <span className="text-[11px] text-muted mt-0.5 font-normal">Connect cards, automate claims</span>
-                </a>
-                <a
-                  href="/#insights"
+                </Link>
+                <Link
+                  to="/#insights"
                   onClick={(e) => handleNavClick(e, 'insights')}
-                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-surface transition-colors"
+                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-bg transition-colors"
                 >
                   <span className="text-[13px] font-bold text-brand">Insights</span>
                   <span className="text-[11px] text-muted mt-0.5 font-normal">Understand your hidden spending</span>
-                </a>
-                <a
-                  href="/#assistant"
+                </Link>
+                <Link
+                  to="/#assistant"
                   onClick={(e) => handleNavClick(e, 'assistant')}
-                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-surface transition-colors"
+                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-bg transition-colors"
                 >
                   <span className="text-[13px] font-bold text-brand">Assistant</span>
                   <span className="text-[11px] text-muted mt-0.5 font-normal">Chat with your statements</span>
-                </a>
+                </Link>
               </div>
             </div>
 

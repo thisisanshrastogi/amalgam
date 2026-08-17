@@ -30,36 +30,7 @@ export default function Proof() {
         onEnter: () => tableAnim.play(),
       });
 
-      // Count-up stats
-      let statsPlayed = false;
-      const stats = [
-        { ref: stat1Ref, from: 0, to: 1.2, prefix: '$', suffix: 'M+', decimals: 1 },
-        { ref: stat2Ref, from: 0, to: 142, prefix: '$', suffix: '', decimals: 0 },
-        { ref: stat3Ref, from: 0, to: 4, prefix: '', suffix: ' days', decimals: 0 },
-      ];
 
-      onScroll({
-        target: root.current,
-        start: 'top 60%',
-        onEnter: () => {
-          if (statsPlayed) return;
-          statsPlayed = true;
-          stats.forEach(({ ref, from, to, prefix, suffix, decimals }, i) => {
-            const obj = { val: from };
-            animate(obj, {
-              val: to,
-              duration: 950,
-              ease: 'outExpo',
-              delay: i * 120,
-              onUpdate: () => {
-                if (ref.current) {
-                  ref.current.textContent = `${prefix}${obj.val.toFixed(decimals)}${suffix}`;
-                }
-              },
-            });
-          });
-        },
-      });
     });
     return () => scope.current.revert();
   }, []);
@@ -116,20 +87,7 @@ export default function Proof() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 text-center border-b border-border pb-16 mb-8">
-          <div>
-            <div ref={stat1Ref} className="font-serif text-4xl font-bold text-brand mb-2">$0M+</div>
-            <div className="text-xs font-bold uppercase tracking-widest text-muted">Recovered to date</div>
-          </div>
-          <div>
-            <div ref={stat2Ref} className="font-serif text-4xl font-bold text-brand mb-2">$0</div>
-            <div className="text-xs font-bold uppercase tracking-widest text-muted">Median recovery</div>
-          </div>
-          <div>
-            <div ref={stat3Ref} className="font-serif text-4xl font-bold text-brand mb-2">0 days</div>
-            <div className="text-xs font-bold uppercase tracking-widest text-muted">Median resolve time</div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

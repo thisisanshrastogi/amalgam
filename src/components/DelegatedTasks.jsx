@@ -25,21 +25,21 @@ export default function DelegatedTasks() {
           .add('.typing-dots', {
             opacity: [0, 1],
             scale: [0.8, 1],
-            duration: 300,
+            duration: 200,
             ease: 'outBack',
-          }, '+=300')
+          }, '+=200')
           // Each dot pulses in stagger
           .add('.typing-dot', {
             translateY: [0, -6, 0],
-            duration: 300,
+            duration: 200,
             delay: (_, i) => i * 75,
-            loop: 2,
+            loop: 1,
             ease: 'inOutSine',
           }, '-=100')
           // Typing dots hide, AI bubble reveals
           .add('.typing-dots', {
             opacity: [1, 0],
-            duration: 200,
+            duration: 100,
           }, '+=100')
           .add('.chat-bubble-ai-container', {
             translateX: [-60, 0],

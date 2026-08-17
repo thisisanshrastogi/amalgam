@@ -8,7 +8,6 @@
   body { 
     @apply bg-bg text-brand;
     scroll-behavior: smooth; 
-    overflow-x: clip;
   }
 
   ::selection {
@@ -37,6 +36,10 @@
   
   .animate-subtle-float { 
     animation: subtle-float 5s ease-in-out infinite; 
+  }
+
+  .veil-overlay {
+    background: linear-gradient(100deg, rgba(245,242,234,.95) 0%, rgba(245,242,234,.8) 40%, rgba(245,242,234,0) 80%);
   }
 }
 

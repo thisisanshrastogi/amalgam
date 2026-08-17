@@ -66,38 +66,40 @@ export default function DocLayout({ groups = [], children, headerProps }) {
         </header>
 
         {/* Layout */}
-        <div className="grid md:grid-cols-[236px_1fr] gap-14 items-start relative">
+        <div className="grid md:grid-cols-[236px_1fr] gap-14 relative">
           
           {/* Rail (Sidebar) */}
-          <nav className="sticky top-[104px] max-h-[calc(100vh-136px)] flex flex-col py-2 hidden md:flex" aria-label="Sections">
-            <div className="flex-1 overflow-y-auto pr-1 scrollbar-hide">
-              {groups.map((group, gIdx) => (
-                <div key={gIdx} className="mb-5">
-                  <span className="text-[11px] uppercase tracking-widest text-muted block mb-2 font-bold">{group.title}</span>
-                  {group.links.map((link) => (
-                    <a
-                      key={link.id}
-                      href={`#${link.id}`}
-                      className={`flex gap-2.5 px-3 py-1.5 rounded-md text-[13.5px] font-medium leading-snug transition-all ${
-                        activeId === link.id ? 'bg-black/5 text-brand font-bold' : 'text-muted hover:bg-black/5 hover:text-brand'
-                      }`}
-                    >
-                      <span className={`text-[10.5px] pt-[2px] flex-none font-bold ${activeId === link.id ? 'text-accent' : 'text-muted/60'}`}>
-                        {link.num}
-                      </span>
-                      <span>{link.label}</span>
-                    </a>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-border">
-              <span className="text-[11px] uppercase tracking-widest text-muted block font-bold">Read {readPct}%</span>
-              <div className="h-[3px] bg-black/5 rounded-full mt-2 overflow-hidden">
-                <div className="h-full bg-accent transition-all duration-150 ease-linear" style={{ width: `${readPct}%` }}></div>
+          <div className="hidden md:block">
+            <nav className="sticky top-[104px] max-h-[calc(100vh-136px)] flex flex-col py-2" aria-label="Sections">
+              <div className="flex-1 overflow-y-auto pr-1 scrollbar-hide">
+                {groups.map((group, gIdx) => (
+                  <div key={gIdx} className="mb-5">
+                    <span className="text-[11px] uppercase tracking-widest text-muted block mb-2 font-bold">{group.title}</span>
+                    {group.links.map((link) => (
+                      <a
+                        key={link.id}
+                        href={`#${link.id}`}
+                        className={`flex gap-2.5 px-3 py-1.5 rounded-md text-[13.5px] font-medium leading-snug transition-all ${
+                          activeId === link.id ? 'bg-black/5 text-brand font-bold' : 'text-muted hover:bg-black/5 hover:text-brand'
+                        }`}
+                      >
+                        <span className={`text-[10.5px] pt-[2px] flex-none font-bold ${activeId === link.id ? 'text-accent' : 'text-muted/60'}`}>
+                          {link.num}
+                        </span>
+                        <span>{link.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                ))}
               </div>
-            </div>
-          </nav>
+              <div className="mt-4 pt-4 border-t border-border">
+                <span className="text-[11px] uppercase tracking-widest text-muted block font-bold">Read {readPct}%</span>
+                <div className="h-[3px] bg-black/5 rounded-full mt-2 overflow-hidden">
+                  <div className="h-full bg-accent transition-all duration-150 ease-linear" style={{ width: `${readPct}%` }}></div>
+                </div>
+              </div>
+            </nav>
+          </div>
           
           {/* Main Content */}
           <div className="pb-16">{children}</div>
