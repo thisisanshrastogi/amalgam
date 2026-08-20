@@ -68,7 +68,7 @@ export default function Hero() {
             /* overflow-x-clip instead of overflow-x-hidden: it stops the offset card
                stack from creating a horizontal scrollbar without turning this
                section into a scroll container, which would break a sticky nav. */
-            className="relative flex flex-col lg:flex-row items-center lg:min-h-screen px-6 pt-24 pb-12 lg:pb-24 lg:pt-40 sm:px-8 overflow-x-clip text-brand"
+            className="relative flex flex-col lg:flex-row items-center lg:min-h-screen px-6 pt-24 pb-12 lg:pb-24 lg:pt-40 sm:px-8 overflow-x-clip text-ink"
         >
             <style>{revealStyles}</style>
 
@@ -77,7 +77,7 @@ export default function Hero() {
                 <div className="max-w-xl pt-12 shrink-0 md:pt-0">
                     <span
                         data-hero-reveal
-                        className="hero-badge inline-block mb-8 px-3 py-1.5 rounded-full bg-black/5 border border-black/10 text-brand text-[11px] font-bold uppercase tracking-widest"
+                        className="hero-badge inline-block mb-8 px-3 py-1.5 rounded-full bg-black/5 border border-black/10 text-ink text-[11px] font-bold uppercase tracking-widest"
                     >
                         For cardholders
                     </span>
@@ -95,7 +95,7 @@ export default function Hero() {
 
                     {/* opacity now comes from the colour token, not an opacity utility,
               so it can't cancel out the reveal */}
-                    <p data-hero-reveal className="hero-p mb-10 text-lg leading-relaxed text-brand/70">
+                    <p data-hero-reveal className="hero-p mb-10 text-lg leading-relaxed text-ink/70">
                         Forgotten subscriptions, expired credits, refunds you never chased. Amalgamic finds
                         them across your cards and gets them back.
                     </p>
@@ -104,21 +104,21 @@ export default function Hero() {
                         data-hero-reveal
                         className="hero-btns flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center"
                     >
-                        <button
-                            type="button"
-                            className="w-full px-8 py-4 text-sm font-bold shadow-xl rounded-xl bg-brand text-bg transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto"
+                        <a
+                            href="https://cards.amalgamic.io"
+                            className="inline-block text-center w-full px-8 py-4 text-sm font-bold shadow-xl rounded-xl bg-ink text-white transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto"
                         >
                             Connect your accounts
-                        </button>
+                        </a>
                         <button
                             type="button"
-                            className="w-full px-8 py-4 text-sm font-bold transition-colors bg-transparent border shadow-sm rounded-xl text-brand border-brand/20 hover:bg-brand/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto"
+                            className="w-full px-8 py-4 text-sm font-bold transition-colors bg-transparent border shadow-sm rounded-xl text-ink border-ink/20 hover:bg-ink/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto"
                         >
                             See how it works
                         </button>
                     </div>
 
-                    <p data-hero-reveal className="hero-proof font-mono text-[11px] tracking-wide text-brand/50">
+                    <p data-hero-reveal className="hero-proof font-mono text-[11px] tracking-wide text-ink/50">
                         $1.2M+ recovered · 12,000+ institutions · we never sell your data
                     </p>
                 </div>

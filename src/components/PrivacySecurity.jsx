@@ -1,6 +1,51 @@
 import React, { useEffect, useRef } from 'react';
-import { createScope } from 'animejs';
+import { createScope, animate, onScroll } from 'animejs';
 import { fadeUpOnScroll } from '../utils/animations';
+
+/**
+ * OPTION C - Ink band, full viewport
+ * Full-bleed dark section, one screen tall. Headline anchors the top, claims anchor
+ * the bottom, vault sits centred on the right. The space between them is the design.
+ *
+ * `min-h-[100dvh]` not `h-screen`: dvh survives the iOS Safari address bar, and min-h
+ * lets the section grow past one screen when the claims stack on mobile.
+ *
+ * ASSET: /art/vault.png (dark dither on a white ground)
+ *   Knocked out with `invert` + `mix-blend-screen`: the white ground inverts to black,
+ *   which screen-blends away against the ink, leaving light dots.
+ *   The vault circle sits in the right ~45% of that PNG with dead space to its left,
+ *   so the image element is far wider than the visible circle. Hence the large width
+ *   plus negative right offset.
+ *
+ *   CLEANER LONG TERM: export /art/vault-ink.png cropped tight to the circle, with a
+ *   TRANSPARENT ground and paper #EDE6D6 dots at 4px Bayer. Then drop
+ *   `invert mix-blend-screen` and size it directly.
+ *
+ * NOTE: must escape any max-width or horizontal padding on your page wrapper.
+ *
+ * Swap `text-mint` for whatever your accent token is actually called.
+ * Assumes `bg-ink` / `text-white` exist alongside your `bg-paper` / `text-ink`.
+ */
+
+const CLAIMS = [
+  {
+    label: 'Selling data',
+    statement: 'We never sell it.',
+    mechanism: 'Read-only access via Plaid and Spinwheel.',
+  },
+  {
+    label: 'AI',
+    statement: "It reads and drafts. It doesn't learn.",
+    mechanism: 'Your data never trains a model.',
+  },
+  {
+    label: 'Control',
+    statement: 'Cut us off in one click.',
+    mechanism: 'Revoke or delete, from settings.',
+  },
+  // A fourth claim narrows every column. Only add one back when you have a storage
+  // or encryption claim you can actually stand behind.
+];
 
 export default function PrivacySecurity() {
   const root = useRef(null);
@@ -8,60 +53,91 @@ export default function PrivacySecurity() {
 
   useEffect(() => {
     scope.current = createScope({ root: root.current }).add(() => {
-      fadeUpOnScroll('.ps-text', root.current, { staggerMs: 120, translateY: 30 });
-      fadeUpOnScroll('.ps-item', root.current, { delay: 300, staggerMs: 100, translateY: 20 });
+      fadeUpOnScroll('.ps-text', root.current, { staggerMs: 110, translateY: 26 });
+      fadeUpOnScroll('.ps-col', root.current, { delay: 220, staggerMs: 80, translateY: 20 });
+
+      animate('.vault-parallax', {
+        translateY: [-100, 100],
+        ease: 'linear',
+        autoplay: onScroll({
+          target: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          sync: true,
+        }),
+      });
     });
     return () => scope.current.revert();
   }, []);
 
   return (
-    <section ref={root} className="py-32 px-8 bg-surface border-t border-border">
-      <div className="max-w-[1000px] mx-auto">
-        <div className="text-center mb-20 max-w-2xl mx-auto">
-          <span className="ps-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Privacy &amp; security</span>
-          <h2 className="ps-text opacity-0 font-serif text-5xl leading-tight text-brand">
-            Your data works for you. Never for anyone else.
-          </h2>
+    <section
+      ref={root}
+      className="relative isolate bg-ink text-white overflow-hidden
+                 min-h-[100dvh] flex items-stretch
+                 px-6 sm:px-8 py-24 lg:py-28"
+    >
+      {/* Vault plate. Decorative, so it stays out of the a11y tree. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="vault-parallax absolute inset-0 w-full h-full">
+          <img
+            src="/vault.png"
+            alt=""
+            loading="lazy"
+            draggable="false"
+            className="absolute top-1/2 -translate-y-1/2
+                       right-[-22%] sm:right-[-18%] lg:right-[-14%]
+                       w-[min(1400px,130%)] max-w-[900px]
+                       opacity-[0.10] lg:opacity-[0.56]
+                       invert mix-blend-screen select-none"
+          />
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
-          <div className="ps-item opacity-0 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <h3 className="font-bold text-lg text-brand">We will never sell your financial data</h3>
-            <p className="text-muted leading-relaxed text-[15px]">
-              Read-only access through Plaid and Spinwheel — we never see your bank login credentials, and no money changes hands for your data.
-            </p>
-          </div>
-          <div className="ps-item opacity-0 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-            </div>
-            <h3 className="font-bold text-lg text-brand">We don't train AI on your data</h3>
-            <p className="text-muted leading-relaxed text-[15px]">
-              AI is used to carry out the task you asked for — reading statements, drafting disputes — and nothing beyond it.
-            </p>
-          </div>
-          <div className="ps-item opacity-0 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            </div>
-            <h3 className="font-bold text-lg text-brand">You stay in control</h3>
-            <p className="text-muted leading-relaxed text-[15px]">
-              Revoke access any time, directly with Plaid or Spinwheel, or delete your account and data from settings.
-            </p>
-          </div>
-          <div className="ps-item opacity-0 flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-            </div>
-            <h3 className="font-bold text-lg text-brand">Built on trusted infrastructure</h3>
-            <p className="text-muted leading-relaxed text-[15px]">
-              Physical, technical and administrative safeguards protect your data at every step.
-            </p>
-          </div>
+
+        {/* Legibility scrim: solid ink under the text, fading out before the vault. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink from-52% via-ink/70 via-76% to-transparent" />
+      </div>
+
+      {/* justify-between is what spends the height: top block, bottom block, air between */}
+      <div className="relative w-full max-w-[1200px] mx-auto flex flex-col justify-between gap-20">
+
+        <h2 className="ps-text opacity-0 font-serif text-[2.5rem] md:text-[3.5rem] lg:text-[4rem]
+                       leading-[1.14] tracking-[-0.02em] text-white max-w-[18ch] pb-1">
+          Your data works for you. Never for anyone else.
+        </h2>
+
+        <div>
+          {/* Single row. Hairlines only, no cards, no icons. */}
+          <dl className="grid gap-x-10 gap-y-9 sm:grid-cols-3 max-w-[780px]">
+            {CLAIMS.map((claim) => (
+              <div key={claim.label} className="ps-col opacity-0 border-t border-paper/20 pt-5">
+                <dt className="text-[12px] font-bold uppercase tracking-[0.16em] text-white/50">
+                  {claim.label}
+                </dt>
+                <dd>
+                  <p className="mt-3 font-serif text-[22px] leading-[1.25] text-white">
+                    {claim.statement}
+                  </p>
+                  <p className="mt-2 text-white/70 text-[15px] leading-snug">
+                    {claim.mechanism}
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="ps-col opacity-0 mt-10 text-[15px] text-white/70">
+            Questions about any of this?{' '}
+            <a
+              href="/privacy-policy"
+              className="text-mint underline underline-offset-4 decoration-mint/40 hover:decoration-mint
+                         rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4
+                         focus-visible:outline-mint transition-colors"
+            >
+              Read the full privacy policy
+            </a>
+          </p>
         </div>
+
       </div>
     </section>
   );

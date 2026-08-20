@@ -93,7 +93,7 @@ export default function CollectiveImpact() {
   };
 
   return (
-    <section ref={root} className="py-32 bg-brand text-bg overflow-hidden relative">
+    <section ref={root} className="py-32 bg-ink text-white overflow-hidden relative">
       {/* Exact Isometric Triangle Halftone */}
       <svg
         aria-hidden="true"
@@ -117,7 +117,7 @@ export default function CollectiveImpact() {
             <h2 className="ci-text opacity-0 font-serif text-5xl md:text-6xl leading-tight mb-8 text-surface">
               Small amounts.<br />Collective impact.
             </h2>
-            <p className="ci-text opacity-0 text-bg/70 text-lg leading-relaxed mb-10">
+            <p className="ci-text opacity-0 text-white/70 text-lg leading-relaxed mb-10">
               A $15 subscription isn't worth an hour to fix. That's why they sit unclaimed year after year. We fix it in seconds.
             </p>
             <p className="ci-text opacity-0 text-surface font-serif text-2xl italic">
@@ -129,20 +129,20 @@ export default function CollectiveImpact() {
         <div className="lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 lg:mt-0">
           <div className="flex flex-col gap-4 md:pt-12">
             <div className="ci-card opacity-0 bg-surface/5 border border-white/5 rounded-xl p-8 hover:bg-surface/10 hover:-translate-y-1 transition-all duration-300">
-              <span className="font-serif text-4xl text-highlight">$39.00</span>
+              <span className="font-serif text-4xl text-ink">$39.00</span>
             </div>
             <div className="ci-card opacity-0 bg-surface/5 border border-white/5 rounded-xl p-8 hover:bg-surface/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[160px]">
-              <span className="font-serif text-4xl text-highlight">$50.00</span>
+              <span className="font-serif text-4xl text-ink">$50.00</span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 mt-8">Saks Credit</span>
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="ci-card opacity-0 bg-accent rounded-xl p-8 hover:bg-[#34604d] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[220px]">
+            <div className="ci-card opacity-0 bg-surface/5 border border-white/5 rounded-xl p-8 hover:bg-surface/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[220px]">
               <span className="font-serif text-4xl text-white">$200.00</span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/70 mt-8">Baggage Claim</span>
             </div>
             <div className="ci-card opacity-0 bg-surface/5 border border-white/5 rounded-xl p-8 hover:bg-surface/10 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[200px]">
-              <span className="font-serif text-4xl text-highlight">$15.99</span>
+              <span className="font-serif text-4xl text-ink">$15.99</span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 mt-8">Unused Streaming</span>
             </div>
           </div>

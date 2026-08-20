@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { createScope } from 'animejs';
 import { timelineOnScroll, fadeUpOnScroll } from '../utils/animations';
+import DitherTexture from './DitherTexture';
 
 export default function DelegatedTasks() {
   const root = useRef(null);
@@ -53,30 +54,31 @@ export default function DelegatedTasks() {
   }, []);
 
   return (
-    <section ref={root} className="py-32 bg-accent/5 border-y border-border px-8">
+    <section ref={root} className="py-32 bg-paper px-8 relative overflow-hidden">
+      <DitherTexture opacity={0.03} />
       <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
         <div className="order-2 md:order-1 relative">
           <div className="max-w-md mx-auto space-y-8">
             {/* User bubble */}
             <div className="chat-bubble-user-container opacity-0 flex flex-col gap-2">
               <span className="text-[11px] font-bold text-muted uppercase tracking-widest self-end mr-4">You • 9:41 AM</span>
-              <div className="bg-brand text-bg chat-bubble-user p-5 self-end max-w-[85%] shadow-md">
+              <div className="bg-ink text-white chat-bubble-user p-5 self-end max-w-[85%] shadow-md">
                 <p className="text-[15px] leading-relaxed">Dispute the $200 baggage fee on my Amex. The flight was delayed six hours.</p>
               </div>
             </div>
 
             {/* Typing indicator (shown between user and AI bubble) */}
-            <div className="typing-dots opacity-0 flex items-center gap-1 px-5 py-3 bg-surface border border-accent/20 rounded-2xl self-start w-fit shadow-sm">
-              <span className="typing-dot w-2 h-2 rounded-full bg-accent/60 inline-block"></span>
-              <span className="typing-dot w-2 h-2 rounded-full bg-accent/60 inline-block"></span>
-              <span className="typing-dot w-2 h-2 rounded-full bg-accent/60 inline-block"></span>
+            <div className="typing-dots opacity-0 flex items-center gap-1 px-5 py-3 bg-surface border border-ink/20 rounded-2xl self-start w-fit shadow-sm">
+              <span className="typing-dot w-2 h-2 rounded-full bg-ink/60 inline-block"></span>
+              <span className="typing-dot w-2 h-2 rounded-full bg-ink/60 inline-block"></span>
+              <span className="typing-dot w-2 h-2 rounded-full bg-ink/60 inline-block"></span>
             </div>
 
             {/* AI bubble */}
             <div className="chat-bubble-ai-container opacity-0 flex flex-col gap-2">
               <span className="text-[11px] font-bold text-muted uppercase tracking-widest ml-4">Amalgamic • 9:50 AM</span>
-              <div className="bg-surface border border-accent/20 chat-bubble-ai p-5 self-start max-w-[90%] shadow-xl">
-                <p className="text-[15px] leading-relaxed text-brand">
+              <div className="bg-surface border border-ink/20 chat-bubble-ai p-5 self-start max-w-[90%] shadow-xl">
+                <p className="text-[15px] leading-relaxed text-ink">
                   <strong className="block mb-2">Dispute filed with Amex.</strong>
                   Reference #AMX-992. Supporting claim drafted under DOT delay rules and submitted to the airline. Provisional credit of $200 applied to your account.
                 </p>
@@ -85,8 +87,8 @@ export default function DelegatedTasks() {
           </div>
         </div>
         <div className="order-1 md:order-2">
-          <span className="dt-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Delegated tasks</span>
-          <h2 className="dt-text opacity-0 font-serif text-5xl leading-tight mb-8 text-brand">
+
+          <h2 className="dt-text opacity-0 font-serif text-5xl leading-tight mb-8 text-ink">
             Say what you want to happen. We do the rest.
           </h2>
           <p className="dt-text opacity-0 text-muted text-lg leading-relaxed mb-10">

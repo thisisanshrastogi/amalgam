@@ -92,13 +92,13 @@ export default function SupportedBanks() {
         
         <div className="grid md:grid-cols-2 gap-4 my-6">
           <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3 font-mono">Primary</span>
-            <h4 className="font-bold text-brand mb-2">Plaid</h4>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-ink block mb-3 font-mono">Primary</span>
+            <h4 className="font-bold text-ink mb-2">Plaid</h4>
             <p className="text-sm">Connects more than 12,000 financial institutions across the US — national banks, regional banks, credit unions and brokerages.</p>
           </div>
           <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3 font-mono">Specialist</span>
-            <h4 className="font-bold text-brand mb-2">Spinwheel</h4>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-ink block mb-3 font-mono">Specialist</span>
+            <h4 className="font-bold text-ink mb-2">Spinwheel</h4>
             <p className="text-sm">Liability and debt accounts — loans, lines of credit and balances that transaction feeds alone tend to miss.</p>
           </div>
         </div>
@@ -149,12 +149,12 @@ export default function SupportedBanks() {
                 <tbody className="divide-y divide-border text-sm">
                   {filteredBanks.map((b, i) => (
                     <tr key={i} className="hover:bg-black/[0.02] transition-colors">
-                      <td className="px-5 py-3.5"><span className="font-bold text-brand">{b.name}</span></td>
+                      <td className="px-5 py-3.5"><span className="font-bold text-ink">{b.name}</span></td>
                       <td className="px-5 py-3.5"><span className="bg-black/5 border border-border px-2 py-0.5 rounded text-[11px] font-bold text-muted">{b.type}</span></td>
                       <td className="px-5 py-3.5">
                         {b.conn === 'OAuth' ? (
-                          <span className="text-xs font-bold text-accent flex items-center gap-1.5 bg-accent/5 w-fit px-2 py-0.5 rounded border border-accent/20">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span> OAuth
+                          <span className="text-xs font-bold text-ink flex items-center gap-1.5 bg-ink/5 w-fit px-2 py-0.5 rounded border border-ink/20">
+                            <span className="w-1.5 h-1.5 rounded-full bg-ink"></span> OAuth
                           </span>
                         ) : (
                           <span className="text-xs font-bold text-muted flex items-center gap-1.5 bg-black/5 w-fit px-2 py-0.5 rounded border border-border">
@@ -182,9 +182,9 @@ export default function SupportedBanks() {
       </DocSection>
 
       <DocSection id="revoke" num="§04" title="Disconnecting an account">
-        <div className="bg-surface border border-accent/20 rounded-2xl p-6 my-6 shadow-sm">
+        <div className="bg-surface border border-ink/20 rounded-2xl p-6 my-6 shadow-sm">
           <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2 font-mono">Control</span>
-          <p className="text-xl font-bold text-brand mb-2">Revocable from either end, at any time.</p>
+          <p className="text-xl font-bold text-ink mb-2">Revocable from either end, at any time.</p>
           <p className="text-sm">Disconnect an institution from your Amalgamic dashboard, or revoke access directly with Plaid or Spinwheel without involving us. Either stops the data flow. What we already hold is governed by the retention rules in the <a href="/privacy-policy">privacy policy</a>.</p>
         </div>
       </DocSection>

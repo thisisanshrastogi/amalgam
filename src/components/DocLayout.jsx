@@ -4,8 +4,8 @@ export function DocSection({ id, num, title, children }) {
   return (
     <section id={id} className="pt-16 first:pt-2">
       <span className="block text-[11px] uppercase tracking-[0.1em] text-muted mb-2 font-bold">{num}</span>
-      <h2 className="font-serif text-[clamp(1.4rem,2.6vw,1.85rem)] mb-4 text-brand leading-tight">{title}</h2>
-      <div className="text-[15px] leading-relaxed text-muted space-y-4 max-w-[68ch] [&_a]:text-brand [&_a]:underline [&_a]:decoration-border hover:[&_a]:decoration-accent [&_h3]:text-brand [&_h3]:font-bold [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1">
+      <h2 className="font-serif text-[clamp(1.4rem,2.6vw,1.85rem)] mb-4 text-ink leading-tight">{title}</h2>
+      <div className="text-[15px] leading-relaxed text-muted space-y-4 max-w-[68ch] [&_a]:text-ink [&_a]:underline [&_a]:decoration-border hover:[&_a]:decoration-accent [&_h3]:text-ink [&_h3]:font-bold [&_h3]:text-lg [&_h3]:mt-8 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1">
         {children}
       </div>
     </section>
@@ -41,15 +41,15 @@ export default function DocLayout({ groups = [], children, headerProps }) {
   }, []);
 
   return (
-    <main className="pt-32 pb-32 bg-bg min-h-screen">
+    <main className="pt-32 pb-32 bg-paper min-h-screen">
       <div className="max-w-[1240px] mx-auto px-5 md:px-14">
         
         {/* Document Header */}
         <header className="mb-12 border-b border-border pb-12">
-          <span className="text-accent text-[11px] font-bold uppercase tracking-widest mb-6 inline-block bg-accent/5 px-3 py-1.5 rounded-full">
+          <span className="text-ink text-[11px] font-bold uppercase tracking-widest mb-6 inline-block bg-ink/5 px-3 py-1.5 rounded-full">
             {headerProps.category}
           </span>
-          <h1 className="font-serif text-5xl md:text-6xl text-brand mb-6">{headerProps.title}</h1>
+          <h1 className="font-serif text-5xl md:text-6xl text-ink mb-6">{headerProps.title}</h1>
           <p className="text-muted text-xl leading-relaxed max-w-[60ch]">
             {headerProps.lead}
           </p>
@@ -58,7 +58,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
               {headerProps.meta.map((m, i) => (
                 <div key={i} className="bg-surface border border-border p-4 rounded-xl shadow-sm">
                   <span className="uppercase tracking-widest text-muted block mb-1 text-[10px] font-bold">{m.label}</span>
-                  <span className="text-[15px] font-bold text-brand">{m.value}</span>
+                  <span className="text-[15px] font-bold text-ink">{m.value}</span>
                 </div>
               ))}
             </div>
@@ -80,10 +80,10 @@ export default function DocLayout({ groups = [], children, headerProps }) {
                         key={link.id}
                         href={`#${link.id}`}
                         className={`flex gap-2.5 px-3 py-1.5 rounded-md text-[13.5px] font-medium leading-snug transition-all ${
-                          activeId === link.id ? 'bg-black/5 text-brand font-bold' : 'text-muted hover:bg-black/5 hover:text-brand'
+                          activeId === link.id ? 'bg-black/5 text-ink font-bold' : 'text-muted hover:bg-black/5 hover:text-ink'
                         }`}
                       >
-                        <span className={`text-[10.5px] pt-[2px] flex-none font-bold ${activeId === link.id ? 'text-accent' : 'text-muted/60'}`}>
+                        <span className={`text-[10.5px] pt-[2px] flex-none font-bold ${activeId === link.id ? 'text-ink' : 'text-muted/60'}`}>
                           {link.num}
                         </span>
                         <span>{link.label}</span>
@@ -95,7 +95,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
               <div className="mt-4 pt-4 border-t border-border">
                 <span className="text-[11px] uppercase tracking-widest text-muted block font-bold">Read {readPct}%</span>
                 <div className="h-[3px] bg-black/5 rounded-full mt-2 overflow-hidden">
-                  <div className="h-full bg-accent transition-all duration-150 ease-linear" style={{ width: `${readPct}%` }}></div>
+                  <div className="h-full bg-ink transition-all duration-150 ease-linear" style={{ width: `${readPct}%` }}></div>
                 </div>
               </div>
             </nav>

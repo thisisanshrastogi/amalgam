@@ -84,7 +84,7 @@ const CSS = `
 /* ---------------- nav ---------------- */
 .nav {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(245, 242, 234, 0.84);
+  background: rgba(255,255,255, 0.84);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border); padding: 1.1rem 0;
 }

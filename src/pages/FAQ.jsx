@@ -81,13 +81,13 @@ function FaqItem({ q, a, defaultOpen = false }) {
   return (
     <div className={`border-b border-border ${open ? 'is-open' : ''}`}>
       <button
-        className="w-full flex justify-between items-center gap-8 py-6 bg-transparent border-none cursor-pointer text-left transition-colors text-brand hover:text-accent group"
+        className="w-full flex justify-between items-center gap-8 py-6 bg-transparent border-none cursor-pointer text-left transition-opacity text-ink hover:opacity-70 group"
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
       >
         <span className="font-serif text-[17px] font-medium">{q}</span>
         <ChevronDown
-          className={`flex-shrink-0 text-accent transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+          className={`flex-shrink-0 text-ink/50 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
           size={20}
           strokeWidth={2.2}
         />
@@ -163,11 +163,11 @@ export default function FAQ() {
       {/* CTA block */}
       <div className="bg-surface border border-border rounded-3xl p-10 md:p-14 my-16 grid md:grid-cols-[1fr_auto] gap-8 items-center shadow-sm">
         <div>
-          <h2 className="font-serif text-3xl mb-2 text-brand">Still have a question?</h2>
+          <h2 className="font-serif text-3xl mb-2 text-ink">Still have a question?</h2>
           <p className="text-muted text-base">The fastest way to find out if it works for you is to let it scan.</p>
         </div>
         <div className="flex flex-col gap-4  items-start md:items-center">
-          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-accent text-bg hover:bg-brand hover:-translate-y-0.5 transition-all whitespace-nowrap">
+          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-ink text-white hover:opacity-80 hover:-translate-y-0.5 transition-all whitespace-nowrap">
             Start saving in 60 Seconds <ArrowRight size={16} />
           </a>
           <div className="flex  gap-5">

@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --paper: #F5F2EA;
+    --ink: #171613;
+    --mint: #64B387;
+  }
+
   body { 
     @apply bg-bg text-brand;
     scroll-behavior: smooth; 

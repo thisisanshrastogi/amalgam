@@ -252,7 +252,7 @@ export function ArtBackground({ className = '', style = {} }) {
 
     return (
         <div
-            className={`absolute inset-0 bg-bg overflow-hidden ${className}`}
+            className={`absolute inset-0 bg-paper overflow-hidden ${className}`}
             style={style}
         >
             <canvas
@@ -268,12 +268,12 @@ export function ArtBackground({ className = '', style = {} }) {
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: 'linear-gradient(100deg, rgba(245,242,234,.92) 0%, rgba(245,242,234,.72) 40%, rgba(245,242,234,0) 80%)'
+                    background: 'linear-gradient(100deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.72) 40%, rgba(255,255,255,0) 80%)'
                 }}
             />
 
             {/* Money Recovered Statistics */}
-            <div className="absolute inset-y-0 md:right-4 lg:right-8 hidden md:flex flex-col justify-center items-end text-brand pointer-events-none z-10 pt-32">
+            <div className="absolute inset-y-0 md:right-4 lg:right-8 hidden md:flex flex-col justify-center items-end text-ink pointer-events-none z-10 pt-32">
                 <div className="glass-card p-8 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-md text-right">
                     <div className="mb-8">
                         <div className="text-4xl md:text-5xl font-serif mb-2 drop-shadow-md">$40.00</div>
@@ -295,13 +295,13 @@ export function ArtBackground({ className = '', style = {} }) {
 
 export default function App() {
     return (
-        <div className="relative w-full h-screen font-sans bg-bg">
+        <div className="relative w-full h-screen font-sans bg-paper">
 
             {/* 1. Place the reusable background component anywhere, ideally in a relative container */}
             <HeroBackground />
 
             {/* 2. Place your UI content on top of it using standard z-index and positioning */}
-            <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-16 max-w-4xl text-brand">
+            <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-16 max-w-4xl text-ink">
                 <div className="uppercase tracking-widest text-xs mb-6 opacity-60 font-mono">
                     The Forensic Financial Engine
                 </div>
@@ -313,7 +313,7 @@ export default function App() {
                 </p>
 
                 <div>
-                    <button className="bg-brand text-bg px-8 py-4 rounded-full font-medium transition-transform hover:-translate-y-0.5 shadow-lg">
+                    <button className="bg-ink text-white px-8 py-4 rounded-full font-medium transition-transform hover:-translate-y-0.5 shadow-lg">
                         Deploy the engine
                     </button>
                 </div>

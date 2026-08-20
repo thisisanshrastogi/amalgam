@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { animate, createScope, onScroll } from 'animejs';
 import { MessageSquare, DollarSign, Activity } from 'lucide-react';
 import { fadeUpOnScroll } from '../utils/animations';
-import { AbstractArtBackground } from './AbstractArtBackground';
+import DitherTexture from './DitherTexture';
 
 export default function Insights() {
   const root = useRef(null);
@@ -28,9 +28,9 @@ export default function Insights() {
             animate(sel, {
               opacity: [0, 1],
               translateY: [20, 0],
-              duration: 360,
-              delay: i * 80,
-              ease: 'outExpo',
+              duration: 300,
+              delay: i * 60,
+              ease: 'cubicBezier(0.16, 1, 0.3, 1)',
             });
           });
         },
@@ -40,14 +40,13 @@ export default function Insights() {
   }, []);
 
   return (
-    <section ref={root} id="insights" className="relative py-32 bg-gradient-to-b from-surface to-bg overflow-hidden">
-      <AbstractArtBackground variant="vortex" />
-      <div className="absolute inset-0 veil-overlay pointer-events-none" />
+    <section ref={root} id="insights" className="relative py-32 bg-paper overflow-hidden">
+      <DitherTexture opacity={0.04} />
 
       <div className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row gap-20 items-center relative z-10">
         <div className="lg:w-1/2">
-          <span className="insights-text opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">Things to know</span>
-          <h2 className="insights-text opacity-0 font-serif text-5xl leading-tight mb-8 text-brand">
+
+          <h2 className="insights-text opacity-0 font-serif text-5xl leading-tight mb-8 text-ink">
             The two or three things<br />worth knowing this<br />month.
           </h2>
           <p className="insights-text opacity-0 text-muted text-lg leading-relaxed mb-12">
@@ -56,19 +55,19 @@ export default function Insights() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 mb-10">
             <div className="insights-feature opacity-0">
-              <h4 className="font-bold text-brand mb-2">Fees caught</h4>
+              <h4 className="font-bold text-ink mb-2">Fees caught</h4>
               <p className="text-[13px] text-muted leading-relaxed">Late fees and annual fees flagged instantly.</p>
             </div>
             <div className="insights-feature opacity-0">
-              <h4 className="font-bold text-brand mb-2">Price changes</h4>
+              <h4 className="font-bold text-ink mb-2">Price changes</h4>
               <p className="text-[13px] text-muted leading-relaxed">Subscriptions that renewed higher.</p>
             </div>
             <div className="insights-feature opacity-0">
-              <h4 className="font-bold text-brand mb-2">Spend patterns</h4>
+              <h4 className="font-bold text-ink mb-2">Spend patterns</h4>
               <p className="text-[13px] text-muted leading-relaxed">Identify your largest and most frequent merchants.</p>
             </div>
             <div className="insights-feature opacity-0">
-              <h4 className="font-bold text-brand mb-2">Credit health</h4>
+              <h4 className="font-bold text-ink mb-2">Credit health</h4>
               <p className="text-[13px] text-muted leading-relaxed">Utilization spikes caught before scoring.</p>
             </div>
           </div>
@@ -76,59 +75,59 @@ export default function Insights() {
 
         <div className="lg:w-1/2 relative min-h-[650px] w-full mt-10 lg:mt-0">
           {/* Top Card */}
-          <div className="insights-card-1 opacity-0 absolute right-0 top-0 w-full sm:w-[85%] glass-card bg-surface/80 rounded-2xl p-6 hover:-translate-y-2 hover:bg-surface transition-all duration-300 z-10 cursor-pointer group">
+          <div className="insights-card-1 opacity-0 absolute right-0 top-0 w-full sm:w-[85%] bg-white rounded-2xl ring-1 ring-inset ring-border p-6 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 z-10 cursor-pointer group">
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-10 h-10 rounded-full bg-brand/5 text-brand flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-full bg-ink/5 text-ink flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                 <Activity size={16} />
               </div>
               <div className="flex-1">
                 <div className="flex justify-between items-start mb-1 gap-2">
-                  <h4 className="font-bold text-brand text-[15px]">Subscription Price Spike</h4>
-                  <span className="text-brand font-bold text-xs bg-brand/5 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">+ $14.99</span>
+                  <h4 className="font-bold text-ink text-[15px]">Subscription Price Spike</h4>
+                  <span className="text-ink font-bold text-xs bg-ink/5 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">+ $14.99</span>
                 </div>
                 <p className="text-[13px] text-muted leading-relaxed">Adobe Creative Cloud renewed at a higher rate.</p>
               </div>
             </div>
             <div className="pl-14">
-              <a href="#" className="text-[11px] font-bold text-highlight underline decoration-highlight/30 hover:decoration-highlight transition-colors">Chat about this</a>
+              <a href="#" className="text-[11px] font-bold text-brand underline decoration-highlight/30 hover:decoration-highlight transition-colors">Chat about this</a>
             </div>
           </div>
 
           {/* Middle Card */}
-          <div className="insights-card-2 opacity-0 absolute left-0 top-[200px] w-full sm:w-[85%] glass-card bg-surface/80 rounded-2xl p-6 hover:-translate-y-2 hover:bg-surface transition-all duration-300 z-20 cursor-pointer group">
+          <div className="insights-card-2 opacity-0 absolute left-0 top-[200px] w-full sm:w-[85%] bg-white rounded-2xl ring-1 ring-inset ring-border p-6 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 z-20 cursor-pointer group">
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0 font-serif font-bold text-lg group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-full bg-mint/10 text-mint flex items-center justify-center flex-shrink-0 font-serif font-bold text-lg group-hover:scale-110 transition-transform">
                 $
               </div>
               <div className="flex-1">
                 <div className="flex justify-between items-start mb-1 gap-2">
-                  <h4 className="font-bold text-brand text-[15px]">Recoverable Late Fee</h4>
-                  <span className="text-accent font-bold text-xs bg-accent/10 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">$35.00</span>
+                  <h4 className="font-bold text-ink text-[15px]">Recoverable Late Fee</h4>
+                  <span className="text-mint font-bold text-xs bg-mint/10 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">$35.00</span>
                 </div>
                 <p className="text-[13px] text-muted leading-relaxed">Chase Sapphire posted a late fee. This is highly likely to be waived.</p>
               </div>
             </div>
             <div className="pl-14">
-              <button className="bg-brand text-bg text-[11px] font-bold px-4 py-2 rounded-lg hover:bg-brand/90 transition-colors">Dispute for me</button>
+              <button className="bg-ink text-white text-[11px] font-bold px-4 py-2 rounded-lg hover:bg-ink/90 transition-colors">Dispute for me</button>
             </div>
           </div>
 
           {/* Bottom Card */}
-          <div className="insights-card-3 opacity-0 absolute right-4 top-[400px] w-full sm:w-[85%] glass-card bg-surface/80 rounded-2xl p-6 hover:-translate-y-2 hover:bg-surface transition-all duration-300 z-30 cursor-pointer group">
+          <div className="insights-card-3 opacity-0 absolute right-4 top-[400px] w-full sm:w-[85%] bg-white rounded-2xl ring-1 ring-inset ring-border p-6 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 z-30 cursor-pointer group">
             <div className="flex items-start gap-4 mb-4">
               <div className="w-10 h-10 rounded-full bg-muted/10 text-muted flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform border border-muted/20">
                 <Activity size={16} />
               </div>
               <div className="flex-1">
                 <div className="flex justify-between items-start mb-1 gap-2">
-                  <h4 className="font-bold text-brand text-[15px]">Utilization Alert</h4>
+                  <h4 className="font-bold text-ink text-[15px]">Utilization Alert</h4>
                   <span className="text-muted font-bold text-xs bg-muted/10 px-2 py-0.5 rounded shrink-0 whitespace-nowrap">42%</span>
                 </div>
                 <p className="text-[13px] text-muted leading-relaxed">Amex Gold balance may impact credit score soon.</p>
               </div>
             </div>
             <div className="pl-14">
-              <a href="#" className="text-[11px] font-bold text-highlight underline decoration-highlight/30 hover:decoration-highlight transition-colors">Project impact</a>
+              <a href="#" className="text-[11px] font-bold text-brand underline decoration-highlight/30 hover:decoration-highlight transition-colors">Project impact</a>
             </div>
           </div>
         </div>

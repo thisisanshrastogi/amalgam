@@ -1,4 +1,5 @@
 import React from 'react';
+import DitherDivider from '../components/DitherDivider';
 import Hero from '../components/Hero';
 import FeaturesGrid from '../components/FeaturesGrid';
 import CollectiveImpact from '../components/CollectiveImpact';
@@ -18,16 +19,17 @@ export default function Home() {
     <main>
       <Hero />
       <FeaturesGrid />
-      <CollectiveImpact />
+      <DitherDivider dark />
+      {/* <CollectiveImpact /> */}
       <HowItWorks />
-      <Insights />
+      {/* <Insights /> */}
       <Assistant />
       <CardsAndBillPay />
       <Subscriptions />
       <CardCredits />
       <DelegatedTasks />
-      <Proof />
       <PrivacySecurity />
+      <Proof />
       <FinalCTA />
     </main>
   );

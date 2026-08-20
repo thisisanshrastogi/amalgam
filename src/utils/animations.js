@@ -6,21 +6,21 @@
  * instance) so callers can always call `.revert()` in useEffect cleanup.
  */
 
-import { animate, createTimeline, stagger, onScroll } from 'animejs';
+import { animate, createTimeline, stagger, onScroll, createSpring } from 'animejs';
 
 // ─── Easing presets ────────────────────────────────────────────────────────
 export const EASE = {
-  enter: 'outExpo',
-  bounce: 'outBack',
-  smooth: 'inOutSine',
-  spring: 'outElastic(1, 0.6)',
+  enter: 'cubicBezier(0.16, 1, 0.3, 1)',
+  bounce: createSpring({ stiffness: 100, damping: 14, mass: 1, velocity: 0 }),
+  smooth: 'cubicBezier(0.25, 0.1, 0.25, 1)',
+  spring: createSpring({ stiffness: 120, damping: 12, mass: 1, velocity: 0 }),
 };
 
 // ─── Duration presets ──────────────────────────────────────────────────────
 export const DUR = {
-  fast: 250,
-  base: 420,
-  slow: 580,
+  fast: 200,
+  base: 350,
+  slow: 450,
   counter: 1100,
 };
 

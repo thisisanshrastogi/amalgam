@@ -14,6 +14,9 @@ export default {
         highlight: "#8DC4AC",
         muted: "#6B6658",
         border: "#E2DFD5",
+        paper: "#F5F2EA",
+        ink: "#171613",
+        mint: "#64B387",
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],

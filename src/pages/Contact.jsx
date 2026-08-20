@@ -38,12 +38,12 @@ export default function Contact() {
         <div className="grid sm:grid-cols-2 gap-4 my-6">
           <a href="mailto:support@amalgamic.io" className="block bg-surface border border-border p-5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-3 font-bold">Support</span>
-            <span className="block text-brand font-bold mb-2 group-hover:text-accent transition-colors">support@amalgamic.io</span>
+            <span className="block text-ink font-bold mb-2 group-hover:opacity-70 transition-opacity">support@amalgamic.io</span>
             <span className="block text-sm text-muted">Anything about your account, a recovery that did not land, a cancellation that failed, billing questions, or connecting an institution.</span>
           </a>
           <a href="mailto:lizann@amalgamic.io" className="block bg-surface border border-border p-5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-3 font-bold">Privacy</span>
-            <span className="block text-brand font-bold mb-2 group-hover:text-accent transition-colors">lizann@amalgamic.io</span>
+            <span className="block text-ink font-bold mb-2 group-hover:opacity-70 transition-opacity">lizann@amalgamic.io</span>
             <span className="block text-sm text-muted">Access, deletion and correction requests. Nevada and California requests. Anything under the CCPA.</span>
           </a>
         </div>
@@ -82,15 +82,15 @@ export default function Contact() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
           <div className="bg-surface border border-border p-4 rounded-xl shadow-sm">
             <span className="uppercase tracking-widest text-muted block mb-1 text-[10px] font-bold">Web</span>
-            <span className="text-[15px] font-bold text-brand">amalgamic.io</span>
+            <span className="text-[15px] font-bold text-ink">amalgamic.io</span>
           </div>
           <div className="bg-surface border border-border p-4 rounded-xl shadow-sm">
             <span className="uppercase tracking-widest text-muted block mb-1 text-[10px] font-bold">Dashboard</span>
-            <span className="text-[15px] font-bold text-brand">cards.amalgamic.io</span>
+            <span className="text-[15px] font-bold text-ink">cards.amalgamic.io</span>
           </div>
           <div className="bg-surface border border-border p-4 rounded-xl shadow-sm">
             <span className="uppercase tracking-widest text-muted block mb-1 text-[10px] font-bold">Region</span>
-            <span className="text-[15px] font-bold text-brand">United States</span>
+            <span className="text-[15px] font-bold text-ink">United States</span>
           </div>
         </div>
       </DocSection>

@@ -53,32 +53,32 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={root} id="how-it-works" className="py-32 px-8 bg-surface">
+    <section ref={root} id="how-it-works" className="py-32 px-8 bg-paper">
       <div className="max-w-[1200px] mx-auto">
         <div className="how-heading opacity-0 text-center mb-24">
-          <span className="text-accent text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
-          <h2 className="font-serif text-5xl leading-tight text-brand">
+          <span className="text-ink text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
+          <h2 className="font-serif text-5xl leading-tight text-ink">
             Setup once, we'll handle the rest.
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-12">
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">01</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">Connect your cards</h3>
+            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">01</div>
+            <h3 className="font-serif text-2xl text-ink mb-4">Connect your cards</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               Secure, read-only access through our integration partners. Works with 12,000+ US institutions.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">02</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">We monitor everything</h3>
+            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">02</div>
+            <h3 className="font-serif text-2xl text-ink mb-4">We monitor everything</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               We're checking for recurring charges, fees, credits. Anything that shouldn't be there.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-accent/10 mb-6">03</div>
-            <h3 className="font-serif text-2xl text-brand mb-4">You act when it matters</h3>
+            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">03</div>
+            <h3 className="font-serif text-2xl text-ink mb-4">You act when it matters</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               We surface only what's worth your time – with one-tap options to cancel, dispute, or pay.
             </p>

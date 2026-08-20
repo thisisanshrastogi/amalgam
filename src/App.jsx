@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Preloader from './components/Preloader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Privacy from './pages/Privacy';
@@ -12,11 +13,20 @@ import FAQ from './pages/FAQ';
 import FAQPage from './pages/test';
 import HomeNew from './pages/HomeNew';
 
+const criticalImages = [
+  '/hero/lincon.png',
+  '/hero/washington.png',
+  '/hero/franklin.png',
+  '/hero/andrew.png',
+  '/hero/bank-dither.png'
+];
+
 function App() {
   return (
-    <Router>
+    <Preloader images={criticalImages}>
+      <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-bg text-brand font-sans antialiased selection:bg-highlight selection:text-accent flex flex-col">
+      <div className="min-h-screen bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-white flex flex-col">
         <Navbar />
         <div className="flex-grow">
           <Routes>
@@ -32,7 +42,8 @@ function App() {
         </div>
         <Footer />
       </div>
-    </Router>
+      </Router>
+    </Preloader>
   );
 }
 

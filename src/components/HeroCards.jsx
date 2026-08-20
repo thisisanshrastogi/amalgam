@@ -1,296 +1,165 @@
-import React, { useEffect } from 'react';
-import { animate, stagger } from 'animejs';
-import AmalgamicExpressCard from './AmalgamicExpress';
+import React, { useEffect, useRef } from 'react';
+import { animate, stagger, createScope, random, createSpring } from 'animejs';
 
 /* ---------------------------------------------------------------------------
-   Amalgamic hero cards
+   Amalgamic hero cards — banknote mosaic
 
-   Card faces are driven from the PALETTE object below rather than Tailwind
-   tokens, so the hero renders even if a token name is missing from your
-   config. Once you're happy with the colours, lift them into
-   tailwind.config.js and swap the inline styles back to classes:
+   The hand-built CSS cards are gone. The four cards are now the supplied PNG
+   crops of engraved currency, laid out as a loose mosaic rather than a fanned
+   stack. That was the point of the reference: the cards don't overlap much,
+   they tile, and the negative space between them lets the dithered facade
+   read through.
 
-     ink: '#12100F', pine: '#14382F', oxblood: '#5C2328',
-     bone: '#F7F3E9', chip: '#E8DFC9', chipDark: '#C9BCA0'
+   Positioning is entirely percentage based inside a fixed-ratio stage
+   (850 x 740, lifted straight off the mockup). One ratio box means the whole
+   composition scales cleanly from 380px to 1440px without a single media
+   query, and the gaps between cards stay proportional instead of collapsing.
 
-   Everything else (halftone, sheen, edge lighting) is currentColor or a
-   neutral wash, so the art follows whatever face colour you set.
+   Each card keeps its own intrinsic aspect ratio via the width/height
+   attributes, so nothing reflows once the images decode.
 
-   Light source: upper-left. Specular on the top and left edges, shadows fall
-   down and right, halftone densest where the light lands.
+   Drop the PNGs into /public/hero/ (or repoint ASSETS at your bundler paths).
 --------------------------------------------------------------------------- */
 
-const PALETTE = {
-  ink: '#12100F',
-  pine: '#14382F',
-  espresso: '#3A2A20',
-  white: '#FFFFFF',
-  bone: '#F7F3E9',
-  chipWarm: '#E8DFC9',
-  chipTaupe: '#C9BCA0',
+const ASSETS = {
+  emeraldWide: '/hero/lincon.png',
+  carte: '/hero/washington.png',
+  american: '/hero/franklin.png',
+  rose: '/hero/andrew.png',
 };
 
-/* Printed halftone. Two dot grids at different pitches, each radially masked
-   so the tone grades across the face the way ink does. */
-const Halftone = () => (
-  <>
-    <div
-      className="absolute inset-0 pointer-events-none opacity-[0.20]"
-      style={{
-        backgroundImage: 'radial-gradient(currentColor 0.85px, transparent 0.95px)',
-        backgroundSize: '5px 5px',
-        maskImage: 'radial-gradient(115% 95% at 12% -10%, #000 0%, transparent 62%)',
-        WebkitMaskImage: 'radial-gradient(115% 95% at 12% -10%, #000 0%, transparent 62%)',
-      }}
-    />
-    <div
-      className="absolute inset-0 pointer-events-none opacity-[0.11]"
-      style={{
-        backgroundImage: 'radial-gradient(currentColor 1.4px, transparent 1.5px)',
-        backgroundSize: '9px 9px',
-        maskImage: 'radial-gradient(90% 80% at 8% 0%, #000 0%, transparent 48%)',
-        WebkitMaskImage: 'radial-gradient(90% 80% at 8% 0%, #000 0%, transparent 48%)',
-      }}
-    />
-  </>
-);
-
-/* EMV chip. Contact pads get real geometry, since that's the part the eye
-   recognises as a chip. */
-const Chip = ({ color }) => (
-  <div className="relative w-[42px] h-[31px] rounded-[5px] overflow-hidden" style={{ color }}>
-    <div className="absolute inset-0 bg-current" />
-    <div
-      className="absolute inset-0"
-      style={{
-        background:
-          'linear-gradient(140deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 38%, rgba(0,0,0,0.18) 100%)',
-      }}
-    />
-    <div className="absolute left-0 right-0 top-[9.5px] h-px bg-black/25" />
-    <div className="absolute left-0 right-0 bottom-[9.5px] h-px bg-black/25" />
-    <div className="absolute top-0 bottom-0 left-[12px] w-px bg-black/25" />
-    <div className="absolute top-0 bottom-0 right-[12px] w-px bg-black/25" />
-    <div className="absolute left-[12px] right-[12px] top-[9.5px] bottom-[9.5px] border border-black/25" />
-    <div className="absolute inset-0 rounded-[5px] border border-black/15" />
-  </div>
-);
-
-const Contactless = () => (
-  <svg viewBox="0 0 20 20" className="w-[18px] h-[18px] opacity-50" fill="none" aria-hidden="true">
-    <path d="M5 5.5a7 7 0 0 1 0 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    <path d="M9 3.5a10.5 10.5 0 0 1 0 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    <path d="M13 1.5a14 14 0 0 1 0 17" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-  </svg>
-);
-
-/* Matches .logo-mark in the site stylesheet: filled square, inset cut-out. */
-const Mark = ({ withWordmark = true, face }) => {
-  const isWhite = face === PALETTE.white;
-  return (
-    <div className="flex items-center gap-1.5">
-      <div
-        className="w-[18px] h-[18px] rounded-[3px] relative overflow-hidden"
-        style={{ backgroundColor: isWhite ? '#000000' : 'currentColor' }}
-      >
-        <div
-          className="absolute left-1/2 top-1/2 w-[7px] h-[7px] -translate-x-1/2 -translate-y-1/2 rounded-[1px]"
-          style={{ backgroundColor: isWhite ? '#FFFFFF' : 'rgba(0,0,0)' }}
-        />
-      </div>
-      {withWordmark && <span className="font-semibold text-[13px] tracking-tight">Amalgamic</span>}
-    </div>
-  );
-};
-
-const CreditCard = ({
-  face,
-  ink,
-  chip,
-  recovered,
-  last4,
-  cardholderName,
-  expiry,
-  logoPosition = 'top',
-}) => (
-  <div className="relative" style={{ transformStyle: 'preserve-3d' }}>
-    {/* Extruded edge so the card reads as a solid object at 32deg of tilt */}
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 rounded-[14px]"
-      style={{ background: face, filter: 'brightness(0.72)', transform: 'translateZ(-5px)' }}
-    />
-
-    <div
-      className="relative w-[280px] h-[176px] sm:w-[320px] sm:h-[202px] rounded-[14px]
-                 p-5 sm:p-6 flex flex-col overflow-hidden"
-      style={{ background: face, color: ink }}
-    >
-      <Halftone />
-
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(128deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.04) 26%, rgba(255,255,255,0) 46%, rgba(0,0,0,0.10) 82%, rgba(0,0,0,0.22) 100%)',
-        }}
-      />
-      <div className="absolute inset-x-0 top-0 h-px bg-white/30 pointer-events-none" />
-      <div className="absolute inset-y-0 left-0 w-px bg-white/15 pointer-events-none" />
-      <div className="absolute inset-0 rounded-[14px] border border-black/10 pointer-events-none" />
-
-      {/* Top row: what this card got back, and the mark */}
-      <div className="relative z-10 flex justify-between items-start">
-        <span className="font-mono text-[13px] font-medium tabular-nums opacity-90">{recovered}</span>
-        {logoPosition === 'top' && (
-          <div className="opacity-90">
-            <Mark face={face} />
-          </div>
-        )}
-      </div>
-
-      <div className="relative z-10 mt-4 sm:mt-5 flex items-center gap-3">
-        <Chip color={chip} />
-        <Contactless />
-      </div>
-
-      <div className="relative z-10 mt-auto">
-        <div className="font-mono text-[13px] tracking-[0.14em] opacity-60 mb-2">
-          <span aria-hidden="true">•••• •••• ••••</span> {last4}
-        </div>
-        <div className="flex justify-between items-end">
-          <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.16em] uppercase opacity-80">
-            {cardholderName}
-          </span>
-          {logoPosition === 'bottom' ? (
-            <div className="opacity-70">
-              <Mark face={face} />
-            </div>
-          ) : (
-            <span className="font-mono text-[10px] tracking-[0.12em] opacity-55 tabular-nums">
-              {expiry}
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-/* Shadows share one light direction: down and to the right, softening with
-   distance from the viewer. */
-const LAYERS = [
+/* left/top/width are percentages of the 850x740 stage. Order in this array is
+   paint order: later entries sit in front. */
+const CARDS = [
   {
-    key: 'ink',
-    z: 'z-40',
-    transform: 'translate3d(50px, -180px, 120px) rotateX(32deg) rotateY(-5deg) rotateZ(16deg)',
-    shadow: '22px 38px 60px -18px rgba(18,16,15,0.45)',
-    props: {
-      face: PALETTE.ink,
-      ink: PALETTE.bone,
-      chip: PALETTE.chipWarm,
-      recovered: '+$247.88',
-      last4: '4429',
-      cardholderName: 'J. OKONKWO',
-      expiry: '09/28',
-      logoPosition: 'top',
-    },
+    key: 'emerald',
+    src: ASSETS.emeraldWide,
+    alt: 'Emerald engraved card, chip visible',
+    intrinsic: [513, 322],
+    left: '56%',
+    top: '-8%',
+    width: '50%',
   },
   {
-    key: 'pine',
-    z: 'z-30',
-    transform: 'translate3d(-110px, -10px, 180px) rotateX(32deg) rotateY(20deg) rotateZ(-24deg)',
-    shadow: '18px 32px 52px -16px rgba(20,56,47,0.40)',
-    props: {
-      face: PALETTE.pine,
-      ink: PALETTE.bone,
-      chip: PALETTE.chipWarm,
-      recovered: '+$1,120.00',
-      last4: '8102',
-      cardholderName: 'M. VARGAS',
-      expiry: '03/29',
-      logoPosition: 'top',
-    },
+    key: 'american',
+    src: ASSETS.american,
+    alt: 'The American Card, engraved portrait in graphite',
+    intrinsic: [513, 725],
+    left: '56%',
+    top: '31%',
+    width: '50%',
   },
   {
-    key: 'espresso',
-    z: 'z-20',
-    transform: 'translate3d(100px, 110px, 40px) rotateX(32deg) rotateY(-30deg) rotateZ(2deg)',
-    shadow: '14px 26px 46px -14px rgba(92,35,40,0.34)',
-    props: {
-      face: PALETTE.espresso,
-      ink: PALETTE.bone,
-      chip: PALETTE.chipWarm,
-      recovered: '+$96.40',
-      last4: '6317',
-      cardholderName: 'S. REDDY',
-      expiry: '11/27',
-      logoPosition: 'top',
-    },
+    key: 'carte',
+    src: ASSETS.carte,
+    alt: 'Carte de crédit, engraved portrait in green',
+    intrinsic: [341, 463],
+    left: '14%',
+    top: '0%',
+    width: '40%',
   },
   {
-    key: 'white',
-    z: 'z-10',
-    transform: 'translate3d(-60px, 280px, -20px) rotateX(32deg) rotateY(15deg) rotateZ(12deg)',
-    shadow: '10px 20px 40px -12px rgba(18,16,15,0.20)',
-    props: {
-      face: PALETTE.white,
-      ink: PALETTE.pine,
-      chip: PALETTE.chipTaupe,
-      recovered: '+$412.15',
-      last4: '5580',
-      cardholderName: 'A. LINDQVIST',
-      expiry: '06/29',
-      logoPosition: 'bottom',
-    },
+    key: 'rose',
+    src: ASSETS.rose,
+    alt: 'Engraved card in rose, chip visible',
+    intrinsic: [695, 420],
+    left: '-6%',
+    top: '65%',
+    width: '60%',
   },
 ];
 
-export default function HeroCards() {
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+/* One shadow recipe for all four so the mosaic reads as a single plane of
+   objects lit from the same place. Tinted to the paper's warm neutral — a
+   pure black shadow on #F5F2EA goes grey and dead. */
+const CARD_SHADOW =
+  'drop-shadow(0 1px 1px rgba(23,22,19,0.10)) drop-shadow(0 18px 26px rgba(23,22,19,0.16))';
 
-    animate('.hero-credit-card-floating', {
-      translateY: [800, 0],
-      translateZ: [200, 0],
-      rotateZ: [-15, 0],
-      opacity: [1, 1],
-      duration: 2200,
-      ease: 'outExpo',
-      delay: stagger(150, { start: 400 }),
-      onComplete: () => {
-        animate('.hero-credit-card-floating', {
-          translateY: 12,
-          translateZ: 20,
-          rotateZ: '1deg',
-          duration: 2500,
-          alternate: true,
-          loop: true,
-          ease: 'inOutSine',
-          delay: stagger(400),
+const cardStyles = `
+  .hero-card {
+    will-change: transform, filter;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid transparent;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+  .hero-card:hover {
+    transform: scale(1.04) translateY(-8px) rotate(2deg) !important;
+    z-index: 10;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-mosaic[data-armed='true'] .hero-card { opacity: 0; }
+  }
+`;
+
+export default function HeroCards() {
+  const root = useRef(null);
+  const scope = useRef(null);
+
+  useEffect(() => {
+    const node = root.current;
+    if (!node) return undefined;
+
+    const show = () => {
+      node.dataset.armed = 'false';
+      node.querySelectorAll('.hero-card').forEach((el) => {
+        el.style.opacity = '1';
+      });
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      show();
+      return undefined;
+    }
+
+    try {
+      scope.current = createScope({ root: node }).add(() => {
+        animate('.hero-card', {
+          opacity: [0, 1],
+          translateX: (el) => [random(-100, 100), 0],
+          translateY: (el) => [random(80, 200), 0],
+          rotate: (el) => [random(-25, 25), 0],
+          scale: [0.8, 1],
+          duration: 850,
+          ease: createSpring({ stiffness: 90, damping: 14, mass: 1, velocity: 0 }),
+          delay: stagger(90, { start: 260 }),
         });
-      },
-    });
+      });
+    } catch (err) {
+      // The mosaic is the hero's whole right half. If anime fails to load it
+      // still has to be on screen.
+      show();
+      return undefined;
+    }
+
+    return () => {
+      scope.current?.revert();
+    };
   }, []);
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center scale-75 md:scale-90 lg:scale-100 origin-center pointer-events-none"
-      style={{ perspective: '1600px', transformStyle: 'preserve-3d' }}
+      ref={root}
+      data-armed="true"
+      className="hero-mosaic relative w-full aspect-[850/740]"
+      style={{ willChange: 'transform' }}
     >
-      {LAYERS.map(({ key, z, transform, shadow, props }) => (
-        <div key={key} className={`absolute ${z}`} style={{ transform, transformStyle: 'preserve-3d' }}>
-          <div
-            className="hero-credit-card-floating rounded-[14px]"
-            /* preserve-3d is load-bearing: anime writes transforms to this
-               element, and without it the subtree flattens and the card's
-               extruded edge collapses to zero depth. */
-            style={{ boxShadow: shadow, transformStyle: 'preserve-3d' }}
-          >
-            <CreditCard {...props} />
-            {/* <AmalgamicExpressCard /> */}
-          </div>
-        </div>
+      <style>{cardStyles}</style>
+
+      {CARDS.map(({ key, src, alt, intrinsic, left, top, width }) => (
+        <img
+          key={key}
+          className="hero-card absolute select-none"
+          src={src}
+          alt={alt}
+          width={intrinsic[0]}
+          height={intrinsic[1]}
+          draggable={false}
+          decoding="async"
+          loading="eager"
+          style={{ left, top, width, height: 'auto', filter: CARD_SHADOW }}
+        />
       ))}
     </div>
   );
