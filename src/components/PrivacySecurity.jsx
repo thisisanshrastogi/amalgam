@@ -83,7 +83,6 @@ export default function PrivacySecurity() {
           <img
             src="/vault.png"
             alt=""
-            loading="lazy"
             draggable="false"
             className="absolute top-1/2 -translate-y-1/2
                        right-[-22%] sm:right-[-18%] lg:right-[-14%]
