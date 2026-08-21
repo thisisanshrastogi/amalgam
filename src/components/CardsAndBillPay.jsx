@@ -177,7 +177,7 @@ export default function CardsAndBillPay() {
             src="/hourglassless.png"
             alt=""
             aria-hidden="true"
-            className="hourglass-parallax w-full h-auto opacity-[0.1]"
+            className="hourglass-parallax w-full h-auto opacity-[0.2]"
           />
         </div>
       </div>
@@ -299,12 +299,12 @@ export default function CardsAndBillPay() {
                       onClick={() => card && select(card.id)}
                       aria-label={card ? `${card.name}, October ${day}` : `October ${day}`}
                       className={`relative flex h-10 w-full items-center justify-center rounded-[10px] text-[13px] tabular-nums transition-colors sm:h-11 ${isSelected
-                          ? 'bg-white/[0.10] text-white'
-                          : outside
-                            ? 'text-white/15'
-                            : card
-                              ? 'text-white/70 hover:bg-white/[0.06]'
-                              : 'cursor-default text-white/40'
+                        ? 'bg-white/[0.10] text-white'
+                        : outside
+                          ? 'text-white/15'
+                          : card
+                            ? 'text-white/70 hover:bg-white/[0.06]'
+                            : 'cursor-default text-white/40'
                         }`}
                     >
                       {day}
