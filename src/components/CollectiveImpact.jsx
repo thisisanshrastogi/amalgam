@@ -93,7 +93,7 @@ export default function CollectiveImpact() {
   };
 
   return (
-    <section ref={root} className="py-32 bg-ink text-white overflow-hidden relative">
+    <section ref={root} className="py-16 md:py-32 bg-ink text-white overflow-hidden relative">
       {/* Exact Isometric Triangle Halftone */}
       <svg
         aria-hidden="true"

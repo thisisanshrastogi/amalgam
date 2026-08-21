@@ -41,7 +41,7 @@ export default function DocLayout({ groups = [], children, headerProps }) {
   }, []);
 
   return (
-    <main className="pt-32 pb-32 bg-paper min-h-screen">
+    <main className="py-16 md:py-32 bg-paper min-h-screen">
       <div className="max-w-[1240px] mx-auto px-5 md:px-14">
         
         {/* Document Header */}

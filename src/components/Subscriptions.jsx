@@ -120,7 +120,7 @@ export default function Subscriptions() {
     setCancelled((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   return (
-    <section ref={root} id="subscriptions" className="bg-ink text-white py-24 sm:py-32 lg:py-36">
+    <section ref={root} id="subscriptions" className="bg-ink text-white py-16 sm:py-32 lg:py-36">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8">
 
         <div className="mx-auto max-w-[560px] text-center">

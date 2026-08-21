@@ -53,7 +53,7 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={root} id="how-it-works" className="py-32 px-8 bg-paper">
+    <section ref={root} id="how-it-works" className="py-16 md:py-32 px-8 bg-paper">
       <div className="max-w-[1200px] mx-auto">
         <div className="how-heading opacity-0 text-center mb-24">
           <span className="text-ink text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>

@@ -306,38 +306,8 @@ export default function Assistant() {
   const lastAssistant = [...items].reverse().find((m) => m.role === 'assistant');
 
   return (
-    <section ref={root} id="assistant" className="bg-paper text-ink py-24 sm:py-32 lg:py-36">
+    <section ref={root} id="assistant" className="bg-paper text-ink py-16 sm:py-32 lg:py-36">
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 px-6 sm:px-8 lg:grid-cols-2 lg:gap-24">
-
-        {/* Copy */}
-        <div className="min-w-0">
-          <h2 className="asst-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-5xl">
-            A card manager that already knows your cards.
-          </h2>
-          <p className="asst-text opacity-0 mt-6 max-w-[38ch] text-[18px] leading-[1.7] text-ink/55">
-            Ask about spending, bills, and credit. Tell it your points once.
-          </p>
-
-          <div className="mt-12 border-t border-ink/15 sm:mt-14">
-            {[
-              ['Knows', 'Your cards, transactions, and credit file.'],
-              ['Researches', 'Transfer partners and promos, with sources.'],
-              ['Acts', 'Pay, cancel, or dispute from the chat.'],
-            ].map(([label, copy]) => (
-              <div
-                key={label}
-                className="asst-row opacity-0 grid grid-cols-1 gap-1.5 border-b border-ink/15 py-5 sm:grid-cols-[112px_1fr] sm:gap-8 sm:py-6"
-              >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-ink/40 sm:pt-[4px]">{label}</span>
-                <p className="text-[15px] leading-[1.7] text-ink/70">{copy}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="asst-foot opacity-0 mt-8 text-[14px] leading-relaxed text-ink/45">
-            It never guesses a number. If it doesn't have the data, it asks.
-          </p>
-        </div>
 
         {/* Chat */}
         <div
@@ -476,6 +446,37 @@ export default function Assistant() {
             </button>
           </form>
         </div>
+
+        {/* Copy */}
+        <div className="min-w-0">
+          <h2 className="asst-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-5xl">
+            A card manager that already knows your cards.
+          </h2>
+          <p className="asst-text opacity-0 mt-6 max-w-[38ch] text-[18px] leading-[1.7] text-ink/55">
+            Ask about spending, bills, and credit. Tell it your points once.
+          </p>
+
+          <div className="mt-12 border-t border-ink/15 sm:mt-14">
+            {[
+              ['Knows', 'Your cards, transactions, and credit file.'],
+              ['Researches', 'Transfer partners and promos, with sources.'],
+              ['Acts', 'Pay, cancel, or dispute from the chat.'],
+            ].map(([label, copy]) => (
+              <div
+                key={label}
+                className="asst-row opacity-0 grid grid-cols-1 gap-1.5 border-b border-ink/15 py-5 sm:grid-cols-[112px_1fr] sm:gap-8 sm:py-6"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] text-ink/40 sm:pt-[4px]">{label}</span>
+                <p className="text-[15px] leading-[1.7] text-ink/70">{copy}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="asst-foot opacity-0 mt-8 text-[14px] leading-relaxed text-ink/45">
+            It never guesses a number. If it doesn't have the data, it asks.
+          </p>
+        </div>
+
 
       </div>
     </section>

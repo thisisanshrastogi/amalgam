@@ -40,7 +40,7 @@ export default function Insights() {
   }, []);
 
   return (
-    <section ref={root} id="insights" className="relative py-32 bg-paper overflow-hidden">
+    <section ref={root} id="insights" className="relative py-16 md:py-32 bg-paper overflow-hidden">
       <DitherTexture opacity={0.04} />
 
       <div className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row gap-20 items-center relative z-10">

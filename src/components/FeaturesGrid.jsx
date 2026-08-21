@@ -290,7 +290,7 @@ export default function FeaturesGrid() {
     <section
       ref={root}
       id="features"
-      className="features-root relative bg-[var(--ink)] pb-24 pt-12 lg:pb-32"
+      className="features-root relative bg-[var(--ink)] pb-16 pt-12 lg:pb-32"
     >
       <style>{featureStyles}</style>
 

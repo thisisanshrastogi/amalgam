@@ -4,8 +4,8 @@ import Logo from './Logo';
 
 export default function Footer() {
   return (
-    <footer className="py-24 bg-paper border-t border-border px-8">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 0 md:grid-cols-5 gap-12">
+    <footer className="py-12 md:py-24 bg-paper border-t border-border px-8">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-5 gap-12">
         <div className="md:col-span-2">
           <Logo />
           <p className="text-sm text-muted mt-6 max-w-xs leading-relaxed">
@@ -13,7 +13,7 @@ export default function Footer() {
           </p>
           <p className="text-xs text-muted mt-12">© 2026 Amalgamic Inc.</p>
         </div>
-        <div className="gap-20 md:col-span-3 flex flex-row-reverse">
+        <div className="gap-12 sm:gap-20 md:col-span-3 flex flex-row sm:flex-row-reverse">
 
           {/* <div>
           <h4 className="font-bold text-ink text-[13px] uppercase tracking-widest mb-6">Product</h4>

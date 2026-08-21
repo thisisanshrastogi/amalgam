@@ -36,7 +36,7 @@ export default function Proof() {
   }, []);
 
   return (
-    <section ref={root} className="py-32 bg-paper px-8">
+    <section ref={root} className="py-16 md:py-32 bg-paper px-8">
       <div className="max-w-[1000px] mx-auto">
         <div className="text-center mb-16">
           <span className="proof-heading opacity-0 text-accent text-xs font-bold uppercase tracking-widest mb-6 block">What we've found so far</span>

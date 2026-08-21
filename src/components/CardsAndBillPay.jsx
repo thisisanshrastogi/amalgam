@@ -170,9 +170,9 @@ export default function CardsAndBillPay() {
           : `Due in ${daysAway} days`;
 
   return (
-    <section ref={root} id="bills" className="relative overflow-hidden bg-paper text-ink py-24 sm:py-32 lg:py-36">
+    <section ref={root} id="bills" className="relative overflow-hidden bg-paper text-ink py-16 sm:py-32 lg:py-36">
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/4 md:block md:w-[520px] lg:w-[720px]">
+        <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/4 md:block md:w-[460px] lg:w-[560px]">
           <img
             src="/hourglassless.png"
             alt=""

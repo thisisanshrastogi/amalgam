@@ -86,7 +86,7 @@ export default function PrivacySecurity() {
       ref={root}
       className="relative isolate bg-ink text-white overflow-hidden
                  min-h-[100dvh] flex items-stretch
-                 px-6 sm:px-8 py-24 lg:py-28"
+                 px-6 sm:px-8 py-16 lg:py-28"
     >
       {/* Vault plate. Decorative, so it stays out of the a11y tree. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">

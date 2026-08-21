@@ -51,7 +51,7 @@ export default function FinalCTA() {
   }, []);
 
   return (
-    <section ref={root} className="py-24 sm:py-32 bg-accent text-center relative overflow-hidden text-white">
+    <section ref={root} className="py-16 sm:py-32 bg-accent text-center relative overflow-hidden text-white">
       <div className="max-w-[800px] mx-auto px-8 relative z-10">
         <h2 className="cta-heading opacity-0 font-serif text-4xl sm:text-5xl leading-tight mb-6 text-white">The best credit card assistant</h2>
         <p className="cta-sub opacity-0 text-white/80 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">

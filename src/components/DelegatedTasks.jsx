@@ -59,7 +59,7 @@ export default function DelegatedTasks() {
   }, []);
 
   return (
-    <section ref={root} id="tasks" className="relative overflow-hidden bg-paper text-ink py-24 sm:py-32 lg:py-36">
+    <section ref={root} id="tasks" className="relative overflow-hidden bg-paper text-ink py-16 sm:py-32 lg:py-36">
       <DitherTexture opacity={0.03} />
 
       <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 px-6 sm:px-8 lg:grid-cols-2 lg:gap-24">
