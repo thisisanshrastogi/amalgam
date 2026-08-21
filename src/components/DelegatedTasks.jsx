@@ -151,7 +151,7 @@ export default function DelegatedTasks() {
 
         {/* Copy */}
         <div className="order-1 min-w-0 lg:order-2">
-          <h2 className="dt-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-5xl">
+          <h2 className="dt-text opacity-0 font-serif text-[2rem] leading-[1.2] tracking-[-0.015em] sm:text-[48px] lg:text-[3.4rem] lg:leading-[1.2]">
             Say what you want to happen. We do the rest.
           </h2>
           <p className="dt-text opacity-0 mt-6 max-w-[38ch] text-[18px] leading-[1.7] text-ink/55">

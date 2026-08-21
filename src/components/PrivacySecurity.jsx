@@ -84,7 +84,7 @@ export default function PrivacySecurity() {
   return (
     <section
       ref={root}
-      className="relative isolate bg-ink text-white overflow-hidden
+      className="relative isolate text-white
                  min-h-[100dvh] flex items-stretch
                  px-6 sm:px-8 py-16 lg:py-28"
     >

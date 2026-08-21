@@ -124,7 +124,7 @@ export default function Subscriptions() {
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8">
 
         <div className="mx-auto max-w-[560px] text-center">
-          <h2 className="sub-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-[46px]">
+          <h2 className="sub-text opacity-0 font-serif text-[2rem] leading-[1.2] tracking-[-0.015em] sm:text-[48px] lg:text-[3.4rem]">
             The ones you forgot keep adding up.
           </h2>
           <p className="sub-text opacity-0 mx-auto mt-6 max-w-[44ch] text-[17px] leading-[1.7] text-white/55">

@@ -134,7 +134,7 @@ export default function CardCredits() {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-9 sm:gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-20">
         {/* ── text, left ─────────────────────────────────── */}
         <div className="lg:order-1">
-          <h2 className="anime-text font-serif text-[2rem] leading-[1.06] tracking-[-0.015em] text-ink opacity-0 sm:text-5xl sm:leading-[1.04] lg:text-[3.4rem]">
+          <h2 className="anime-text font-serif text-[2rem] leading-[1.2] tracking-[-0.015em] text-ink opacity-0 sm:text-[48px] sm:leading-[1.2] sm:leading-[1.2] lg:text-[3.4rem]">
             Money that runs out if you{' '}
             <em className="italic text-[#2C4E3E] " >
               don&apos;t

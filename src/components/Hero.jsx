@@ -167,7 +167,7 @@ export default function Hero() {
           <div className="relative z-10 max-w-[34rem] pr-2">
             <h1
               data-hero-reveal
-              className="hero-h1 mb-8 pb-1 font-serif text-[46px] leading-[1.06] tracking-[-0.015em] text-white sm:text-[60px] lg:text-[clamp(56px,5.2vw,86px)]"
+              className="hero-h1 mb-8 pb-1 font-serif text-[46px] leading-[1.2] tracking-[-0.015em] text-white sm:text-[60px] lg:text-[clamp(56px,5.2vw,86px)]"
             >
               Finally, a<br className="hidden lg:inline" /> home for{' '}
               <em className='text-mint' style={{ opacity: 0.9 }}>all</em>

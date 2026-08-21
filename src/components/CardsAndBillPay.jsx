@@ -186,7 +186,7 @@ export default function CardsAndBillPay() {
 
         {/* Copy */}
         <div className="min-w-0">
-          <h2 className="pay-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-5xl">
+          <h2 className="pay-text opacity-0 font-serif text-[2rem] leading-[1.2] tracking-[-0.015em] sm:text-[48px] lg:text-[3.4rem] lg:leading-[1.2]">
             Every balance, every due date. Then the payment.
           </h2>
           <p className="pay-text opacity-0 mt-6 max-w-[40ch] text-[18px] leading-[1.7] text-ink/55">

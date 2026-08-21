@@ -317,7 +317,7 @@ export default function FeaturesGrid() {
                 What you get
               </span>
               {/* Paper, not pure white: white is a step outside the palette. */}
-              <h2 className="feature-item font-serif text-[40px] leading-[1.12] tracking-[-0.01em] text-[var(--paper)] opacity-0 sm:text-[52px] lg:text-[clamp(46px,4.8vw,62px)]">
+              <h2 className="feature-item font-serif text-[40px] leading-[1.2] tracking-[-0.01em] text-[var(--paper)] opacity-0 sm:text-[52px] lg:text-[clamp(46px,4.8vw,62px)]">
                 One place.
                 <br className="hidden sm:inline" /> Every card. Total control.
               </h2>

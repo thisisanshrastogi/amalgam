@@ -51,14 +51,14 @@ export default function FinalCTA() {
   }, []);
 
   return (
-    <section ref={root} className="py-16 sm:py-32 bg-accent text-center relative overflow-hidden text-white">
+    <section ref={root} className="py-16 sm:py-32 text-center relative text-white">
       <div className="max-w-[800px] mx-auto px-8 relative z-10">
-        <h2 className="cta-heading opacity-0 font-serif text-4xl sm:text-5xl leading-tight mb-6 text-white">The best credit card assistant</h2>
+        <h2 className="cta-heading opacity-0 font-serif text-4xl sm:text-[48px] sm:leading-[1.2] leading-tight mb-6 text-white">The best credit card assistant</h2>
         <p className="cta-sub opacity-0 text-white/80 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
           You don't need more apps to manage. You need one that actually manages things for you.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 mb-10">
-          <a href="https://cards.amalgamic.io/auth/signin" ref={primaryBtnRef} className="cta-primary inline-block text-center opacity-0 bg-surface text-accent px-8 py-4 rounded-full text-[15px] font-bold shadow-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://cards.amalgamic.io/auth/signin" ref={primaryBtnRef} className="cta-primary inline-block text-center opacity-0 bg-paper text-ink px-8 py-4 rounded-full text-[15px] font-bold shadow-2xl hover:scale-[1.02] transition-transform">
             Get started
           </a>
           <span className="cta-primary opacity-0 text-[10px] font-bold uppercase tracking-widest text-white/60">$0 cost -- limited period offer</span>

@@ -46,7 +46,7 @@ export default function Insights() {
       <div className="max-w-[1200px] mx-auto px-8 flex flex-col lg:flex-row gap-20 items-center relative z-10">
         <div className="lg:w-1/2">
 
-          <h2 className="insights-text opacity-0 font-serif text-5xl leading-tight mb-8 text-ink">
+          <h2 className="insights-text opacity-0 font-serif text-5xl leading-[1.2] mb-8 text-ink">
             The two or three things<br />worth knowing this<br />month.
           </h2>
           <p className="insights-text opacity-0 text-muted text-lg leading-relaxed mb-12">

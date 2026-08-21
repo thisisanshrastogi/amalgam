@@ -28,9 +28,11 @@ export default function Home() {
       <CardCredits />
       <DelegatedTasks />
       <HowItWorks />
-      <PrivacySecurity />
-      {/* <Proof /> */}
-      <FinalCTA />
+      <div className="bg-ink overflow-hidden">
+        <PrivacySecurity />
+        {/* <Proof /> */}
+        <FinalCTA />
+      </div>
     </main>
   );
 }
