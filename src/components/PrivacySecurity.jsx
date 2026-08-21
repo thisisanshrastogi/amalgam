@@ -96,7 +96,7 @@ export default function PrivacySecurity() {
               src="/vault.png"
               alt=""
               draggable="false"
-              className="vault-rotate w-full h-auto opacity-[0.10] lg:opacity-[0.56] invert mix-blend-screen select-none origin-[77.5%_50%]"
+              className="vault-rotate w-full h-auto opacity-[0.10] lg:opacity-[0.32] invert mix-blend-screen select-none origin-[77.5%_50%]"
             />
           </div>
         </div>
