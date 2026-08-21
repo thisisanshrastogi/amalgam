@@ -95,7 +95,7 @@ const CARDS = [
 
 /* One shadow, one pass. Tinted to the paper's warm neutral — a pure black
    shadow on #F5F2EA goes grey and dead. */
-const CARD_SHADOW = 'drop-shadow(0 14px 22px rgba(23,22,19,0.20))';
+const CARD_SHADOW = 'none'; // 'drop-shadow(0 14px 22px rgba(23,22,19,0.20))';
 
 const cardStyles = `
   .hero-card {
