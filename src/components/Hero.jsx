@@ -84,7 +84,7 @@ const CARD_PIN_TOP = 50;
    which is where the weight comes from. 0.22 is quick with a perceptible
    trail; 0.12 is slow and syrupy; 1 is the glued-to-the-scrollbar feel this
    replaced. */
-const CARD_DAMPING = 0.8;
+const CARD_DAMPING = 0.9;
 
 /* How much the mosaic shrinks across the full travel. Scaling from the top
    edge means it recedes into the section below without the pin gap changing.
@@ -98,7 +98,7 @@ const CARD_SETTLE_SCALE = 0.1;
    scale re-rasterises the subtree on every single frame; stepping it means
    that happens about a dozen times across the whole travel instead. 1% steps
    are invisible while the thing is moving. Set to 0 for a smooth scale. */
-const CARD_SCALE_STEP = 0;
+// const CARD_SCALE_STEP = 0;
 
 /* Marker in the next section that defines where the cards come to rest. */
 const CARDS_REST_ID = 'cards-rest';
@@ -234,17 +234,27 @@ export default function Hero() {
 
       // Measure the gap between the mosaic's natural position and the landing slot
       const naturalTopDoc = track.getBoundingClientRect().top + window.scrollY;
-      const restTop = rest.getBoundingClientRect().top + window.scrollY;
-      // Subtract 150px so it sits perfectly in the middle of the empty space
-      maxTravel = Math.max(0, Math.round(restTop - naturalTopDoc) - 100);
+      const restRect = rest.getBoundingClientRect();
+      const restTop = restRect.top + window.scrollY;
+
+      // Calculate perfect vertical centering based on actual element heights
+      const settledScale = CARD_SETTLE_SCALE > 0 ? 1 - CARD_SETTLE_SCALE : 1;
+      const cardHeight = el.getBoundingClientRect().height;
+      const exactCenterOffset = (restRect.height - (cardHeight * settledScale)) / 2;
+
+      // Shift it slightly above the exact vertical center (by 5% of viewport height)
+      const opticalShift = window.innerHeight * 0.2;
+
+      // The travel distance places the top edge perfectly so the scaled card is centered, then shifted up
+      maxTravel = Math.max(0, Math.round(restTop - naturalTopDoc + exactCenterOffset - opticalShift));
 
       el.style.transform = prev;
 
-      // How many pixels to wait before the cards start moving down.
-      // During this time they scroll up naturally with the page.
-      const SCROLL_DEADZONE = window.innerHeight * 0.3; // wait 40% of viewport height
-
       if (maxTravel <= 0) return;
+
+      // Create a deadzone at both ends of the travel (25% of the total distance at the top, 25% at the bottom).
+      // This means the cards wait before moving down, and wait before moving up!
+      const SCROLL_DEADZONE = Math.round(maxTravel * 0.25);
 
       scrollScope = createScope({ root: document.documentElement }).add(() => {
         animate(el, {
@@ -253,10 +263,10 @@ export default function Hero() {
           ease: 'cubicBezier(0.25, 1, 0.5, 1)', // Add an ease so it starts slow and accelerates
           autoplay: onScroll({
             target: track,
-            // Start the travel after the deadzone
+            // Start the travel after the top deadzone
             enter: `${CARD_PIN_TOP - SCROLL_DEADZONE}px top`,
-            // End the travel at the same point as before
-            leave: `${CARD_PIN_TOP - maxTravel}px top`,
+            // End the travel BEFORE the bottom deadzone starts
+            leave: `${CARD_PIN_TOP - (maxTravel - SCROLL_DEADZONE)}px top`,
             sync: CARD_DAMPING
           })
         });

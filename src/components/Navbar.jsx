@@ -42,35 +42,61 @@ export default function Navbar() {
 
       // Scroll-shrink: compact the nav on scroll
       const navEl = root.current?.querySelector('.nav-wrapper nav');
+      const wrapperEl = root.current?.querySelector('.nav-wrapper');
       let scrolled = false;
 
-      if (navEl) {
-        onScroll({
-          target: document.documentElement,
-          start: '40px top',
-          onEnter: () => {
-            if (scrolled) return;
-            scrolled = true;
-            animate(navEl, {
-              paddingTop: 10,
-              paddingBottom: 10,
-              duration: 300,
-              ease: 'outQuad',
-            });
-          },
-          onLeave: () => {
-            scrolled = false;
-            animate(navEl, {
-              paddingTop: window.innerWidth < 768 ? 12 : 16,
-              paddingBottom: window.innerWidth < 768 ? 12 : 16,
-              duration: 300,
-              ease: 'outQuad',
-            });
-          },
-        });
+      if (navEl && wrapperEl) {
+        const handleScroll = () => {
+          const shouldBeScrolled = window.scrollY > 40;
+          if (shouldBeScrolled !== scrolled) {
+            scrolled = shouldBeScrolled;
+            
+            if (scrolled) {
+              animate(navEl, {
+                paddingTop: 10,
+                paddingBottom: 10,
+                duration: 300,
+                ease: 'outQuad',
+              });
+              animate(wrapperEl, {
+                top: '12px',
+                duration: 300,
+                ease: 'outQuad',
+              });
+            } else {
+              animate(navEl, {
+                paddingTop: window.innerWidth < 768 ? 12 : 16,
+                paddingBottom: window.innerWidth < 768 ? 12 : 16,
+                duration: 300,
+                ease: 'outQuad',
+              });
+              animate(wrapperEl, {
+                top: '24px',
+                duration: 300,
+                ease: 'outQuad',
+              });
+            }
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.__navScrollHandler = handleScroll;
+        // Initial check in case the page is already scrolled on load
+        handleScroll();
       }
+
+      // Cleanup listener when component unmounts
+      // We will handle this in the useEffect return function instead
     });
-    return () => scope.current.revert();
+
+    return () => {
+      scope.current?.revert();
+      const handleScroll = window.__navScrollHandler;
+      if (handleScroll) {
+        window.removeEventListener('scroll', handleScroll);
+        delete window.__navScrollHandler;
+      }
+    };
   }, []);
 
   // Smooth scroll handler using Anime.js

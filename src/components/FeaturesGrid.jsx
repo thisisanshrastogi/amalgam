@@ -216,7 +216,7 @@ export default function FeaturesBlack() {
           {FEATURES.map((f) => (
             <div
               key={f.label}
-              className="bay-item fade-in relative border-b border-white/10 py-9 opacity-0 transition-colors duration-300 hover:bg-white/[0.025] lg:border-b-0 lg:px-9 lg:first:pl-0 lg:last:pr-0"
+              className="bay-item fade-in relative border-b border-white/10 py-9 opacity-0 lg:border-b-0 lg:px-9 lg:first:pl-0 lg:last:pr-0"
             >
               {/* Accent mark 2 of 2. The rule and the label are one gesture,
                   not two separate uses of the colour. */}

@@ -102,7 +102,7 @@ export default function PrivacySecurity() {
         </div>
 
         {/* Legibility scrim: solid ink under the text, fading out before the vault. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink from-52% via-ink/70 via-76% to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[200%] bg-gradient-to-r from-ink from-52% via-ink/70 via-76% to-transparent" />
       </div>
 
       {/* justify-between is what spends the height: top block, bottom block, air between */}
