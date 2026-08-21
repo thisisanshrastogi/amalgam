@@ -119,7 +119,7 @@ export default function DelegatedTasks() {
                       <span className="shrink-0 font-medium tabular-nums text-white">AMX-992</span>
                     </div>
                   </div>
-                  <p className="text-[14px] leading-[1.6] text-[#F5F2EA]/90">
+                  <p className="text-[14px] leading-[1.6] text-white/90">
                     Drafted under the DOT delay rules and passed to our team. You'll hear back within 48 business hours.
                   </p>
                 </div>

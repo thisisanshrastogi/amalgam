@@ -1,5 +1,5 @@
 import React from 'react';
-import DocLayout, { DocSection } from '../components/DocLayout';
+import DocLayout, { DocSection, DocList } from '../components/DocLayout';
 
 export default function Privacy() {
   const groups = [
@@ -64,11 +64,11 @@ export default function Privacy() {
     >
       <DocSection id="summary" num="§01" title="The short version">
         <p>Privacy policies are not fun to read. Our goal at Amalgamic is to make managing money less complicated, and doing that means collecting certain information about you. We aim to collect only what we need in order to serve you.</p>
-        <div className="bg-surface border border-ink/20 rounded-2xl p-6 my-6 shadow-sm">
-          <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2">Commitment</span>
-          <p className="text-xl font-bold text-ink mb-2">We will never sell your financial data.</p>
-          <p className="text-sm">You will see the words "selling" and "sharing" below. Certain privacy laws define those terms very broadly, and we use them only as they relate to advertising cookies on our website. No money changes hands, and your financial data is never part of it.</p>
-        </div>
+        <DocList 
+          items={[
+            { title: "We will never sell your financial data.", body: 'You will see the words "selling" and "sharing" below. Certain privacy laws define those terms very broadly, and we use them only as they relate to advertising cookies on our website. No money changes hands, and your financial data is never part of it.' }
+          ]}
+        />
         <p>By using or accessing our services in any way, you accept the practices described here and consent to us collecting, using and sharing your information as set out below. Terms used here without definition carry the meaning given in our Terms of Use.</p>
         <p>If you have a disability and need this policy in an alternative format, email <a href="mailto:lizann@amalgamic.io">lizann@amalgamic.io</a>.</p>
       </DocSection>
@@ -166,28 +166,14 @@ export default function Privacy() {
       </DocSection>
 
       <DocSection id="sources" num="§04" title="Where it comes from">
-        <div className="grid sm:grid-cols-2 gap-4 my-6">
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Source</span>
-            <h4 className="font-bold text-ink mb-1">From you</h4>
-            <p className="text-sm">When you create an account, use our tools, fill in a free-text field, answer a survey, or email us.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Source</span>
-            <h4 className="font-bold text-ink mb-1">Automatically</h4>
-            <p className="text-sm">Through cookies, and — if you use our app or a location-enabled browser — device and location information.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Source</span>
-            <h4 className="font-bold text-ink mb-1">Your connected accounts</h4>
-            <p className="text-sm">Transaction and balance data through Plaid and Spinwheel. We never receive your bank login credentials.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Source</span>
-            <h4 className="font-bold text-ink mb-1">Third parties</h4>
-            <p className="text-sm">Analytics and support vendors, advertising partners, and any third-party account you choose to link.</p>
-          </div>
-        </div>
+        <DocList
+          items={[
+            { title: "From you", body: "When you create an account, use our tools, fill in a free-text field, answer a survey, or email us." },
+            { title: "Automatically", body: "Through cookies, and — if you use our app or a location-enabled browser — device and location information." },
+            { title: "Your connected accounts", body: "Transaction and balance data through Plaid and Spinwheel. We never receive your bank login credentials." },
+            { title: "Third parties", body: "Analytics and support vendors, advertising partners, and any third-party account you choose to link." }
+          ]}
+        />
         <p>When you log in to a financial account to connect it to Amalgamic, we receive transaction and balance information through Plaid and Spinwheel. At no point do we receive the login credentials for any of your financial accounts.</p>
         <p>We may also collect how you use the site — pages visited, links clicked, non-sensitive text entered, mouse movement, referring URL, browser, operating system and IP address.</p>
       </DocSection>
@@ -235,38 +221,24 @@ export default function Privacy() {
 
       <DocSection id="ai" num="§07" title="How we use AI">
         <p>Parts of Amalgamic use artificial intelligence to read merchant cancellation flows, draft correspondence and interpret instructions you give in plain language.</p>
-        <div className="bg-surface border border-ink/20 rounded-2xl p-6 my-6 shadow-sm">
-          <span className="text-[10px] uppercase tracking-widest text-muted font-bold block mb-2">Commitment</span>
-          <p className="text-xl font-bold text-ink mb-2">We do not train AI on your data.</p>
-          <p className="text-sm">Your personal or financial data is never used to train artificial intelligence models, ours or anyone else's. AI is used to carry out the task you asked for, and for nothing beyond it.</p>
-        </div>
+        <DocList
+          items={[
+            { title: "We do not train AI on your data.", body: "Your personal or financial data is never used to train artificial intelligence models, ours or anyone else's. AI is used to carry out the task you asked for, and for nothing beyond it." }
+          ]}
+        />
         <p>AI output can be wrong. You should not treat AI-generated correspondence or summaries as verified fact, and you remain responsible for instructions you confirm.</p>
       </DocSection>
 
       <DocSection id="cookies" num="§08" title="Cookies">
         <p>We use cookies and similar technologies — pixel tags, web beacons, clear GIFs and JavaScript — so our servers recognise your browser and so we can see how and when you use the service. Because of how we use cookies, the service does not currently support browser Do Not Track requests.</p>
-        <div className="grid sm:grid-cols-2 gap-4 my-6">
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Cookie type</span>
-            <h4 className="font-bold text-ink mb-1">Essential</h4>
-            <p className="text-sm">Required for features you asked for — logging into secure areas, for example. Disabling these makes parts of the service unavailable.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Cookie type</span>
-            <h4 className="font-bold text-ink mb-1">Functional</h4>
-            <p className="text-sm">Records your choices and settings, keeps your preferences over time, and recognises you when you come back.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Cookie type</span>
-            <h4 className="font-bold text-ink mb-1">Performance</h4>
-            <p className="text-sm">Tells us how many people visit, which pages they view and how long they stay, and measures how our advertising performs.</p>
-          </div>
-          <div className="bg-surface p-5 rounded-xl border border-border shadow-sm">
-            <span className="text-[10px] uppercase tracking-widest text-ink font-bold block mb-2">Cookie type</span>
-            <h4 className="font-bold text-ink mb-1">Advertising</h4>
-            <p className="text-sm">Collects data about your online activity to advertise Amalgamic on third-party sites. We do not show you third-party ads on ours.</p>
-          </div>
-        </div>
+        <DocList
+          items={[
+            { title: "Essential", body: "Required for features you asked for — logging into secure areas, for example. Disabling these makes parts of the service unavailable." },
+            { title: "Functional", body: "Records your choices and settings, keeps your preferences over time, and recognises you when you come back." },
+            { title: "Performance", body: "Tells us how many people visit, which pages they view and how long they stay, and measures how our advertising performs." },
+            { title: "Advertising", body: "Collects data about your online activity to advertise Amalgamic on third-party sites. We do not show you third-party ads on ours." }
+          ]}
+        />
         <p>You control cookies through your browser settings, and you can delete cookies already on your device — though you may then need to reset preferences on every visit, and some features may stop working.</p>
       </DocSection>
 
@@ -286,20 +258,13 @@ export default function Privacy() {
 
       <DocSection id="california" num="§12" title="California resident rights">
         <p>If you are a California resident you have the rights below. They are subject to conditions and exceptions under applicable law, which may permit or require us to deny a request. Where this section conflicts with anything else in this policy, the more protective provision wins.</p>
-        <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Access</span>
-            <p className="sm:w-3/4 text-sm">Ask what we collected about you over the past 12 months — the categories, the sources, the purposes, who we shared it with, and the specific pieces. You can ask beyond 12 months, back to 1 January 2022.</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Deletion</span>
-            <p className="sm:w-3/4 text-sm">Ask us to delete the personal data we hold. Some exceptions apply — we may need to keep data to deliver a service or complete a transaction you asked for.</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Correction</span>
-            <p className="sm:w-3/4 text-sm">Ask us to fix inaccurate personal data. We may decline if, considering everything we hold, we determine the data is already correct.</p>
-          </div>
-        </div>
+        <DocList
+          items={[
+            { title: "Access", body: "Ask what we collected about you over the past 12 months — the categories, the sources, the purposes, who we shared it with, and the specific pieces. You can ask beyond 12 months, back to 1 January 2022." },
+            { title: "Deletion", body: "Ask us to delete the personal data we hold. Some exceptions apply — we may need to keep data to deliver a service or complete a transaction you asked for." },
+            { title: "Correction", body: "Ask us to fix inaccurate personal data. We may decline if, considering everything we hold, we determine the data is already correct." }
+          ]}
+        />
         <p>If we disclosed your personal data to third parties for a business purpose in the past 12 months, we will identify the categories shared with each category of recipient. Where we process personal data as a service provider on behalf of a customer, contact that customer first to exercise your rights over that data.</p>
       </DocSection>
 
@@ -326,16 +291,12 @@ export default function Privacy() {
 
       <DocSection id="exercise" num="§16" title="How to exercise your rights">
         <p>Send us a request that gives us enough information to verify you are the person we collected data about, and describes what you want in enough detail for us to evaluate it. A request meeting both criteria is a valid request. We may not respond to requests that do not.</p>
-        <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Delete account</span>
-            <p className="sm:w-3/4 text-sm">Delete your account yourself from account settings.</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Any right</span>
-            <p className="sm:w-3/4 text-sm">Email <a href="mailto:support@amalgamic.io">support@amalgamic.io</a> with your request and the email address on your account.</p>
-          </div>
-        </div>
+        <DocList
+          items={[
+            { title: "Delete account", body: "Delete your account yourself from account settings." },
+            { title: "Any right", body: <>Email <a href="mailto:support@amalgamic.io">support@amalgamic.io</a> with your request and the email address on your account.</> }
+          ]}
+        />
       </DocSection>
 
       <DocSection id="states" num="§17" title="Other state privacy rights">
@@ -352,16 +313,12 @@ export default function Privacy() {
 
       <DocSection id="contact" num="§19" title="Contact us">
         <p>Questions about this policy, about how we collect and use your personal data, or about your rights over it — we would rather hear from you than not.</p>
-        <div className="my-6 space-y-3">
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">General</span>
-            <p className="sm:w-3/4 text-sm"><a href="mailto:support@amalgamic.io">support@amalgamic.io</a></p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm">
-            <span className="font-bold text-ink uppercase tracking-widest text-[10px] sm:w-1/4 pt-1">Privacy</span>
-            <p className="sm:w-3/4 text-sm"><a href="mailto:lizann@amalgamic.io">lizann@amalgamic.io</a></p>
-          </div>
-        </div>
+        <DocList
+          items={[
+            { title: "General", body: <a href="mailto:support@amalgamic.io">support@amalgamic.io</a> },
+            { title: "Privacy", body: <a href="mailto:lizann@amalgamic.io">lizann@amalgamic.io</a> }
+          ]}
+        />
         <p>See also the <a href="/contact">contact page</a> for where to send other requests.</p>
       </DocSection>
 

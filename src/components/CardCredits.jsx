@@ -177,7 +177,7 @@ export default function CardCredits() {
             >
               <div
                 className="flex items-center gap-2.5 text-[14px] sm:gap-3 sm:text-[15px]"
-                style={{ color: 'rgba(245,242,234,0.92)' }}
+                style={{ color: 'rgba(255,255,255,0.92)' }}
               >
                 <span
                   className="relative h-[20px] w-[20px] rounded-[5px] sm:h-[22px] sm:w-[22px] sm:rounded-[6px]"
@@ -192,7 +192,7 @@ export default function CardCredits() {
               </div>
               <div
                 className="hidden text-[10.5px] tracking-[0.18em] sm:block"
-                style={{ color: 'rgba(245,242,234,0.42)' }}
+                style={{ color: 'rgba(255,255,255,0.42)' }}
               >
                 3 CARDS ON FILE
               </div>
@@ -214,15 +214,15 @@ export default function CardCredits() {
                     className="text-[14.5px] sm:text-[16px]"
                     style={{
                       color: c.claimed
-                        ? 'rgba(245,242,234,0.34)'
-                        : 'rgba(245,242,234,0.94)',
+                        ? 'rgba(255,255,255,0.34)'
+                        : 'rgba(255,255,255,0.94)',
                     }}
                   >
                     {c.name}
                   </div>
                   <div
                     className="mt-[5px] hidden text-[12.5px] tracking-[0.02em] sm:block"
-                    style={{ color: 'rgba(245,242,234,0.42)' }}
+                    style={{ color: 'rgba(255,255,255,0.42)' }}
                   >
                     {c.meta}
                   </div>
@@ -246,8 +246,8 @@ export default function CardCredits() {
                     className={`text-[16px] font-medium tabular-nums sm:text-[19px] ${c.claimed ? 'line-through' : ''
                       }`}
                     style={{
-                      color: c.claimed ? 'rgba(245,242,234,0.34)' : PAPER,
-                      textDecorationColor: 'rgba(245,242,234,0.3)',
+                      color: c.claimed ? 'rgba(255,255,255,0.34)' : '#fff',
+                      textDecorationColor: 'rgba(255,255,255,0.3)',
                     }}
                   >
                     {c.amount}
@@ -255,7 +255,7 @@ export default function CardCredits() {
                   <span
                     className="text-[9.5px] uppercase tracking-[0.09em] sm:text-[11px] sm:tracking-[0.1em]"
                     style={{
-                      color: c.claimed ? MINT : 'rgba(245,242,234,0.45)',
+                      color: c.claimed ? MINT : 'rgba(255,255,255,0.45)',
                     }}
                   >
                     {c.expiry}
@@ -271,13 +271,13 @@ export default function CardCredits() {
             >
               <span
                 className="text-[11px] uppercase tracking-[0.14em] sm:text-[12px]"
-                style={{ color: 'rgba(245,242,234,0.42)' }}
+                style={{ color: 'rgba(255,255,255,0.42)' }}
               >
                 Open on this card
               </span>
               <span
                 className="text-[15px] font-medium tabular-nums sm:text-[17px]"
-                style={{ color: PAPER }}
+                style={{ color: '#fff' }}
               >
                 $400.00
               </span>
