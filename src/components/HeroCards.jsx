@@ -18,6 +18,30 @@ import { animate, stagger, createScope, random, createSpring } from 'animejs';
    Each card keeps its own intrinsic aspect ratio via the width/height
    attributes, so nothing reflows once the images decode.
 
+   ── 2026 pass: paint cost ────────────────────────────────────────────────
+   Hero now scales this whole mosaic as it travels down into the next section,
+   which changes its rendered size continuously. Anything expensive in here
+   gets re-run on every raster invalidation, so three things changed:
+
+     1. `will-change: transform, filter` is gone. It promoted four layers AND
+        told the browser to keep the filter pipeline hot on each of them. The
+        parent's scale then invalidated all four every frame, so a live
+        drop-shadow was being recomputed over four large transparent PNGs
+        continuously. This was the single most expensive thing on the page.
+        The parent is the only promoted layer now, declared in Hero.
+
+     2. Two stacked drop-shadows became one. The contact shadow and the cast
+        shadow were separate filter passes over the same alpha; a single pass
+        with a small offset reads the same at this size and halves the work.
+
+     3. The hover transform is scoped behind `@media (hover: hover)`. On touch
+        it never fires, and it was costing a transition declaration on every
+        card regardless.
+
+   If you want the shadow richer than one pass can give, bake it into the PNGs
+   rather than adding a second filter. A baked shadow is part of the bitmap and
+   costs nothing to re-raster.
+
    Drop the PNGs into /public/hero/ (or repoint ASSETS at your bundler paths).
 --------------------------------------------------------------------------- */
 
@@ -69,25 +93,29 @@ const CARDS = [
   },
 ];
 
-/* One shadow recipe for all four so the mosaic reads as a single plane of
-   objects lit from the same place. Tinted to the paper's warm neutral — a
-   pure black shadow on #F5F2EA goes grey and dead. */
-const CARD_SHADOW =
-  'drop-shadow(0 1px 1px rgba(23,22,19,0.10)) drop-shadow(0 18px 26px rgba(23,22,19,0.16))';
+/* One shadow, one pass. Tinted to the paper's warm neutral — a pure black
+   shadow on #F5F2EA goes grey and dead. */
+const CARD_SHADOW = 'drop-shadow(0 14px 22px rgba(23,22,19,0.20))';
 
 const cardStyles = `
   .hero-card {
-    will-change: transform, filter;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid transparent;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
   }
-  .hero-card:hover {
-    transform: scale(1.04) translateY(-8px) rotate(2deg) !important;
-    z-index: 10;
+
+  /* Hover only where hovering exists. On touch this never fires, and the
+     transition declaration alone is worth removing from four elements. */
+  @media (hover: hover) and (pointer: fine) {
+    .hero-card {
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .hero-card:hover {
+      transform: scale(1.04) translateY(-8px) rotate(2deg);
+      z-index: 10;
+    }
   }
+
   @media (prefers-reduced-motion: no-preference) {
     .hero-mosaic[data-armed='true'] .hero-card { opacity: 0; }
   }
@@ -117,13 +145,26 @@ export default function HeroCards() {
       scope.current = createScope({ root: node }).add(() => {
         animate('.hero-card', {
           opacity: [0, 1],
-          translateX: (el) => [random(-100, 100), 0],
-          translateY: (el) => [random(80, 200), 0],
-          rotate: (el) => [random(-25, 25), 0],
+          translateX: () => [random(-100, 100), 0],
+          translateY: () => [random(80, 200), 0],
+          rotate: () => [random(-25, 25), 0],
           scale: [0.8, 1],
           duration: 850,
           ease: createSpring({ stiffness: 90, damping: 14, mass: 1, velocity: 0 }),
           delay: stagger(90, { start: 260 }),
+          /* The entrance is the only thing that needs a promoted layer per
+             card. Promote for its duration, then hand the layers back so the
+             travel scale isn't re-rasterising four of them. */
+          onBegin: () => {
+            node.querySelectorAll('.hero-card').forEach((el) => {
+              el.style.willChange = 'transform, opacity';
+            });
+          },
+          onComplete: () => {
+            node.querySelectorAll('.hero-card').forEach((el) => {
+              el.style.willChange = '';
+            });
+          },
         });
       });
     } catch (err) {
@@ -142,8 +183,9 @@ export default function HeroCards() {
     <div
       ref={root}
       data-armed="true"
-      className="hero-mosaic relative w-full aspect-[850/740]"
-      style={{ willChange: 'transform' }}
+      className="hero-mosaic relative aspect-[850/740] w-full"
+    /* No will-change here: Hero's travel wrapper is the promoted layer, and
+       stacking a second one inside it just doubles the memory for nothing. */
     >
       <style>{cardStyles}</style>
 

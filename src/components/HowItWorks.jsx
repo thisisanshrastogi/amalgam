@@ -53,31 +53,31 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={root} id="how-it-works" className="py-16 md:py-32 px-8 bg-paper">
+    <section ref={root} id="how-it-works" className="pt-16 pb-16 md:pt-20 md:pb-32 px-6 sm:px-8 bg-paper">
       <div className="max-w-[1200px] mx-auto">
-        <div className="how-heading opacity-0 text-center mb-24">
-          <span className="text-ink text-xs font-bold uppercase tracking-widest mb-6 block">How it works</span>
-          <h2 className="font-serif text-5xl leading-tight text-ink">
+        <div className="how-heading opacity-0 text-center mb-16 lg:mb-24">
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-ink/50 mb-5 block">How it works</span>
+          <h2 className="font-serif text-[2rem] leading-[1.2] tracking-[-0.015em] text-ink sm:text-[48px] lg:text-[3.4rem]">
             Setup once, we'll handle the rest.
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-12">
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">01</div>
+            <div className="how-step-num text-[64px] leading-none sm:text-[80px] lg:text-[96px] font-serif text-ink/10 mb-6">01</div>
             <h3 className="font-serif text-2xl text-ink mb-4">Connect your cards</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               Secure, read-only access through our integration partners. Works with 12,000+ US institutions.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">02</div>
+            <div className="how-step-num text-[64px] leading-none sm:text-[80px] lg:text-[96px] font-serif text-ink/10 mb-6">02</div>
             <h3 className="font-serif text-2xl text-ink mb-4">We monitor everything</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               We're checking for recurring charges, fees, credits. Anything that shouldn't be there.
             </p>
           </div>
           <div className="how-step opacity-0 relative">
-            <div className="how-step-num text-5xl font-serif text-ink/10 mb-6">03</div>
+            <div className="how-step-num text-[64px] leading-none sm:text-[80px] lg:text-[96px] font-serif text-ink/10 mb-6">03</div>
             <h3 className="font-serif text-2xl text-ink mb-4">You act when it matters</h3>
             <p className="text-muted leading-relaxed text-[15px]">
               We surface only what's worth your time – with one-tap options to cancel, dispute, or pay.

@@ -13,12 +13,15 @@ import DelegatedTasks from '../components/DelegatedTasks';
 import Proof from '../components/Proof';
 import PrivacySecurity from '../components/PrivacySecurity';
 import FinalCTA from '../components/FinalCTA';
+import FeaturesFacade from '../components/FeaturesGrid';
+import FeaturesBlack from '../components/FeaturesGrid';
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <FeaturesGrid />
+      {/* <FeaturesGrid /> */}
+      {<FeaturesBlack />}
       <DitherDivider dark />
       {/* <CollectiveImpact /> */}
       {/* <Insights /> */}

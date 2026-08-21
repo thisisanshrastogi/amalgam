@@ -129,7 +129,7 @@ export default function Navbar() {
   return (
     <div ref={root}>
       <div className="nav-wrapper opacity-0 fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[1300px] z-50" style={{ top: '-80px' }}>
-        <nav className="bg-white/80 backdrop-blur-md px-5 py-3 md:px-8 md:py-4 rounded-full shadow-lg border border-white/20 flex items-center justify-between transition-shadow">
+        <nav className="bg-white px-5 py-3 md:px-8 md:py-4 rounded-full shadow-lg border border-black/5 flex items-center justify-between transition-shadow">
           <Link to="/" className="nav-logo opacity-0 hover:opacity-80 transition-opacity">
             <Logo />
           </Link>

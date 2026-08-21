@@ -58,7 +58,7 @@ export default function FinalCTA() {
           You don't need more apps to manage. You need one that actually manages things for you.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 mb-10">
-          <a href="https://cards.amalgamic.io/auth/signin" ref={primaryBtnRef} className="cta-primary inline-block text-center opacity-0 bg-paper text-ink px-8 py-4 rounded-full text-[15px] font-bold shadow-2xl hover:scale-[1.02] transition-transform">
+          <a href="https://cards.amalgamic.io/auth/signin" ref={primaryBtnRef} className="cta-primary inline-block text-center opacity-0 bg-white text-ink px-8 py-4 rounded-full text-[15px] font-bold shadow-2xl hover:scale-[1.02] transition-transform">
             Get started
           </a>
           <span className="cta-primary opacity-0 text-[10px] font-bold uppercase tracking-widest text-white/60">$0 cost -- limited period offer</span>
