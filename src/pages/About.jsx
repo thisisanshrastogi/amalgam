@@ -42,7 +42,7 @@ export default function About() {
 
       <DocSection id="who" num="§02" title="Who it's for">
         <p>People whose time is worth more than the amounts being chased. If an hour of your attention is worth more than the $45 late fee, the rational move is to ignore it — which is exactly why these amounts go unclaimed, and exactly the gap Amalgamic exists to close.</p>
-        
+
         <div className="grid md:grid-cols-2 gap-4 my-6">
           <div className="bg-surface border border-border p-6 rounded-xl shadow-sm">
             <span className="text-[10px] font-bold uppercase tracking-widest text-brand block mb-3">Fit</span>
@@ -89,7 +89,7 @@ export default function About() {
 
       <DocSection id="stack" num="§04" title="How we connect">
         <p>We do not integrate with banks one at a time. Two regulated data providers do that work, which is why coverage reaches more than 12,000 US institutions rather than a handful of national names.</p>
-        
+
         <div className="my-6 space-y-3">
           <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm items-baseline">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted sm:w-24 flex-none">Plaid</span>
@@ -114,8 +114,8 @@ export default function About() {
           <p className="text-muted text-base">Connect your accounts once. We handle the admin from there.</p>
         </div>
         <div className="flex flex-col gap-4 items-start md:items-end">
-          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-accent text-white hover:bg-brand hover:-translate-y-0.5 transition-all whitespace-nowrap">
-            Start Saving in 60 Seconds <ArrowRight size={16} />
+          <a href="https://cards.amalgamic.io/auth/signin/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-accent text-white hover:bg-brand hover:-translate-y-0.5 transition-all whitespace-nowrap">
+            Get started <ArrowRight size={16} />
           </a>
           <div className="flex gap-5">
             <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Read-only access</span>

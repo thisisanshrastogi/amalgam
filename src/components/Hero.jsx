@@ -145,7 +145,7 @@ export default function Hero() {
           <img
             src={BANK_BACKDROP}
             alt=""
-            className="absolute left-1/2 top-[35rem] w-[480px] max-w-none -translate-x-1/2 opacity-40 sm:w-[640px] sm:top-72 lg:left-[55%] lg:top-12 lg:w-[1180px] lg:opacity-40"
+            className="absolute left-1/2 top-[35rem] w-[480px] max-w-none -translate-x-1/2 opacity-40 sm:w-[640px] sm:top-72 lg:left-auto lg:right-0 lg:translate-x-0 lg:top-12 lg:w-[65vw] lg:max-w-[1200px] lg:opacity-40"
             decoding="async"
           />
         </div>
@@ -153,15 +153,16 @@ export default function Hero() {
 
       <DotGrid />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 sm:px-8 lg:flex-row lg:items-center lg:px-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 sm:px-8 lg:flex-row lg:items-stretch lg:px-16">
         {/* Plane 10 — ink panel. The background is a separate absolute child so
             it can run off the left edge of the viewport without dragging the
             text with it or affecting the flex row's measurement. */}
+        <div
+          aria-hidden="true"
+          className="absolute -left-[100vw] -top-32 bottom-0 -right-[100vw] rounded-none bg-[var(--ink)] lg:top-0 lg:right-[calc(50%-2.5rem)] lg:rounded-tr-[52px]"
+        />
+
         <div className="relative flex w-full flex-col justify-center py-10 lg:w-1/2 lg:shrink-0 lg:py-12">
-          <div
-            aria-hidden="true"
-            className="absolute -left-[100vw] -top-32 bottom-0 -right-[100vw] rounded-none bg-[var(--ink)] lg:top-0 lg:right-[-2.5rem] lg:rounded-tr-[52px]"
-          />
 
           <div className="relative z-10 max-w-[34rem] pr-2">
             <h1
@@ -183,20 +184,15 @@ export default function Hero() {
 
             <div
               data-hero-reveal
-              className="hero-btns mb-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+              className="hero-btns mb-6 flex flex-col items-stretch sm:block"
             >
               <a
-                href="https://cards.amalgamic.io"
-                className="hero-cta-main inline-block text-center whitespace-nowrap rounded-full bg-white px-7 py-4 text-sm font-bold text-[var(--ink)] shadow-lg transition-transform hover:scale-[1.03] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--paper)] sm:w-auto"
+                href="https://cards.amalgamic.io/auth/signin"
+                className="hero-cta-main group inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-full bg-white px-9 py-4 text-[15px] font-bold text-[var(--ink)] shadow-[0_8px_30px_rgba(255,255,255,0.12)] transition-all hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] active:translate-y-px active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--paper)] sm:w-auto"
               >
                 Get started
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
               </a>
-              <button
-                type="button"
-                className="whitespace-nowrap rounded-full border border-[rgba(255,255,255,0.25)] bg-transparent px-7 py-4 text-sm font-bold text-[var(--paper)] transition-colors hover:bg-white hover:text-[var(--ink)] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--paper)] sm:w-auto"
-              >
-                See how it works
-              </button>
             </div>
 
             <p
@@ -212,7 +208,7 @@ export default function Hero() {
             the panel's rounded edge; without the overlap the two halves read as
             two boxes sitting next to each other. */}
         <div className="relative z-20 mt-8 flex w-full items-center pb-12 lg:mt-0 lg:w-1/2 lg:justify-center lg:pb-0">
-          <div className="w-full max-w-[85%] ml-6 sm:ml-10 lg:ml-0 lg:max-w-[75%]">
+          <div className="w-full max-w-[85%] ml-6 sm:ml-10 lg:ml-20 lg:max-w-[75%]">
             <HeroCards />
           </div>
         </div>

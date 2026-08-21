@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4 text-sm text-muted">
             <Link to="/#features" className="hover:text-ink transition-colors">Features</Link>
             <Link to="#" className="hover:text-ink transition-colors">Pricing</Link>
-            <a href="https://cards.amalgamic.io/dashboard" className="hover:text-ink transition-colors">Sign In</a>
+            <a href="https://cards.amalgamic.io/auth/signin/dashboard" className="hover:text-ink transition-colors">Sign In</a>
           </div>
         </div> */}
 
@@ -39,7 +39,7 @@ export default function Footer() {
               <Link to="/faq" className="hover:text-ink transition-colors">FAQ</Link>
               <Link to="/supported-banks" className="hover:text-ink transition-colors">Supported Banks</Link>
               {/* <Link to="#" className="hover:text-ink transition-colors">Reward Calculator</Link> */}
-              <a href="https://cards.amalgamic.io/dashboard" className="hover:text-ink transition-colors">Sign In</a>
+              <a href="https://cards.amalgamic.io/auth/signin/dashboard" className="hover:text-ink transition-colors">Sign In</a>
 
             </div>
           </div>

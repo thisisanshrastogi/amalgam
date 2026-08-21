@@ -154,14 +154,7 @@ export default function Navbar() {
                 className="absolute top-full left-1/2 -ml-[104px] mt-3 w-52 bg-white rounded-2xl shadow-xl border border-border/60 opacity-0 flex-col py-2 px-1 before:content-[''] before:absolute before:-top-3 before:left-0 before:w-full before:h-3"
                 style={{ visibility: 'hidden', display: 'none', transformOrigin: 'top center' }}
               >
-                <Link
-                  to="/#how-it-works"
-                  onClick={(e) => handleNavClick(e, 'how-it-works')}
-                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-black/5 transition-colors"
-                >
-                  <span className="text-[13px] font-bold text-ink">How it works</span>
-                  <span className="text-[11px] text-muted mt-0.5 font-normal">Connect cards, automate claims</span>
-                </Link>
+
                 <Link
                   to="/#assistant"
                   onClick={(e) => handleNavClick(e, 'assistant')}
@@ -177,6 +170,14 @@ export default function Navbar() {
                 >
                   <span className="text-[13px] font-bold text-ink">Subscriptions</span>
                   <span className="text-[11px] text-muted mt-0.5 font-normal">Manage recurring charges</span>
+                </Link>
+                <Link
+                  to="/#how-it-works"
+                  onClick={(e) => handleNavClick(e, 'how-it-works')}
+                  className="flex flex-col px-4 py-3 rounded-xl hover:bg-black/5 transition-colors"
+                >
+                  <span className="text-[13px] font-bold text-ink">How it works</span>
+                  <span className="text-[11px] text-muted mt-0.5 font-normal">Connect cards, automate claims</span>
                 </Link>
               </div>
             </div>
@@ -199,7 +200,7 @@ export default function Navbar() {
 
           <div className="nav-cta opacity-0 flex items-center gap-4 md:gap-6">
             <Link to="/contact" className="text-[15px] font-bold text-ink hover:opacity-70 transition-opacity hidden sm:block">Contact</Link>
-            <a href="https://cards.amalgamic.io" className="bg-ink text-white px-5 py-2 md:px-6 md:py-2.5 rounded-full text-[15px] font-bold hover:opacity-80 transition-opacity shadow-sm inline-block text-center">
+            <a href="https://cards.amalgamic.io/auth/signin" className="bg-ink text-white px-5 py-2 md:px-6 md:py-2.5 rounded-full text-[15px] font-bold hover:opacity-80 transition-opacity shadow-sm inline-block text-center">
               Get Started
             </a>
           </div>

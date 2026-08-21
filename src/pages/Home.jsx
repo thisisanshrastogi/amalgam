@@ -21,15 +21,15 @@ export default function Home() {
       <FeaturesGrid />
       <DitherDivider dark />
       {/* <CollectiveImpact /> */}
-      <HowItWorks />
       {/* <Insights /> */}
       <Assistant />
       <CardsAndBillPay />
       <Subscriptions />
       <CardCredits />
       <DelegatedTasks />
+      <HowItWorks />
       <PrivacySecurity />
-      <Proof />
+      {/* <Proof /> */}
       <FinalCTA />
     </main>
   );

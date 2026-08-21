@@ -1,164 +1,482 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createScope } from 'animejs';
-import { fadeUpOnScroll, timelineOnScroll } from '../utils/animations';
+import { fadeUpOnScroll } from '../utils/animations';
+
+/**
+ * Assistant (Insights) — chat, not prose.
+ *
+ * Both sides are bubbles. Assistant turns carry an avatar, a compact data block
+ * where there is data, and one short line of takeaway. Everything the answers
+ * claim is in the product brief: it reads the credit file and transactions,
+ * remembers facts the user tells it, researches public card facts with sources,
+ * and starts actions. It does not book, transfer, or invent numbers.
+ *
+ * GREEN is a readable mint; `accent` (dark pine) disappears on ink.
+ */
+
+const GREEN = '#64B387';
+
+const NODES = {
+  credit: {
+    q: "How's my credit health?",
+    status: ['Reading your credit file'],
+    stat: { value: '742', label: 'Good standing' },
+    rows: [
+      ['Utilization', '31%'],
+      ['On-time streak', '24 months'],
+    ],
+    text: 'Utilization is the only real drag.',
+    chips: ['minimum', 'paydown'],
+  },
+
+  minimum: {
+    q: 'What if I only pay the minimum?',
+    status: ['Running the payoff projection'],
+    rows: [
+      ['Payoff time', '11 yr 4 mo'],
+      ['Interest paid', '$4,120.00'],
+    ],
+    accent: '$4,120.00',
+    text: 'That turns $1,204.60 into $5,324.60.',
+    action: 'Pay now',
+    chips: ['skip', 'subs'],
+  },
+
+  paydown: {
+    q: 'Which card should I pay down first?',
+    status: ['Comparing your cards'],
+    rows: [
+      ['Chase Sapphire · 31% used', '$1,204.60'],
+      ['Citi Double Cash · 12% used', '$310.40'],
+    ],
+    text: 'Sapphire first. Higher APR on file, and it is the one moving your utilization.',
+    chips: ['minimum', 'subs'],
+  },
+
+  skip: {
+    q: "What if I don't pay for 3 months?",
+    status: ['Running the projection'],
+    rows: [
+      ['Interest accrued', '$133.60'],
+      ['Late fees', '2 likely'],
+    ],
+    text: 'The late mark on a 24-month clean streak costs more than the interest.',
+    chips: ['minimum', 'points'],
+  },
+
+  subs: {
+    q: 'Review my subscriptions',
+    status: ['Checking recurring charges'],
+    rows: [
+      ['Netflix · unused 3 mo', '$22.99'],
+      ['Adobe Cloud · unused 1 mo', '$54.99'],
+      ['Spotify · in use', '$16.99'],
+    ],
+    text: 'Two of the three have not been touched since June.',
+    action: 'Cancel Netflix',
+    chips: ['points', 'fees'],
+  },
+
+  points: {
+    q: 'Plan a week in Japan with my Sapphire points',
+    status: ['Checking saved card facts', 'Searching the web'],
+    memory: 'Saved: 42,500 Sapphire points at 1.5¢',
+    rows: [
+      ['Transfer to ANA', '~$680 of flights'],
+      ['Transfer to Hyatt', '5 nights, off-peak'],
+      ['Portal booking', '$531'],
+    ],
+    text: 'Transferring beats the portal at your own valuation. Hyatt goes furthest.',
+    source: 'chase.com +2',
+    chips: ['tokyo', 'fees'],
+  },
+
+  tokyo: {
+    q: 'Which card should I use in Tokyo?',
+    status: ['Searching the web'],
+    text: 'Sapphire. No foreign transaction fee, and 3x on dining abroad.',
+    source: 'chase.com',
+    chips: ['points', 'credit'],
+  },
+
+  fees: {
+    q: 'Show me fees this month',
+    status: ['Scanning six months of charges'],
+    rows: [
+      ['Airline incidental fee', '$200.00'],
+      ['Interest charged', '$31.40'],
+    ],
+    text: 'The airline fee looks avoidable.',
+    action: 'Raise a dispute',
+    chips: ['subs', 'credit'],
+  },
+};
+
+const OFF_TOPIC = /weather|news|sport|poem|joke|recipe|code|homework|movie|football|cricket/i;
+
+const CONNECT = {
+  text: 'I can answer that against your real cards once they are connected. About two minutes.',
+  cta: { label: 'Get started', href: 'https://cards.amalgamic.io/auth/signin' },
+  chips: ['credit', 'subs'],
+};
+
+const REFUSAL = {
+  text: 'I can only help with your financial data. Try subscriptions, spending, bills, or credit health.',
+  chips: ['subs', 'fees'],
+};
+
+/* ---------- helpers ---------- */
+
+function useInView(ref) {
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || seen) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setSeen(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, seen]);
+  return seen;
+}
+
+function Reveal({ children, className = '' }) {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setOn(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return (
+    <div
+      className={`${className} transition-all duration-300 ease-out ${on ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+        }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+const Mark = () => (
+  <span className="mt-1 grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[5px] bg-white/10">
+    <span className="block h-[6px] w-[6px] rounded-[1px] bg-white/70" />
+  </span>
+);
+
+function Working({ label }) {
+  return (
+    <Reveal className="flex items-start gap-2.5">
+      <Mark />
+      <span className="flex items-center gap-2.5 rounded-[14px] rounded-bl-[4px] bg-white/[0.05] px-3.5 py-3">
+        <span className="flex gap-1" aria-hidden="true">
+          {[0, 150, 300].map((d) => (
+            <span
+              key={d}
+              className="block h-[3px] w-[3px] animate-pulse bg-white/45"
+              style={{ animationDelay: `${d}ms` }}
+            />
+          ))}
+        </span>
+        <span className="text-[11px] uppercase tracking-[0.12em] text-white/35">{label}</span>
+      </span>
+    </Reveal>
+  );
+}
+
+/* ---------- section ---------- */
 
 export default function Assistant() {
   const root = useRef(null);
   const scope = useRef(null);
+  const panelRef = useRef(null);
+  const streamRef = useRef(null);
+  const timers = useRef([]);
+  const seq = useRef(0);
+
+  const inView = useInView(panelRef);
+  const [items, setItems] = useState([]);
+  const [working, setWorking] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [draft, setDraft] = useState('');
+
+  const reduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const push = useCallback((msg) => {
+    seq.current += 1;
+    setItems((prev) => [...prev, { ...msg, id: seq.current }]);
+  }, []);
 
   useEffect(() => {
     scope.current = createScope({ root: root.current }).add(() => {
-      // Left column: text stagger
-      fadeUpOnScroll('.asst-text', root.current, { staggerMs: 110, translateY: 24 });
-      fadeUpOnScroll('.asst-list-item', root.current, { staggerMs: 100, delay: 350, translateY: 16 });
-      fadeUpOnScroll('.asst-note', root.current, { delay: 650, translateY: 12 });
-
-      // Right panel: sequential chat timeline
-      timelineOnScroll(root.current, (tl) => {
-        tl
-          .add('.asst-phone', {
-            opacity: [0, 1], translateY: [30, 0], scale: [0.96, 1], duration: 400, ease: 'outExpo',
-          }, '+=50')
-          // User 1
-          .add('.asst-msg-1', {
-            opacity: [0, 1], translateY: [15, 0], duration: 250, ease: 'outExpo',
-          }, '-=100')
-          // AI 1 Thinking
-          .add('.asst-thinking-1', {
-            opacity: [0, 1], duration: 150, ease: 'outExpo',
-          }, '+=100')
-          // AI 1 Thinking Out
-          .add('.asst-thinking-1', {
-            opacity: [1, 0], duration: 150, ease: 'inExpo',
-          }, '+=500')
-          // AI 1 Responds
-          .add('.asst-msg-2', {
-            opacity: [0, 1], translateY: [10, 0], duration: 250, ease: 'outExpo',
-          }, '-=100')
-          
-          // User 2
-          .add('.asst-msg-3', {
-            opacity: [0, 1], translateY: [15, 0], duration: 250, ease: 'outExpo',
-          }, '+=300')
-          // AI 2 Thinking
-          .add('.asst-thinking-2', {
-            opacity: [0, 1], duration: 150, ease: 'outExpo',
-          }, '+=100')
-          // AI 2 Thinking Out
-          .add('.asst-thinking-2', {
-            opacity: [1, 0], duration: 150, ease: 'inExpo',
-          }, '+=600')
-          // AI 2 Responds
-          .add('.asst-msg-4', {
-            opacity: [0, 1], translateY: [10, 0], duration: 250, ease: 'outExpo',
-          }, '-=100');
-      });
+      fadeUpOnScroll('.asst-text', root.current, { staggerMs: 90, translateY: 22 });
+      fadeUpOnScroll('.asst-row', root.current, { staggerMs: 80, delay: 240, translateY: 14 });
+      fadeUpOnScroll('.asst-foot', root.current, { delay: 500, translateY: 10 });
     });
     return () => scope.current.revert();
   }, []);
 
+  const answer = useCallback(
+    (node) => {
+      if (reduced) {
+        push({ role: 'assistant', ...node });
+        setBusy(false);
+        return;
+      }
+      const statuses = node.status && node.status.length ? node.status : ['Checking your data'];
+      let at = 200;
+      statuses.forEach((label) => {
+        timers.current.push(setTimeout(() => setWorking(label), at));
+        at += 750;
+      });
+      timers.current.push(
+        setTimeout(() => {
+          setWorking(null);
+          push({ role: 'assistant', ...node });
+          setBusy(false);
+        }, at)
+      );
+    },
+    [push, reduced]
+  );
+
+  const askNode = useCallback(
+    (key) => {
+      if (busy) return;
+      const node = NODES[key];
+      if (!node) return;
+      setBusy(true);
+      push({ role: 'user', text: node.q });
+      answer(node);
+    },
+    [answer, busy, push]
+  );
+
+  useEffect(() => {
+    if (!inView) return;
+    const node = NODES.credit;
+    if (reduced) {
+      setItems([
+        { id: 1, role: 'user', text: node.q },
+        { id: 2, role: 'assistant', ...node },
+      ]);
+      seq.current = 2;
+      return;
+    }
+    setBusy(true);
+    timers.current.push(
+      setTimeout(() => {
+        push({ role: 'user', text: node.q });
+        answer(node);
+      }, 400)
+    );
+    const list = timers.current;
+    return () => list.forEach(clearTimeout);
+  }, [inView, reduced, push, answer]);
+
+  useEffect(() => {
+    const el = streamRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [items, working]);
+
+  const runAction = (label) => {
+    if (busy) return;
+    setBusy(true);
+    push({ role: 'user', text: label });
+    answer({ ...CONNECT, status: ['Opening the flow'] });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    const text = draft.trim();
+    if (!text || busy) return;
+    setDraft('');
+    setBusy(true);
+    push({ role: 'user', text });
+    answer(OFF_TOPIC.test(text) ? { ...REFUSAL, status: ['Checking scope'] } : CONNECT);
+  };
+
+  const lastAssistant = [...items].reverse().find((m) => m.role === 'assistant');
+
   return (
-    <section ref={root} id="assistant" className="py-32 px-8 bg-paper">
-      <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-20 items-center">
-        <div>
+    <section ref={root} id="assistant" className="bg-paper text-ink py-24 sm:py-32 lg:py-36">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 px-6 sm:px-8 lg:grid-cols-2 lg:gap-24">
 
-          <h2 className="asst-text opacity-0 font-serif text-5xl leading-tight mb-8 text-ink">
-            An assistant that has actually read your statements.
+        {/* Copy */}
+        <div className="min-w-0">
+          <h2 className="asst-text opacity-0 font-serif text-[34px] leading-[1.08] tracking-[-0.015em] sm:text-[42px] lg:text-5xl">
+            A card manager that already knows your cards.
           </h2>
-          <p className="asst-text opacity-0 text-muted text-lg leading-relaxed mb-10">
-            Ask questions in plain English and get answers powered by your actual transaction data. No guessing, just facts.
+          <p className="asst-text opacity-0 mt-6 max-w-[38ch] text-[18px] leading-[1.7] text-ink/55">
+            Ask about spending, bills, and credit. Tell it your points once.
           </p>
-          <ul className="space-y-6 mb-10 text-[15px] text-muted leading-relaxed">
-            <li className="asst-list-item opacity-0 flex gap-4">
-              <div className="w-6 h-6 rounded-full bg-ink/10 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-2 h-2 rounded-full bg-ink"></div>
+
+          <div className="mt-12 border-t border-ink/15 sm:mt-14">
+            {[
+              ['Knows', 'Your cards, transactions, and credit file.'],
+              ['Researches', 'Transfer partners and promos, with sources.'],
+              ['Acts', 'Pay, cancel, or dispute from the chat.'],
+            ].map(([label, copy]) => (
+              <div
+                key={label}
+                className="asst-row opacity-0 grid grid-cols-1 gap-1.5 border-b border-ink/15 py-5 sm:grid-cols-[112px_1fr] sm:gap-8 sm:py-6"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] text-ink/40 sm:pt-[4px]">{label}</span>
+                <p className="text-[15px] leading-[1.7] text-ink/70">{copy}</p>
               </div>
-              <div>
-                <strong className="text-ink">It reads statements.</strong> Parses PDFs automatically.
-              </div>
-            </li>
-            <li className="asst-list-item opacity-0 flex gap-4">
-              <div className="w-6 h-6 rounded-full bg-ink/10 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-2 h-2 rounded-full bg-ink"></div>
-              </div>
-              <div>
-                <strong className="text-ink">It audits on request.</strong> Deep scans for hidden fees.
-              </div>
-            </li>
-            <li className="asst-list-item opacity-0 flex gap-4">
-              <div className="w-6 h-6 rounded-full bg-ink/10 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-2 h-2 rounded-full bg-ink"></div>
-              </div>
-              <div>
-                <strong className="text-ink">It does the arithmetic.</strong> Payoff timelines and minimum payments.
-              </div>
-            </li>
-          </ul>
-          <div className="asst-note opacity-0 bg-ink/5 rounded-3xl border border-ink/10 p-6 text-sm">
-            <span className="font-bold text-ink block mb-2">Two Boundaries</span>
-            <p className="text-muted leading-relaxed">It only works on your money, and it never guesses when missing data.</p>
+            ))}
           </div>
+
+          <p className="asst-foot opacity-0 mt-8 text-[14px] leading-relaxed text-ink/45">
+            It never guesses a number. If it doesn't have the data, it asks.
+          </p>
         </div>
-        <div className="relative">
-          <div className="absolute -inset-10 bg-ink/10 blur-[60px] -z-10 rounded-full"></div>
-          <div className="asst-phone opacity-0 bg-ink rounded-[40px] p-8 shadow-2xl h-[600px] flex flex-col w-full max-w-md mx-auto relative overflow-hidden">
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-sm"></div>
-                </div>
-              </div>
-              <div>
-                <h4 className="text-white font-bold text-sm">Amalgamic Assistant</h4>
-                <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-highlight animate-pulse"></span>
-                  Active • Reading Statements
-                </p>
-              </div>
-            </div>
 
-            <div className="flex-1 overflow-y-auto pr-2 space-y-4 text-[15px] mb-20 scrollbar-hide">
-              <div className="asst-msg-1 opacity-0 bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto rounded-3xl rounded-tr-sm">
-                Why is this month's statement higher?
-              </div>
-              
-              <div className="relative max-w-[85%]">
-                <div className="asst-thinking-1 opacity-0 absolute top-0 left-0 bg-white/5 text-white/50 p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
-                </div>
-                <div className="asst-msg-2 opacity-0 bg-accent text-white chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
-                  Your spending increased by $420, driven by a $200 airline fee (I can dispute this) and a $180 spike in dining.
-                </div>
-              </div>
-
-              <div className="asst-msg-3 opacity-0 bg-white/10 text-white chat-bubble-user p-4 self-end max-w-[80%] ml-auto mt-4 rounded-3xl rounded-tr-sm">
-                If I only pay the minimum, how long until it's clear?
-              </div>
-              
-              <div className="relative max-w-[85%]">
-                <div className="asst-thinking-2 opacity-0 absolute top-0 left-0 bg-white/5 text-white/50 p-4 rounded-3xl rounded-tl-sm flex gap-1.5 items-center h-[56px] w-[64px] justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '0ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '150ms'}}></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce" style={{animationDelay: '300ms'}}></span>
-                </div>
-                <div className="asst-msg-4 opacity-0 bg-accent text-white chat-bubble-ai p-4 self-start rounded-3xl rounded-tl-sm shadow-lg">
-                  It will take 11 years and cost you <strong className="text-surface font-bold underline">$4,120 in interest</strong>.
-                </div>
-              </div>
+        {/* Chat */}
+        <div
+          ref={panelRef}
+          className={`flex h-[520px] w-full flex-col rounded-2xl bg-ink p-4 text-white transition-all duration-500 ease-out sm:h-[580px] sm:p-6 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`}
+        >
+          <div className="flex shrink-0 items-center justify-between gap-4 border-b border-white/10 px-1 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="grid h-[22px] w-[22px] place-items-center rounded-[6px] bg-paper">
+                <span className="block h-2 w-2 rounded-[2px] bg-ink" />
+              </span>
+              <span className="text-[13.5px] font-medium">Assistant</span>
             </div>
-
-            <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-white/5 border border-white/10 rounded-full px-5 py-3.5 flex items-center justify-between">
-                <span className="text-white/40 text-sm italic">Ask anything about your money...</span>
-                <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                </div>
-              </div>
-            </div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/35">3 cards on file</span>
           </div>
+
+          <div
+            ref={streamRef}
+            className="flex-1 space-y-4 overflow-y-auto px-1 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {items.map((m) =>
+              m.role === 'user' ? (
+                <Reveal key={m.id} className="flex">
+                  <p className="ml-auto max-w-[82%] rounded-[16px] rounded-br-[5px] bg-white/[0.09] px-4 py-2.5 text-[14px] leading-[1.55] text-white/85">
+                    {m.text}
+                  </p>
+                </Reveal>
+              ) : (
+                <Reveal key={m.id} className="flex items-start gap-2.5">
+                  <Mark />
+                  <div className="min-w-0 max-w-[88%]">
+                    <div className="rounded-[16px] rounded-bl-[5px] bg-white/[0.05] px-4 py-3">
+                      {m.memory && (
+                        <p className="mb-2.5 text-[11px] uppercase tracking-[0.12em] text-white/35">{m.memory}</p>
+                      )}
+
+                      {m.stat && (
+                        <div className="mb-2.5 flex items-baseline gap-2.5">
+                          <span className="text-[28px] font-medium leading-none tracking-[-0.02em] tabular-nums">
+                            {m.stat.value}
+                          </span>
+                          <span className="text-[12.5px] text-white/45">{m.stat.label}</span>
+                        </div>
+                      )}
+
+                      {m.rows && (
+                        <div className="mb-3 border-t border-white/10">
+                          {m.rows.map(([label, value]) => (
+                            <div
+                              key={label}
+                              className="flex items-center justify-between gap-4 border-b border-white/10 py-2 text-[12.5px] text-white/55 last:border-b-0"
+                            >
+                              <span className="truncate">{label}</span>
+                              <span
+                                className="shrink-0 font-medium tabular-nums"
+                                style={{ color: m.accent === value ? GREEN : '#fff' }}
+                              >
+                                {value}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <p className="text-[14px] leading-[1.6] text-[#F5F2EA]/90">{m.text}</p>
+
+                      {m.source && (
+                        <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full border border-white/12 px-2 py-[3px] text-[10.5px] text-white/45">
+                          <span className="block h-2 w-2 rounded-[2px] bg-white/30" />
+                          {m.source}
+                        </span>
+                      )}
+
+                      {m.action && (
+                        <button
+                          type="button"
+                          onClick={() => runAction(m.action)}
+                          disabled={busy}
+                          className="mt-3 block rounded-full bg-paper px-4 py-2 text-[12px] font-medium text-ink transition-colors hover:bg-white active:translate-y-px disabled:opacity-40"
+                        >
+                          {m.action}
+                        </button>
+                      )}
+
+                      {m.cta && (
+                        <a
+                          href={m.cta.href}
+                          className="mt-3 inline-block rounded-full bg-paper px-4 py-2 text-[12px] font-medium text-ink transition-colors hover:bg-white active:translate-y-px"
+                        >
+                          {m.cta.label}
+                        </a>
+                      )}
+                    </div>
+
+                    {m.chips && lastAssistant && m.id === lastAssistant.id && !working && (
+                      <div className="mt-2.5 flex flex-wrap gap-2">
+                        {m.chips.map((key) => (
+                          <button
+                            key={key}
+                            type="button"
+                            onClick={() => askNode(key)}
+                            disabled={busy}
+                            className="rounded-full border border-white/15 px-3 py-1.5 text-left text-[12px] text-white/55 transition-colors hover:border-white/35 hover:text-white active:translate-y-px disabled:opacity-40"
+                          >
+                            {NODES[key].q}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              )
+            )}
+
+            {working && <Working label={working} />}
+          </div>
+
+          <form
+            onSubmit={submit}
+            className="flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-5 pr-1.5 transition-colors focus-within:border-white/25"
+          >
+            <input
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              placeholder="Ask anything about your cards"
+              aria-label="Ask Insights"
+              className="min-w-0 flex-1 bg-transparent text-[13.5px] text-white outline-none placeholder:text-white/30"
+            />
+            <button
+              type="submit"
+              disabled={busy || !draft.trim()}
+              className="shrink-0 rounded-full bg-paper px-4 py-2 text-[12px] font-medium text-ink transition-all hover:bg-white active:translate-y-px disabled:opacity-30"
+            >
+              Ask
+            </button>
+          </form>
         </div>
+
       </div>
     </section>
   );

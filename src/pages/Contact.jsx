@@ -34,7 +34,7 @@ export default function Contact() {
     >
       <DocSection id="route" num="§01" title="Where to send what">
         <p>Two addresses, monitored by different people. Sending to the right one is faster than sending to both.</p>
-        
+
         <div className="grid sm:grid-cols-2 gap-4 my-6">
           <a href="mailto:support@amalgamic.io" className="block bg-surface border border-border p-5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-3 font-bold">Support</span>
@@ -53,7 +53,7 @@ export default function Contact() {
         <div className="my-6 space-y-3">
           <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm items-baseline">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted sm:w-24 flex-none">Fastest</span>
-            <p className="text-sm m-0">Most account actions are self-serve in your <a href="https://cards.amalgamic.io/dashboard">dashboard</a> — connecting or disconnecting institutions, changing what runs automatically, updating your details, and closing your account.</p>
+            <p className="text-sm m-0">Most account actions are self-serve in your <a href="https://cards.amalgamic.io/auth/signin/dashboard">dashboard</a> — connecting or disconnecting institutions, changing what runs automatically, updating your details, and closing your account.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm items-baseline">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted sm:w-24 flex-none">Everything else</span>
@@ -64,7 +64,7 @@ export default function Contact() {
 
       <DocSection id="privacy" num="§03" title="Privacy requests">
         <p>To exercise a right under the CCPA or another state privacy law, email <a href="mailto:lizann@amalgamic.io">lizann@amalgamic.io</a>. For us to treat it as a valid request it needs to give us enough information to verify you are the person whose data we hold, and describe what you want in enough detail for us to act on it.</p>
-        
+
         <div className="my-6 space-y-3">
           <div className="flex flex-col sm:flex-row gap-4 bg-surface border border-border p-5 rounded-xl shadow-sm items-baseline">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted sm:w-24 flex-none">Include</span>

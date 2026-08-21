@@ -167,8 +167,8 @@ export default function FAQ() {
           <p className="text-muted text-base">The fastest way to find out if it works for you is to let it scan.</p>
         </div>
         <div className="flex flex-col gap-4  items-start md:items-center">
-          <a href="https://cards.amalgamic.io/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-ink text-white hover:opacity-80 hover:-translate-y-0.5 transition-all whitespace-nowrap">
-            Start saving in 60 Seconds <ArrowRight size={16} />
+          <a href="https://cards.amalgamic.io/auth/signin/dashboard" className="flex items-center gap-2 px-8 py-4 rounded-2xl font-bold bg-ink text-white hover:opacity-80 hover:-translate-y-0.5 transition-all whitespace-nowrap">
+            Get started <ArrowRight size={16} />
           </a>
           <div className="flex  gap-5">
             {/* <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Read-only access</span> */}

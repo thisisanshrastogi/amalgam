@@ -66,6 +66,17 @@ export default function PrivacySecurity() {
           sync: true,
         }),
       });
+
+      animate('.vault-rotate', {
+        rotate: [-10, 10],
+        ease: 'linear',
+        autoplay: onScroll({
+          target: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          sync: true,
+        }),
+      });
     });
     return () => scope.current.revert();
   }, []);
@@ -80,16 +91,14 @@ export default function PrivacySecurity() {
       {/* Vault plate. Decorative, so it stays out of the a11y tree. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="vault-parallax absolute inset-0 w-full h-full">
-          <img
-            src="/vault.png"
-            alt=""
-            draggable="false"
-            className="absolute top-1/2 -translate-y-1/2
-                       right-[-22%] sm:right-[-18%] lg:right-[-14%]
-                       w-[min(1400px,130%)] max-w-[900px]
-                       opacity-[0.10] lg:opacity-[0.56]
-                       invert mix-blend-screen select-none"
-          />
+          <div className="absolute top-1/2 -translate-y-1/2 right-[-22%] sm:right-[-18%] lg:right-[-14%] w-[min(1400px,130%)] max-w-[900px]">
+            <img
+              src="/vault.png"
+              alt=""
+              draggable="false"
+              className="vault-rotate w-full h-auto opacity-[0.10] lg:opacity-[0.56] invert mix-blend-screen select-none origin-[77.5%_50%]"
+            />
+          </div>
         </div>
 
         {/* Legibility scrim: solid ink under the text, fading out before the vault. */}

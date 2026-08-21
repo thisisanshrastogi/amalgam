@@ -105,7 +105,7 @@ export default function Hero() {
                         className="hero-btns flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center"
                     >
                         <a
-                            href="https://cards.amalgamic.io"
+                            href="https://cards.amalgamic.io/auth/signin"
                             className="inline-block text-center w-full px-8 py-4 text-sm font-bold shadow-xl rounded-xl bg-ink text-white transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:w-auto"
                         >
                             Connect your accounts
