@@ -28,7 +28,7 @@ const SUBS = [
 
 const SWATCH = {
   Entertainment: 'bg-paper',
-  'SaaS and tools': 'bg-[#2C4E3E]',
+  'SaaS and tools': 'bg-[var(--mint)] opacity-70',
   Health: 'bg-white/12',
 };
 
